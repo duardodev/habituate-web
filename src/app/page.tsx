@@ -1,3 +1,9 @@
+import { Calendar } from '@/components/calendar';
+
 export default function Home() {
-  return <h1>Habituate</h1>;
+  return (
+    <main className="max-w-[820px] p-6 mx-auto flex items-center justify-between">
+      <Calendar />
+    </main>
+  );
 }
