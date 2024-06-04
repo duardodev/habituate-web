@@ -1,6 +1,9 @@
 import { Plus } from 'lucide-react';
 import { Button } from './ui/button';
 import { Separator } from './ui/separator';
+import { api } from '@/functions/api';
+import { Dialog, DialogTrigger } from './ui/dialog';
+import { CreateHabitDialog } from './create-habit-dialog';
 
 export function Header() {
   return (
@@ -10,10 +13,7 @@ export function Header() {
           habituate <span className="text-primary text-[22px]">.</span>
         </h1>
 
-        <Button variant="outline">
-          <Plus className="h-5 w-5 mr-2" />
-          Criar hábito
-        </Button>
+        <CreateHabitDialog />
       </div>
 
       <Separator className="mt-6" />
