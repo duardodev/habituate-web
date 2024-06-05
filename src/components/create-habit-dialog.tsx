@@ -11,7 +11,6 @@ import {
 import { AddHabitButton } from './add-habit-button';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
-import { Label } from './ui/label';
 import { Plus } from 'lucide-react';
 import { api } from '@/functions/api';
 
@@ -46,19 +45,21 @@ export function CreateHabitDialog() {
           Novo hábito
         </Button>
       </DialogTrigger>
-      <DialogContent className="max-w-[500px]">
+      <DialogContent className="max-w-[460px]">
         <DialogHeader>
           <DialogTitle>Novo hábito</DialogTitle>
           <DialogDescription className="text-base leading-tight">Adicione um novo hábito à sua rotina.</DialogDescription>
         </DialogHeader>
 
-        <form action={handleCreateHabit} className="space-y-6">
-          <div className="flex items-center justify-between gap-3">
-            <Label htmlFor="title" className="text-base">
-              Título do hábito
-            </Label>
-            <Input id="title" name="title" required className="text-base text-foreground/90 max-w-[310px]" autoComplete="off" />
-          </div>
+        <form action={handleCreateHabit} className="space-y-4">
+          <Input
+            id="title"
+            name="title"
+            placeholder="Título do hábito"
+            className="text-base w-full placeholder:text-foreground/70"
+            autoComplete="off"
+            required
+          />
 
           <DialogFooter className="flex items-center gap-2">
             <DialogClose asChild>
