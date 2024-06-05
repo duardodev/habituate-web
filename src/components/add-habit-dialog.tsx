@@ -14,8 +14,8 @@ import { Input } from './ui/input';
 import { Plus } from 'lucide-react';
 import { api } from '@/functions/api';
 
-export function CreateHabitDialog() {
-  async function handleCreateHabit(form: FormData) {
+export function AddHabitDialog() {
+  async function handleAddHabit(form: FormData) {
     'use server';
 
     const title = form.get('title');
@@ -51,7 +51,7 @@ export function CreateHabitDialog() {
           <DialogDescription className="text-base leading-tight">Adicione um novo hábito à sua rotina.</DialogDescription>
         </DialogHeader>
 
-        <form action={handleCreateHabit} className="space-y-4">
+        <form action={handleAddHabit} className="space-y-4">
           <Input
             id="title"
             name="title"
