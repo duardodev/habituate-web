@@ -8,6 +8,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
+import { AddHabitButton } from './add-habit-button';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
@@ -24,6 +25,8 @@ export function CreateHabitDialog() {
       return;
     }
 
+    await new Promise(resolve => setTimeout(resolve, 600));
+
     await api('/habits', {
       method: 'POST',
       headers: {
@@ -33,8 +36,6 @@ export function CreateHabitDialog() {
         title,
       }),
     });
-
-    form.delete('title');
   }
 
   return (
@@ -51,12 +52,12 @@ export function CreateHabitDialog() {
           <DialogDescription className="text-base leading-tight">Adicione um novo hábito à sua rotina.</DialogDescription>
         </DialogHeader>
 
-        <form action={handleCreateHabit} method="POST" className="space-y-6">
+        <form action={handleCreateHabit} className="space-y-6">
           <div className="flex items-center justify-between gap-3">
             <Label htmlFor="title" className="text-base">
               Título do hábito
             </Label>
-            <Input id="title" name="title" className="text-base text-foreground/90 max-w-[310px]" autoComplete="off" />
+            <Input id="title" name="title" required className="text-base text-foreground/90 max-w-[310px]" autoComplete="off" />
           </div>
 
           <DialogFooter className="flex items-center gap-2">
@@ -66,9 +67,7 @@ export function CreateHabitDialog() {
               </Button>
             </DialogClose>
 
-            <Button type="submit" className="bg-primary/80">
-              Adicionar
-            </Button>
+            <AddHabitButton />
           </DialogFooter>
         </form>
       </DialogContent>
