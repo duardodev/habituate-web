@@ -1,3 +1,5 @@
+'use client';
+
 import {
   Dialog,
   DialogClose,
@@ -12,29 +14,21 @@ import { AddHabitButton } from './add-habit-button';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Plus } from 'lucide-react';
-import { api } from '@/functions/api';
+import { addHabit } from '@/app/actions';
+import { toast } from 'sonner';
 
 export function AddHabitDialog() {
   async function handleAddHabit(form: FormData) {
-    'use server';
-
     const title = form.get('title');
 
     if (!title) {
+      toast.error('Informe o nome do hábito!');
       return;
     }
 
-    await new Promise(resolve => setTimeout(resolve, 600));
+    await addHabit(form);
 
-    await api('/habits', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        title,
-      }),
-    });
+    toast.success('Hábito adicionado com sucesso!');
   }
 
   return (
@@ -52,14 +46,7 @@ export function AddHabitDialog() {
         </DialogHeader>
 
         <form action={handleAddHabit} className="space-y-4">
-          <Input
-            id="title"
-            name="title"
-            placeholder="Título do hábito"
-            className="text-base w-full placeholder:text-foreground/70"
-            autoComplete="off"
-            required
-          />
+          <Input name="title" placeholder="Nome do hábito" className="text-base w-full placeholder:text-foreground/70" autoComplete="off" />
 
           <DialogFooter className="flex items-center gap-2">
             <DialogClose asChild>
