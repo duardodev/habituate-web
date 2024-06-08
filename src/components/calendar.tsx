@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useDateStore } from '@/store/date-store';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import dayjs from 'dayjs';
@@ -16,23 +16,23 @@ const daysNames = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
 export const monthsNames = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
 
 export function Calendar() {
-  const [currentDate, setCurrentDate] = useState(dayjs());
+  const { currentDate, setNewCurrentDate } = useDateStore();
   const currentWeekDays = Array.from({ length: 7 }, (_, i) => currentDate.add(i, 'day'));
   const currentMonth = monthsNames[currentDate.month()];
   const currentYear = currentDate.year();
 
   function handleGoToPreviuosWeek() {
-    setCurrentDate(prev => prev.subtract(1, 'week'));
+    setNewCurrentDate(currentDate.subtract(1, 'week'));
   }
 
   function handleGoToNextWeek() {
-    setCurrentDate(prev => prev.add(1, 'week'));
+    setNewCurrentDate(currentDate.add(1, 'week'));
   }
 
   return (
-    <>
+    <div className="flex items-center justify-between">
       <div className="flex items-center gap-x-3">
-        <h2 className="text-foreground/95">
+        <h2 className="text-foreground/95 font-semibold">
           {currentMonth} {currentYear}
         </h2>
 
@@ -40,23 +40,22 @@ export function Calendar() {
           <button aria-label="go to previous week" onClick={handleGoToPreviuosWeek}>
             <ChevronLeft className="text-foreground/55 h-5 w-5" />
           </button>
-
           <button aria-label="go to next week" disabled={currentDate.isToday()} onClick={handleGoToNextWeek}>
-            <ChevronRight className={cn('text-foreground/55 h-5 w-5', currentDate.isToday() && 'opacity-50')} />
+            <ChevronRight className={cn('text-foreground/55 h-5 w-5', currentDate.isToday() && 'opacity-60')} />
           </button>
         </div>
       </div>
 
-      <div className="flex gap-6">
+      <div className="flex gap-x-6">
         {currentWeekDays.map(currentWeekDay => {
           return (
-            <p key={currentWeekDay.toString()} className="text-sm text-center text-foreground/70">
+            <p key={currentWeekDay.toString()} className="w-7 text-sm text-center text-foreground/70">
               {daysNames[currentWeekDay.day()]}
               <span className="block">{currentWeekDay.format('DD')}</span>
             </p>
           );
         })}
       </div>
-    </>
+    </div>
   );
 }
