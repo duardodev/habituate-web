@@ -8,15 +8,21 @@ export async function addHabit(formData: FormData) {
 
   await new Promise(resolve => setTimeout(resolve, 200));
 
-  await api('/habits', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      title,
-    }),
-  });
+  try {
+    await api('/habits', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        title,
+      }),
+    });
+  } catch (error) {
+    return {
+      error: 'Error ao adicionar um novo hábito!',
+    };
+  }
 
   revalidateTag('get-habits');
 }

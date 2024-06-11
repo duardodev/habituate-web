@@ -26,7 +26,12 @@ export function AddHabitDialog() {
       return;
     }
 
-    await addHabit(form);
+    const response = await addHabit(form);
+
+    if (response?.error) {
+      toast.error(response.error);
+      return;
+    }
 
     toast.success('Hábito adicionado com sucesso!');
   }
