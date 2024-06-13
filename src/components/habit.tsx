@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useDateStore } from '@/store/date-store';
 import { toggleHabit } from '@/app/actions';
 import { Checkbox } from './ui/checkbox';
@@ -23,38 +23,36 @@ interface DayWithCompletedHabits {
   completedHabits: CompletedHabit[];
 }
 
+async function getDaysWithCompletedHabit(id: string) {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/days/habits/completed`);
+  const data = await response.json();
+
+  return data
+    .filter((dayWithCompletedHabits: DayWithCompletedHabits) => {
+      return dayWithCompletedHabits.completedHabits.some((completedHabit: CompletedHabit) => completedHabit.habitId === id);
+    })
+    .map((dayWithCompletedHabit: DayWithCompletedHabits) => dayWithCompletedHabit.date);
+}
+
 export function Habit({ id, title }: HabitProps) {
   const { currentDate } = useDateStore();
-  const [daysWithCompletedHabit, setDaysWithCompletedHabit] = useState<string[]>([]);
   const currentWeekDays = Array.from({ length: 7 }, (_, i) => currentDate.add(i, 'day'));
+  const queryClient = useQueryClient();
   const today = dayjs();
 
-  async function handleGetDaysWithCompletedHabit() {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/days/habits/completed`);
-    const data = await response.json();
+  const { data: daysWithCompletedHabit = [] } = useQuery({
+    queryKey: ['days-with-comleted-habit', id],
+    queryFn: () => getDaysWithCompletedHabit(id),
+  });
 
-    const daysWithCompletedHabit = data
-      .filter((dayWithCompletedHabits: DayWithCompletedHabits) => {
-        return dayWithCompletedHabits.completedHabits.some((completedHabit: CompletedHabit) => completedHabit.habitId === id);
-      })
-      .map((dayWithCompletedHabits: DayWithCompletedHabits) => dayWithCompletedHabits.date);
-
-    setDaysWithCompletedHabit(daysWithCompletedHabit);
-  }
-
-  async function handleToggleHabit(date: string) {
-    await toggleHabit(id, date);
-
-    if (daysWithCompletedHabit.includes(date)) {
-      setDaysWithCompletedHabit(daysWithCompletedHabit.filter(dateWithCompletedHabits => dateWithCompletedHabits !== date));
-    } else {
-      setDaysWithCompletedHabit([...daysWithCompletedHabit, date]);
-    }
-  }
-
-  useEffect(() => {
-    handleGetDaysWithCompletedHabit();
-  }, [currentDate]);
+  const mutation = useMutation({
+    mutationFn: (date: string) => toggleHabit(id, date),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ['days-with-comleted-habit', id],
+      });
+    },
+  });
 
   return (
     <li className="flex items-center justify-between">
@@ -67,7 +65,7 @@ export function Habit({ id, title }: HabitProps) {
           return (
             <Checkbox
               key={currentWeekDay.toString()}
-              onClick={() => handleToggleHabit(currentWeekDay.toISOString())}
+              onClick={() => mutation.mutateAsync(currentWeekDay.toISOString())}
               disabled={isDisabled}
               checked={isChecked}
             />
