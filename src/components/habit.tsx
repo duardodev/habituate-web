@@ -11,27 +11,16 @@ interface HabitProps {
   title: string;
 }
 
-interface CompletedHabit {
-  id: string;
-  habitId: string;
-  dayId: string;
-}
-
-interface DayWithCompletedHabits {
+interface Day {
   id: string;
   date: Date;
-  completedHabits: CompletedHabit[];
 }
 
 async function getDaysWithCompletedHabit(id: string) {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/days/habits/completed`);
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/completed-habits/${id}/days`);
   const data = await response.json();
 
-  return data
-    .filter((dayWithCompletedHabits: DayWithCompletedHabits) => {
-      return dayWithCompletedHabits.completedHabits.some((completedHabit: CompletedHabit) => completedHabit.habitId === id);
-    })
-    .map((dayWithCompletedHabit: DayWithCompletedHabits) => dayWithCompletedHabit.date);
+  return data.map((dayWithSpecificHabitCompleted: Day) => dayWithSpecificHabitCompleted.date);
 }
 
 export function Habit({ id, title }: HabitProps) {
@@ -40,8 +29,8 @@ export function Habit({ id, title }: HabitProps) {
   const queryClient = useQueryClient();
   const today = dayjs();
 
-  const { data: daysWithCompletedHabit = [] } = useQuery({
-    queryKey: ['days-with-comleted-habit', id],
+  const { data: daysWithSpecificHabitCompleted = [] } = useQuery({
+    queryKey: ['days-with-specific-comleted-habit', id],
     queryFn: () => getDaysWithCompletedHabit(id),
   });
 
@@ -49,7 +38,7 @@ export function Habit({ id, title }: HabitProps) {
     mutationFn: (date: string) => toggleHabit(id, date),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ['days-with-comleted-habit', id],
+        queryKey: ['days-with-specific-comleted-habit', id],
       });
     },
   });
@@ -60,7 +49,7 @@ export function Habit({ id, title }: HabitProps) {
       <div className="flex items-center gap-x-6">
         {currentWeekDays.map(currentWeekDay => {
           const isDisabled = currentWeekDay.isAfter(today, 'day');
-          const isChecked = daysWithCompletedHabit.includes(currentWeekDay.toISOString());
+          const isChecked = daysWithSpecificHabitCompleted.includes(currentWeekDay.toISOString());
 
           return (
             <Checkbox
