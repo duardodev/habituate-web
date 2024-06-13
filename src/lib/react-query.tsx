@@ -9,8 +9,8 @@ export function ReactQueryClientProvider({ children }: { children: React.ReactNo
       new QueryClient({
         defaultOptions: {
           queries: {
-            staleTime: 6 * 1000,
-            refetchInterval: 6 * 1000,
+            staleTime: 5 * 60 * 1000,
+            refetchInterval: 5 * 60 * 1000,
           },
         },
       })
