@@ -2,11 +2,13 @@
 
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useDateStore } from '@/store/date-store';
-import { toggleHabit } from '@/app/actions';
+import { toggleHabit, updateHabit } from '@/app/actions';
 import { UserActionsMenu } from './user-actions-menu';
 import { DropdownMenu, DropdownMenuTrigger } from './ui/dropdown-menu';
 import { Checkbox } from './ui/checkbox';
 import dayjs from 'dayjs';
+import { useState } from 'react';
+import { Input } from './ui/input';
 
 interface HabitProps {
   id: string;
@@ -31,12 +33,16 @@ export function Habit({ id, title }: HabitProps) {
   const queryClient = useQueryClient();
   const today = dayjs();
 
+  const [currentTitle, setCurrentTitle] = useState(title);
+  const [temporyTitle, setTemporyTitle] = useState(title);
+  const [isEditing, setIsEditing] = useState(false);
+
   const { data: daysWithSpecificHabitCompleted = [] } = useQuery({
     queryKey: ['days-with-specific-comleted-habit', id],
     queryFn: () => getDaysWithCompletedHabit(id),
   });
 
-  const mutation = useMutation({
+  const { mutateAsync: handleHabitToggle } = useMutation({
     mutationFn: (date: string) => toggleHabit(id, date),
     onSuccess: () => {
       queryClient.invalidateQueries({
@@ -45,14 +51,46 @@ export function Habit({ id, title }: HabitProps) {
     },
   });
 
+  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newTitle = e.target.value;
+    setTemporyTitle(newTitle);
+  };
+
+  async function handleHabitTitleRename() {
+    if (temporyTitle.trim() === '') {
+      setTemporyTitle(currentTitle);
+      setIsEditing(false);
+      return;
+    }
+
+    await updateHabit(id, temporyTitle);
+    setCurrentTitle(temporyTitle);
+    setIsEditing(false);
+  }
+
   return (
     <li className="flex items-center justify-between">
       <div className="group flex items-center gap-6">
         <DropdownMenu>
-          <DropdownMenuTrigger>
-            <h2 className="hover:text-foreground/85 transition-colors">{title}</h2>
+          <DropdownMenuTrigger disabled={isEditing}>
+            {isEditing ? (
+              <Input
+                type="text"
+                value={temporyTitle}
+                className="h-7 py-3 text-base focus-visible:ring-transparent"
+                onChange={handleTitleChange}
+                onBlur={handleHabitTitleRename}
+                onKeyDown={e => {
+                  if (e.key === 'Enter') {
+                    handleHabitTitleRename();
+                  }
+                }}
+              />
+            ) : (
+              <h2 className="hover:text-foreground/85 transition-colors">{currentTitle}</h2>
+            )}
           </DropdownMenuTrigger>
-          <UserActionsMenu habitId={id} />
+          <UserActionsMenu habitId={id} onRename={() => setIsEditing(true)} />
         </DropdownMenu>
       </div>
 
@@ -64,7 +102,7 @@ export function Habit({ id, title }: HabitProps) {
           return (
             <Checkbox
               key={currentWeekDay.toString()}
-              onClick={() => mutation.mutateAsync(currentWeekDay.toISOString())}
+              onClick={() => handleHabitToggle(currentWeekDay.toISOString())}
               disabled={isDisabled}
               checked={isChecked}
             />

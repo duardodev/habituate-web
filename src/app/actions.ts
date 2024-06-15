@@ -44,3 +44,15 @@ export async function removeHabit(id: string) {
 
   revalidateTag('get-habits');
 }
+
+export async function updateHabit(id: string, title: string) {
+  await api(`/habits/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ title }),
+  });
+
+  revalidateTag('get-habits');
+}
