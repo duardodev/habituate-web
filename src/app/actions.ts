@@ -36,3 +36,11 @@ export async function toggleHabit(id: string, date: string) {
     body: JSON.stringify({ date }),
   });
 }
+
+export async function removeHabit(id: string) {
+  await api(`/habits/${id}`, {
+    method: 'DELETE',
+  });
+
+  revalidateTag('get-habits');
+}

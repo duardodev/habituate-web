@@ -3,6 +3,8 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useDateStore } from '@/store/date-store';
 import { toggleHabit } from '@/app/actions';
+import { UserActionsMenu } from './user-actions-menu';
+import { DropdownMenu, DropdownMenuTrigger } from './ui/dropdown-menu';
 import { Checkbox } from './ui/checkbox';
 import dayjs from 'dayjs';
 
@@ -45,7 +47,15 @@ export function Habit({ id, title }: HabitProps) {
 
   return (
     <li className="flex items-center justify-between">
-      <p>{title}</p>
+      <div className="group flex items-center gap-6">
+        <DropdownMenu>
+          <DropdownMenuTrigger>
+            <h2 className="hover:text-foreground/85 transition-colors">{title}</h2>
+          </DropdownMenuTrigger>
+          <UserActionsMenu habitId={id} />
+        </DropdownMenu>
+      </div>
+
       <div className="flex items-center gap-x-6">
         {currentWeekDays.map(currentWeekDay => {
           const isDisabled = currentWeekDay.isAfter(today, 'day');
