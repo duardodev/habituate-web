@@ -32,16 +32,16 @@ export function Calendar() {
   return (
     <div className="flex items-center justify-between">
       <div className="flex items-center gap-x-3">
-        <h2 className="text-foreground/95 font-semibold">
+        <h2 className="text-foreground/95 font-medium">
           {currentMonth} {currentYear}
         </h2>
 
         <div className="flex gap-x-2">
           <button aria-label="go to previous week" onClick={handleGoToPreviuosWeek}>
-            <ChevronLeft className="text-foreground/55 h-5 w-5" />
+            <ChevronLeft className="text-foreground/70 h-5 w-5" />
           </button>
           <button aria-label="go to next week" disabled={currentDate.isToday()} onClick={handleGoToNextWeek}>
-            <ChevronRight className={cn('text-foreground/55 h-5 w-5', currentDate.isToday() && 'opacity-60')} />
+            <ChevronRight className={cn('text-foreground/70 h-5 w-5', currentDate.isToday() && 'opacity-60')} />
           </button>
         </div>
       </div>
