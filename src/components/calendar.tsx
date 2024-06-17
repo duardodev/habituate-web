@@ -17,7 +17,7 @@ export const monthsNames = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ag
 
 export function Calendar() {
   const { currentDate, setNewCurrentDate } = useDateStore();
-  const currentWeekDays = Array.from({ length: 7 }, (_, i) => currentDate.add(i, 'day'));
+  const currentWeekDays = Array.from({ length: 7 }, (_, i) => currentDate.startOf('week').add(i, 'day'));
   const currentMonth = monthsNames[currentDate.month()];
   const currentYear = currentDate.year();
 
