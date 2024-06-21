@@ -1,14 +1,14 @@
 'use client';
 
+import { useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { useDateStore } from '@/store/date-store';
 import { toggleHabit, updateHabit } from '@/app/actions';
+import { useDateStore } from '@/store/date-store';
 import { UserActionsMenu } from './user-actions-menu';
 import { DropdownMenu, DropdownMenuTrigger } from './ui/dropdown-menu';
 import { Checkbox } from './ui/checkbox';
-import dayjs from 'dayjs';
-import { useState } from 'react';
 import { Input } from './ui/input';
+import dayjs from 'dayjs';
 
 interface HabitProps {
   id: string;
@@ -29,7 +29,7 @@ async function getDaysWithCompletedHabit(id: string) {
 
 export function Habit({ id, title }: HabitProps) {
   const { currentDate } = useDateStore();
-  const currentWeekDays = Array.from({ length: 7 }, (_, i) => currentDate.add(i, 'day'));
+  const currentWeekDays = Array.from({ length: 7 }, (_, i) => currentDate.startOf('week').add(i, 'day'));
   const queryClient = useQueryClient();
   const today = dayjs();
 
