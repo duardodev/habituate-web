@@ -1,5 +1,5 @@
+import { DropdownMenuContent, DropdownMenuItem } from '@/components/ui/dropdown-menu';
 import { removeHabit } from '@/app/actions';
-import { DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator } from '@/components/ui/dropdown-menu';
 import { Edit, Trash2 } from 'lucide-react';
 
 interface UserActionsMenuProps {
