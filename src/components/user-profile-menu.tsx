@@ -1,7 +1,5 @@
-'use client';
-
+import { LogOut } from 'lucide-react';
 import { DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuShortcut } from './ui/dropdown-menu';
-import { signOut } from 'next-auth/react';
 
 interface UserProfileMenuProps {
   name?: string | null;
@@ -18,7 +16,8 @@ export function UserProfileMenu({ name, email }: UserProfileMenuProps) {
         </div>
       </DropdownMenuLabel>
       <DropdownMenuSeparator />
-      <DropdownMenuItem onClick={() => signOut()}>
+      <DropdownMenuItem>
+        <LogOut className="mr-2 w-4 h-4" />
         Sair
         <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
       </DropdownMenuItem>
