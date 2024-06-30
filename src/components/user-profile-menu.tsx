@@ -1,5 +1,5 @@
-import { LogOut } from 'lucide-react';
 import { DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuShortcut } from './ui/dropdown-menu';
+import { LogOut } from 'lucide-react';
 
 interface UserProfileMenuProps {
   name?: string | null;
@@ -16,10 +16,12 @@ export function UserProfileMenu({ name, email }: UserProfileMenuProps) {
         </div>
       </DropdownMenuLabel>
       <DropdownMenuSeparator />
-      <DropdownMenuItem>
-        <LogOut className="mr-2 w-4 h-4" />
-        Sair
-        <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+      <DropdownMenuItem asChild>
+        <a href="/api/auth/logout">
+          <LogOut className="mr-2 w-4 h-4" />
+          Sair
+          <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+        </a>
       </DropdownMenuItem>
     </DropdownMenuContent>
   );

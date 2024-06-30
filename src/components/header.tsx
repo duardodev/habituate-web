@@ -33,7 +33,7 @@ export async function Header() {
             </DropdownMenu>
           </div>
         ) : (
-          <Button variant="outline" asChild>
+          <Button variant="outline" asChild className="ml-auto">
             <Link href={`https://github.com/login/oauth/authorize?client_id=${process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID}`}>
               <Github className="h-[18px] w-[18px] mr-2" />
               Login com GitHub

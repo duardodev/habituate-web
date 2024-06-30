@@ -8,11 +8,11 @@ interface User {
   avatarUrl: string;
 }
 
-export function getUser(): User {
+export function getUser(): User | undefined {
   const token = cookies().get('token')?.value;
 
   if (!token) {
-    throw new Error('Unauthenticaded');
+    return;
   }
 
   const user: User = jwtDecode(token);
