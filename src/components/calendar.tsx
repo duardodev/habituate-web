@@ -20,6 +20,7 @@ export function Calendar() {
   const currentWeekDays = Array.from({ length: 7 }, (_, i) => currentDate.startOf('week').add(i, 'day'));
   const currentMonth = monthsNames[currentDate.month()];
   const currentYear = currentDate.year();
+  const today = dayjs();
 
   function handleGoToPreviuosWeek() {
     setNewCurrentDate(currentDate.subtract(1, 'week'));
@@ -49,10 +50,19 @@ export function Calendar() {
       <div className="flex gap-x-6">
         {currentWeekDays.map(currentWeekDay => {
           return (
-            <p key={currentWeekDay.toString()} className="w-7 text-sm text-center text-foreground/70">
-              {daysNames[currentWeekDay.day()]}
-              <span className="block">{currentWeekDay.format('DD')}</span>
-            </p>
+            <div key={currentWeekDay.toString()} className="relative">
+              {currentWeekDay.isToday() && (
+                <span className="absolute left-7 -top-1 flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
+                </span>
+              )}
+
+              <p className="w-7 text-sm text-center text-foreground/70">
+                {daysNames[currentWeekDay.day()]}
+                <span className="block">{currentWeekDay.format('DD')}</span>
+              </p>
+            </div>
           );
         })}
       </div>
