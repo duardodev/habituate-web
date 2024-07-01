@@ -8,6 +8,7 @@ import { UserActionsMenu } from './user-actions-menu';
 import { DropdownMenu, DropdownMenuTrigger } from './ui/dropdown-menu';
 import { Checkbox } from './ui/checkbox';
 import { Input } from './ui/input';
+import { getCookie } from 'cookies-next';
 import dayjs from 'dayjs';
 
 interface HabitProps {
@@ -21,7 +22,14 @@ interface Day {
 }
 
 async function getDaysWithCompletedHabit(id: string) {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/completed-habits/${id}/days`);
+  const token = getCookie('token');
+
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/completed-habits/${id}/days`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
   const data = await response.json();
 
   return data.map((dayWithSpecificHabitCompleted: Day) => dayWithSpecificHabitCompleted.date);
