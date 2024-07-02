@@ -3,14 +3,6 @@
 import { useDateStore } from '@/store/date-store';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import dayjs from 'dayjs';
-import utc from 'dayjs/plugin/utc';
-import timezone from 'dayjs/plugin/timezone';
-import isToday from 'dayjs/plugin/isToday';
-
-dayjs.extend(utc);
-dayjs.extend(timezone);
-dayjs.extend(isToday);
 
 const daysNames = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
 export const monthsNames = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
@@ -20,7 +12,6 @@ export function Calendar() {
   const currentWeekDays = Array.from({ length: 7 }, (_, i) => currentDate.startOf('week').add(i, 'day'));
   const currentMonth = monthsNames[currentDate.month()];
   const currentYear = currentDate.year();
-  const today = dayjs();
 
   function handleGoToPreviuosWeek() {
     setNewCurrentDate(currentDate.subtract(1, 'week'));
