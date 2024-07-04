@@ -3,7 +3,7 @@ import { Habits } from '@/components/habits';
 
 export default function Home() {
   return (
-    <main className="max-w-[820px] p-6 mx-auto flex flex-col">
+    <main className="w-full max-w-[800px] p-6 mx-auto flex flex-col">
       <Calendar />
       <Habits />
     </main>
