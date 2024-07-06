@@ -12,7 +12,7 @@ export async function Header() {
   const user = getUser();
 
   return (
-    <header className="max-w-[800px] w-full px-6 pt-6 mx-auto">
+    <header className="max-w-[860px] w-full px-6 pt-6 mx-auto">
       <div className="flex items-center">
         <h1 className="text-lg font-medium">
           habituate <span className="text-green-400 text-[28px]">.</span>
