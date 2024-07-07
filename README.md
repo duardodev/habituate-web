@@ -14,10 +14,10 @@ Front-end da aplicação de rastreamento de hábitos desenvolvido com Next.js, R
 
 ### Desenvolvimento
 
-- Integração com API RESTful para gerenciar hábitos e registrar usuários [(repositório da API)](https://github.com/duardodev/habituate-api);
-- Gerenciamento de datas com Day.js e Zustand;
-- Testes unitários e testes E2E;
+- Integração com API REST para gerenciar hábitos e registrar usuários [(repositório da API)](https://github.com/duardodev/habituate-api);
+- Manipulação de datas com Day.js e Zustand;
 - Autenticação feita com GitHub OAuth e JWT;
+- Testes unitários e testes E2E;
 
 ### Ferramentas
 
