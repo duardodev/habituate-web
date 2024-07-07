@@ -1,4 +1,4 @@
-# Habituate (WEB)
+# Habituate (Next.js)
 
 Front-end da aplicação de monitoramento de hábitos desenvolvido com Next.js, React Query, GitHub OAuth, Day.js, e Tailwind.
 
