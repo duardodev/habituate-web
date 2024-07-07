@@ -1,6 +1,6 @@
 # Habituate (WEB)
 
-Front-end da aplicação de rastreamento de hábitos construída com Next.js, GitHub OAuth, React Query, Day.js e Tailwind.
+Front-end da aplicação de rastreamento de hábitos desenvolvido com Next.js, React Query, GitHub OAuth, Day.js, e Tailwind.
 
 ![Screenshot](https://i.imgur.com/rKTiAgy.png)
 
@@ -8,16 +8,16 @@ Front-end da aplicação de rastreamento de hábitos construída com Next.js, Gi
 
 ### Funcionalidades
 
-- Criação, renomeação, conclusão e exclusão de hábitos;
-- Autenticação com GitHub OAuth;
-- Navegação entre as semanas;
+- Login com GitHub;
+- Monitoramento, criação, renomeação, conclusão e exclusão de hábitos;
+- Visualização de histórico;
 
 ### Desenvolvimento
 
-- Integração com API RESTful para gerenciar hábitos e registrar usuários [repositório da API](https://github.com/duardodev/habituate-api);
+- Integração com API RESTful para gerenciar hábitos e registrar usuários [(repositório da API)](https://github.com/duardodev/habituate-api);
 - Gerenciamento de datas com Day.js e Zustand;
 - Testes unitários e testes E2E;
-- Autenticação JWT;
+- Autenticação feita com GitHub OAuth e JWT;
 
 ### Ferramentas
 
