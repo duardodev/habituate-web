@@ -1,36 +1,39 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Habituate (WEB)
 
-## Getting Started
+Front-end da aplicação de rastreamento de hábitos construída com Next.js, GitHub OAuth, React Query, Day.js e Tailwind.
 
-First, run the development server:
+![Screenshot](https://i.imgur.com/rKTiAgy.png)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Funcionalidades
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Criação, renomeação, conclusão e exclusão de hábitos;
+- Autenticação com GitHub OAuth;
+- Navegação entre as semanas;
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Desenvolvimento
 
-## Learn More
+- Integração com API RESTful para gerenciar hábitos e registrar usuários [repositório da API](https://github.com/duardodev/habituate-api);
+- Gerenciamento de datas com Day.js e Zustand;
+- Testes unitários e testes E2E;
+- Autenticação JWT;
 
-To learn more about Next.js, take a look at the following resources:
+### Ferramentas
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [Next.js](https://nextjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [GitHub OAuth](https://docs.github.com/en/apps/oauth-apps)
+- [React Query](https://tanstack.com/query/latest)
+- [Zustand](https://zustand-demo.pmnd.rs/)
+- [Jest](https://jestjs.io/pt-BR/)
+- [Testing Library](https://testing-library.com/)
+- [Playwright](https://playwright.dev/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Shadcn/ui](https://ui.shadcn.com/)
+- [Radix UI](https://www.radix-ui.com/)
+- [Sonner](https://sonner.emilkowal.ski/)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+<p align="center">Desenvolvido por Deivit Eduardo.</p>
