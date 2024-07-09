@@ -10,7 +10,7 @@ Front-end da aplicação de monitoramento de hábitos desenvolvido com Next.js, 
 
 - Login com GitHub;
 - Monitoramento, criação, renomeação, conclusão e exclusão de hábitos;
-- Acompanhamento de progresso;
+- Acompanhamento do progresso;
 
 ### Desenvolvimento
 
@@ -18,6 +18,7 @@ Front-end da aplicação de monitoramento de hábitos desenvolvido com Next.js, 
 - Manipulação de datas com Day.js e Zustand;
 - Autenticação feita com GitHub OAuth e JWT;
 - Testes unitários e testes E2E;
+- Responsividade (em andamento...)
 
 ### Ferramentas
 
