@@ -34,7 +34,9 @@ export async function Header() {
           </div>
         ) : (
           <Button variant="outline" asChild className="ml-auto">
-            <Link href={`https://github.com/login/oauth/authorize?client_id=${process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID}`}>
+            <Link
+              href={`https://github.com/login/oauth/authorize?client_id=${process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID}&scope=read:user%20user:email`}
+            >
               <Github className="h-[18px] w-[18px] mr-2" />
               Login com GitHub
             </Link>

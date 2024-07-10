@@ -4,7 +4,7 @@ import { jwtDecode } from 'jwt-decode';
 interface User {
   sub: string;
   name: string;
-  email: string;
+  email?: string;
   avatarUrl: string;
 }
 
