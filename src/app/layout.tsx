@@ -3,8 +3,8 @@ import { Inter } from 'next/font/google';
 import { Header } from '@/components/header';
 import { Toaster } from '@/components/ui/sonner';
 import { Providers } from './providers';
-import './globals.css';
 import { Footer } from '@/components/footer';
+import './globals.css';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -12,7 +12,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'Habituate',
+  title: 'Habituate - Monitore seus hábitos com facilidade.',
+  description: 'Uma ferramenta que ajuda você a monitorar seus hábitos de forma simples e objetiva.',
 };
 
 export default function RootLayout({
