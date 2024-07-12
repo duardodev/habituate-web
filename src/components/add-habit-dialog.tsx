@@ -47,7 +47,7 @@ export function AddHabitDialog() {
       <DialogContent className="max-w-[460px]">
         <DialogHeader>
           <DialogTitle>Novo hábito</DialogTitle>
-          <DialogDescription className="text-base leading-tight">Adicione um novo hábito à sua rotina.</DialogDescription>
+          <DialogDescription className="text-base leading-tight">Adicione um novo hábito.</DialogDescription>
         </DialogHeader>
 
         <form action={handleAddHabit} className="space-y-4">
