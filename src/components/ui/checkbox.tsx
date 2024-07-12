@@ -15,6 +15,7 @@ const Checkbox = React.forwardRef<
       className
     )}
     checked={checked}
+    aria-label="Caixa de seleção"
     {...props}
   >
     <CheckboxPrimitive.Indicator />

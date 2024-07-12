@@ -17,15 +17,14 @@ export async function Header() {
         <h1 className="text-lg font-medium">
           habituate <span className="text-green-400 text-[28px]">.</span>
         </h1>
-
         {user ? (
           <div className="ml-auto flex items-center gap-6">
             <AddHabitDialog />
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="relative h-10 w-10 select-none rounded-full bg-muted">
+                <Button variant="ghost" className="relative h-10 w-10 select-none rounded-full bg-muted" aria-label="Foto de perfil">
                   <Avatar>
-                    <AvatarImage src={user.avatarUrl} alt="" />
+                    <AvatarImage src={user.avatarUrl} alt="Foto de perfil" />
                   </Avatar>
                 </Button>
               </DropdownMenuTrigger>
@@ -43,7 +42,6 @@ export async function Header() {
           </Button>
         )}
       </div>
-
       <Separator className="mt-6" />
     </header>
   );
