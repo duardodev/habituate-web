@@ -40,7 +40,7 @@ export function Habit({ id, title }: HabitProps) {
   const [isTitleEditing, setIsTitleEditing] = useState(false);
   const [completedDays, setCompletedDays] = useState<string[]>([]);
 
-  const currentWeekDays = Array.from({ length: 7 }, (_, i) => currentDate.startOf('week').add(i, 'day'));
+  const currentWeekDays = Array.from({ length: 7 }, (_, i) => currentDate.utc().startOf('week').add(i, 'day'));
   const queryClient = useQueryClient();
   const today = dayjs();
 
