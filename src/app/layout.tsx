@@ -12,8 +12,16 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'Habituate - Monitore seus hábitos com facilidade.',
+  metadataBase: new URL('https://habituate-duardodev.vercel.app'),
+  title: 'Habituate - Monitore seus hábitos com simplicidade.',
   description: 'Uma ferramenta que ajuda você a monitorar seus hábitos de forma simples e objetiva.',
+  keywords: 'habituate, hábitos, monitoramento de hábitos, produtividade',
+  authors: [
+    {
+      name: 'duardodev',
+      url: 'https://github.com/duardodev',
+    },
+  ],
 };
 
 export default function RootLayout({
