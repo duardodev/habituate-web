@@ -44,22 +44,19 @@ export function AddHabitDialog() {
           Novo hábito
         </Button>
       </DialogTrigger>
-      <DialogContent className="max-w-[460px]">
+      <DialogContent className="w-[460px]">
         <DialogHeader>
           <DialogTitle>Novo hábito</DialogTitle>
           <DialogDescription className="text-base leading-tight">Adicione um novo hábito.</DialogDescription>
         </DialogHeader>
-
         <form action={handleAddHabit} className="space-y-4">
-          <Input name="title" placeholder="Nome do hábito" className="text-base w-full placeholder:text-foreground/70" autoComplete="off" />
-
+          <Input name="title" placeholder="Nome do hábito" className="text-base placeholder:text-foreground/70" autoComplete="off" />
           <DialogFooter className="flex items-center gap-2">
             <DialogClose asChild>
               <Button type="button" variant="outline" className="h-[42px]">
                 Cancelar
               </Button>
             </DialogClose>
-
             <AddHabitButton />
           </DialogFooter>
         </form>

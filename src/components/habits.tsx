@@ -32,10 +32,10 @@ export async function Habits() {
   }
 
   return (
-    <ul className="mt-4 space-y-4">
+    <div className="mt-4 space-y-4 pb-4">
       {data.map(habit => {
         return <Habit key={habit.id} id={habit.id} title={habit.title} />;
       })}
-    </ul>
+    </div>
   );
 }

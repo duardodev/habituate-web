@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { AddHabitDialog } from './add-habit-dialog';
 import { UserProfileMenu } from './user-profile-menu';
 import { DropdownMenu, DropdownMenuTrigger } from './ui/dropdown-menu';
@@ -8,39 +9,39 @@ import { Separator } from './ui/separator';
 import { Github } from 'lucide-react';
 import { getUser } from '@/lib/auth';
 
+import logo from '../../public/logo.svg';
+import { cn } from '@/lib/utils';
+import { cookies } from 'next/headers';
+
 export async function Header() {
   const user = getUser();
+  const isAuthenticated = Boolean(cookies().get('token'));
+
+  if (!isAuthenticated) {
+    return;
+  }
 
   return (
-    <header className="max-w-[860px] w-full px-6 pt-6 mx-auto">
+    <header className="max-w-[860px] w-full px-4 pt-6 mx-auto">
       <div className="flex items-center">
-        <h1 className="text-lg font-medium">
-          habituate <span className="text-green-400 text-[28px]">.</span>
-        </h1>
-        {user ? (
-          <div className="ml-auto flex items-center gap-6">
-            <AddHabitDialog />
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="relative h-10 w-10 select-none rounded-full bg-muted" aria-label="Foto de perfil">
-                  <Avatar>
-                    <AvatarImage src={user.avatarUrl} alt="Foto de perfil" />
-                  </Avatar>
-                </Button>
-              </DropdownMenuTrigger>
-              <UserProfileMenu name={user.name} email={user.email} />
-            </DropdownMenu>
-          </div>
-        ) : (
-          <Button variant="outline" asChild className="ml-auto">
-            <Link
-              href={`https://github.com/login/oauth/authorize?client_id=${process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID}&scope=read:user%20user:email`}
-            >
-              <Github className="h-[18px] w-[18px] mr-2" />
-              Login com GitHub
-            </Link>
-          </Button>
-        )}
+        <Image src={logo} alt="Logo do Habituate" className="hidden min-[450px]:block" priority />
+        <div className="w-full min-[450px]:w-auto min-[450px]:ml-auto flex items-center justify-between min-[450px]:justify-normal gap-6">
+          <AddHabitDialog />
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                variant="ghost"
+                className="order-first min-[450px]:order-last relative h-10 w-10 select-none rounded-full bg-muted"
+                aria-label="Foto de perfil"
+              >
+                <Avatar>
+                  <AvatarImage src={user?.avatarUrl} alt="Foto de perfil" />
+                </Avatar>
+              </Button>
+            </DropdownMenuTrigger>
+            <UserProfileMenu name={user?.name} email={user?.email} />
+          </DropdownMenu>
+        </div>
       </div>
       <Separator className="mt-6" />
     </header>

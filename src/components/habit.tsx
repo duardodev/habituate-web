@@ -40,7 +40,7 @@ export function Habit({ id, title }: HabitProps) {
   const [isTitleEditing, setIsTitleEditing] = useState(false);
   const [completedDays, setCompletedDays] = useState<string[]>([]);
 
-  const currentWeekDays = Array.from({ length: 7 }, (_, i) => currentDate.utc().startOf('week').add(i, 'day'));
+  const currentWeekDays = Array.from({ length: 7 }, (_, i) => currentDate.startOf('week').add(i, 'day'));
   const queryClient = useQueryClient();
   const today = dayjs();
 
@@ -67,16 +67,16 @@ export function Habit({ id, title }: HabitProps) {
     }
   }, [isSuccess]);
 
-  async function handleHabitTitleRename() {
+  function handleHabitTitleRename() {
     if (temporaryTitle.trim() === '') {
       setTemporaryTitle(currentTitle);
       setIsTitleEditing(false);
       return;
     }
 
-    await updateHabit(id, temporaryTitle);
     setCurrentTitle(temporaryTitle);
     setIsTitleEditing(false);
+    updateHabit(id, temporaryTitle);
   }
 
   async function handleHabitToggle(date: string) {
@@ -102,29 +102,30 @@ export function Habit({ id, title }: HabitProps) {
   }
 
   return (
-    <li className="flex items-center justify-between">
-      <div className="group flex items-center gap-6">
-        <DropdownMenu>
-          <DropdownMenuTrigger disabled={isTitleEditing}>
-            {isTitleEditing ? (
-              <Input
-                type="text"
-                value={temporaryTitle}
-                className="h-7 py-3 text-base focus-visible:ring-transparent"
-                onChange={handleTitleChange}
-                onBlur={handleHabitTitleRename}
-                onKeyDown={e => {
-                  if (e.key === 'Enter') {
-                    handleHabitTitleRename();
-                  }
-                }}
-              />
-            ) : (
-              <h2 className="hover:text-foreground/85 transition-colors">{currentTitle}</h2>
-            )}
-          </DropdownMenuTrigger>
-          <UserActionsMenu habitId={id} onRename={() => setIsTitleEditing(true)} />
-        </DropdownMenu>
+    <li className="flex items-center justify-between gap-10">
+      <div className="group flex items-center min-w-32">
+        {isTitleEditing ? (
+          <Input
+            type="text"
+            value={temporaryTitle}
+            className="h-7 py-3 text-base focus-visible:ring-transparent"
+            onChange={handleTitleChange}
+            onBlur={handleHabitTitleRename}
+            autoFocus
+            onKeyDown={e => {
+              if (e.key === 'Enter') {
+                handleHabitTitleRename();
+              }
+            }}
+          />
+        ) : (
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <h2 className="text-start truncate hover:text-foreground/85 cursor-pointer transition-colors">{currentTitle}</h2>
+            </DropdownMenuTrigger>
+            <UserActionsMenu habitId={id} onRename={() => setIsTitleEditing(true)} />
+          </DropdownMenu>
+        )}
       </div>
       <div className="flex items-center gap-x-6">
         {currentWeekDays.map(currentWeekDay => {

@@ -6,10 +6,13 @@ import { Providers } from './providers';
 import { Footer } from '@/components/footer';
 import './globals.css';
 
-const inter = Inter({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-});
+import { GeistSans } from 'geist/font/sans';
+import { cn } from '@/lib/utils';
+
+// const inter = Inter({
+//   subsets: ['latin'],
+//   weight: ['400', '500', '600', '700'],
+// });
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://habituate-duardodev.vercel.app'),
@@ -31,7 +34,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR" className="h-full">
-      <body className={`${inter.className} flex flex-col min-h-screen antialiased dark`}>
+      <body className={cn('flex flex-col min-h-screen antialiased dark', GeistSans.className)}>
         <Providers>
           <Header />
           {children}
