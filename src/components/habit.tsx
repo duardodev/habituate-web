@@ -130,11 +130,11 @@ export function Habit({ id, title }: HabitProps) {
       <div className="flex items-center gap-x-6">
         {currentWeekDays.map(currentWeekDay => {
           const isDisabled = currentWeekDay.isAfter(today, 'day');
-          const isChecked = completedDays.includes(currentWeekDay.toISOString());
+          const isChecked = completedDays.includes(currentWeekDay.utc().startOf('day').toISOString());
           return (
             <Checkbox
               key={currentWeekDay.toString()}
-              onClick={() => handleHabitToggle(currentWeekDay.toISOString())}
+              onClick={() => handleHabitToggle(currentWeekDay.utc().startOf('day').toISOString())}
               disabled={isDisabled}
               checked={isChecked}
             />
