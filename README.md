@@ -1,8 +1,8 @@
 # Habituate (Next.js)
 
-Front-end da aplicação de monitoramento de hábitos desenvolvido com Next.js, React Query, GitHub OAuth, Day.js, e Tailwind.
+Front-end da aplicação de monitoramento de hábitos desenvolvido com Next.js, React Query, GitHub OAuth, Day.js, e TailwindCSS.
 
-![Screenshot](https://i.imgur.com/rKTiAgy.png)
+![Screenshot](https://i.imgur.com/qLPaMvZ.png)
 
 ---
 
@@ -18,7 +18,6 @@ Front-end da aplicação de monitoramento de hábitos desenvolvido com Next.js, 
 - Manipulação de datas com Day.js e Zustand;
 - Autenticação feita com GitHub OAuth e JWT;
 - Testes unitários e testes E2E;
-- Responsividade (em andamento...)
 
 ### Ferramentas
 
