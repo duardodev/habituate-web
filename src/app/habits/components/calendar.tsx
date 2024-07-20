@@ -22,20 +22,23 @@ export function Calendar() {
   }
 
   return (
-    <div className="mt-5 flex items-center justify-between gap-x-10">
+    <div className="mt-5 overflow-visible flex items-center justify-between gap-x-10">
       <div className="flex items-center gap-x-3">
         <h2 className="text-foreground/95 font-medium text-nowrap">
           {currentMonth} {currentYear}
         </h2>
+
         <div className="flex gap-x-2">
           <button aria-label="go to previous week" onClick={handleGoToPreviuosWeek}>
             <ChevronLeft className="text-foreground/70 h-5 w-5" />
           </button>
+
           <button aria-label="go to next week" disabled={currentDate.isToday()} onClick={handleGoToNextWeek}>
             <ChevronRight className={cn('text-foreground/70 h-5 w-5', currentDate.isToday() && 'opacity-60')} />
           </button>
         </div>
       </div>
+
       <div className="flex gap-x-6">
         {currentWeekDays.map(currentWeekDay => {
           return (
@@ -46,6 +49,7 @@ export function Calendar() {
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
                 </span>
               )}
+
               <p className="w-7 text-sm text-center text-foreground/70">
                 {daysNames[currentWeekDay.day()]}
                 <span className="block">{currentWeekDay.format('DD')}</span>

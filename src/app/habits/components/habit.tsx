@@ -5,10 +5,10 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { toggleHabit, updateHabit } from '@/app/actions';
 import { useDateStore } from '@/store/date-store';
 import { UserActionsMenu } from './user-actions-menu';
-import { DropdownMenu, DropdownMenuTrigger } from './ui/dropdown-menu';
-import { Checkbox } from './ui/checkbox';
-import { Input } from './ui/input';
-import { getCookie } from 'cookies-next';
+import { DropdownMenu, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import { useAuth } from '@clerk/nextjs';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Input } from '@/components/ui/input';
 import dayjs from 'dayjs';
 
 interface HabitProps {
@@ -21,8 +21,7 @@ interface Day {
   date: Date;
 }
 
-async function getDaysWithCompletedHabit(id: string) {
-  const token = getCookie('token');
+async function fetchDaysWithCompletedHabit(id: string, token: string) {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/completed-habits/${id}/days`, {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -39,14 +38,19 @@ export function Habit({ id, title }: HabitProps) {
   const [temporaryTitle, setTemporaryTitle] = useState(title);
   const [isTitleEditing, setIsTitleEditing] = useState(false);
   const [completedDays, setCompletedDays] = useState<string[]>([]);
+  const queryClient = useQueryClient();
+  const { getToken } = useAuth();
 
   const currentWeekDays = Array.from({ length: 7 }, (_, i) => currentDate.startOf('week').add(i, 'day'));
-  const queryClient = useQueryClient();
   const today = dayjs();
 
   const { data: daysWithSpecificHabitCompleted = [], isSuccess } = useQuery({
     queryKey: ['days-with-specific-comleted-habit', id],
-    queryFn: () => getDaysWithCompletedHabit(id),
+    queryFn: async () => {
+      const token = await getToken();
+      if (!token) throw new Error('Token not available');
+      return fetchDaysWithCompletedHabit(id, token);
+    },
   });
 
   const { mutateAsync: toggleHabitFn } = useMutation({
@@ -127,6 +131,7 @@ export function Habit({ id, title }: HabitProps) {
           </DropdownMenu>
         )}
       </div>
+
       <div className="flex items-center gap-x-6">
         {currentWeekDays.map(currentWeekDay => {
           const isDisabled = currentWeekDay.isAfter(today, 'day');

@@ -1,6 +1,6 @@
-import { cookies } from 'next/headers';
 import { Habit } from './habit';
 import { api } from '@/functions/api';
+import { auth } from '@clerk/nextjs/server';
 
 interface Habit {
   id: string;
@@ -8,12 +8,8 @@ interface Habit {
 }
 
 export async function Habits() {
-  const isAuthenticated = Boolean(cookies().get('token'));
-  const token = cookies().get('token')?.value;
-
-  if (!isAuthenticated) {
-    return;
-  }
+  const { getToken } = auth();
+  const token = await getToken();
 
   const response = await api('/habits', {
     next: {

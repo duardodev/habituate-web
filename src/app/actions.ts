@@ -1,12 +1,13 @@
 'use server';
 
 import { revalidateTag } from 'next/cache';
-import { cookies } from 'next/headers';
 import { api } from '@/functions/api';
+import { auth } from '@clerk/nextjs/server';
 
 export async function addHabit(formData: FormData) {
-  const token = cookies().get('token')?.value;
+  const { getToken } = auth();
   const title = formData.get('title') as string;
+  const token = await getToken();
 
   try {
     await api('/habits', {
@@ -27,7 +28,8 @@ export async function addHabit(formData: FormData) {
 }
 
 export async function toggleHabit(id: string, date: string) {
-  const token = cookies().get('token')?.value;
+  const { getToken } = auth();
+  const token = await getToken();
 
   await api(`/habits/${id}/toggle`, {
     method: 'PATCH',
@@ -40,7 +42,8 @@ export async function toggleHabit(id: string, date: string) {
 }
 
 export async function removeHabit(id: string) {
-  const token = cookies().get('token')?.value;
+  const { getToken } = auth();
+  const token = await getToken();
 
   await api(`/habits/${id}`, {
     method: 'DELETE',
@@ -53,7 +56,8 @@ export async function removeHabit(id: string) {
 }
 
 export async function updateHabit(id: string, title: string) {
-  const token = cookies().get('token')?.value;
+  const { getToken } = auth();
+  const token = await getToken();
 
   await api(`/habits/${id}`, {
     method: 'PUT',
