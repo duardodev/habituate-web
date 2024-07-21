@@ -5,6 +5,7 @@ import { Providers } from './providers';
 import { Footer } from '@/components/footer';
 import { GeistSans } from 'geist/font/sans';
 import { cn } from '@/lib/utils';
+import { dark } from '@clerk/themes';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -26,7 +27,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
+    <ClerkProvider
+      appearance={{
+        baseTheme: dark,
+      }}
+    >
       <html lang="pt-BR" className="h-full">
         <body className={cn('flex flex-col min-h-screen antialiased dark', GeistSans.className)}>
           <Providers>
