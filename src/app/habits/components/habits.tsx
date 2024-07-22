@@ -31,7 +31,7 @@ export async function Habits() {
     if (data.length === 0) {
       return (
         <div className="h-24 flex items-center justify-center">
-          <p className="text-sm">Nenhum hábito encontrado. Que tal adicionar um novo hábito para começar?</p>
+          <p className="text-sm text-center">Nenhum hábito encontrado. Que tal adicionar um novo hábito para começar?</p>
         </div>
       );
     }
@@ -46,7 +46,7 @@ export async function Habits() {
   } catch (error) {
     return (
       <div className="h-24 flex items-center justify-center">
-        <p className="text-sm">Não foi possível carregar os hábitos. Por favor atualize a página.</p>
+        <p className="text-sm text-center">Não foi possível carregar os hábitos. Por favor atualize a página.</p>
       </div>
     );
   }
