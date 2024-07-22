@@ -1,29 +1,25 @@
 # Habituate (Next.js)
 
-Front-end da aplicação de monitoramento de hábitos desenvolvido com Next.js, React Query, GitHub OAuth, Day.js, e TailwindCSS.
+Front-end da aplicação de monitoramento de hábitos desenvolvido com Next.js, React Query, Clerk, Day.js, e TailwindCSS.
 
 ![Screenshot](https://i.imgur.com/qLPaMvZ.png)
 
 ---
 
-### Funcionalidades
+### Características
 
-- Login com GitHub;
-- Monitoramento, criação, renomeação, conclusão e exclusão de hábitos;
+- Criação, renomeação, conclusão e exclusão de hábitos;
 - Acompanhamento do progresso;
-
-### Desenvolvimento
-
+- Autenticação feita com Clerk;
 - Integração com API REST para gerenciar hábitos e registrar usuários [(repositório da API)](https://github.com/duardodev/habituate-api);
 - Manipulação de datas com Day.js e Zustand;
-- Autenticação feita com GitHub OAuth e JWT;
-- Testes unitários e testes E2E;
+- Testes unitários e testes End-to-End;
 
 ### Ferramentas
 
 - [Next.js](https://nextjs.org/)
 - [TypeScript](https://www.typescriptlang.org/)
-- [GitHub OAuth](https://docs.github.com/en/apps/oauth-apps)
+- [Clerk](https://clerk.com/)
 - [React Query](https://tanstack.com/query/latest)
 - [Zustand](https://zustand-demo.pmnd.rs/)
 - [Jest](https://jestjs.io/pt-BR/)
