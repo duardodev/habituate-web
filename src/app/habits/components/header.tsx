@@ -7,6 +7,7 @@ import { Avatar, AvatarImage } from '@/components/ui/avatar';
 import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
 import logo from '@/../public/logo.svg';
+import Link from 'next/link';
 
 export async function Header() {
   const user = await currentUser();
@@ -14,7 +15,9 @@ export async function Header() {
   return (
     <header className="max-w-[860px] w-full px-4 pt-6 mx-auto">
       <div className="flex items-center">
-        <Image src={logo} alt="Logo do Habituate" className="hidden min-[450px]:block" priority />
+        <Link href="/">
+          <Image src={logo} alt="Logo do Habituate" className="hidden min-[450px]:block" priority />
+        </Link>
 
         <div className="w-full min-[450px]:w-auto min-[450px]:ml-auto flex items-center justify-between min-[450px]:justify-normal gap-6">
           <AddHabitDialog />
