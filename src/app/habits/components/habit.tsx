@@ -115,7 +115,7 @@ export function Habit({ id, title }: HabitProps) {
             className="h-7 py-3 text-base focus-visible:ring-transparent"
             onChange={handleTitleChange}
             onBlur={handleHabitTitleRename}
-            autoFocus
+            autoFocus={process.env.NODE_ENV === 'production'}
             onKeyDown={e => {
               if (e.key === 'Enter') {
                 handleHabitTitleRename();
