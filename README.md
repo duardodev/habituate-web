@@ -24,7 +24,7 @@ Front-end da aplicação de monitoramento de hábitos desenvolvido com Next.js, 
 - [Zustand](https://zustand-demo.pmnd.rs/)
 - [Jest](https://jestjs.io/pt-BR/)
 - [Testing Library](https://testing-library.com/)
-- [Playwright](https://playwright.dev/)
+- [Cypress](https://www.cypress.io/)
 - [Tailwind CSS](https://tailwindcss.com/)
 - [Shadcn/ui](https://ui.shadcn.com/)
 - [Radix UI](https://www.radix-ui.com/)
