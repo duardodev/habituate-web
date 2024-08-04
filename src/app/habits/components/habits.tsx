@@ -2,9 +2,11 @@ import { Habit } from './habit';
 import { api } from '@/functions/api';
 import { auth } from '@clerk/nextjs/server';
 
-interface Habit {
-  id: string;
-  title: string;
+interface Habits {
+  habits: {
+    id: string;
+    title: string;
+  }[];
 }
 
 export async function Habits() {
@@ -22,13 +24,9 @@ export async function Habits() {
       },
     });
 
-    if (!response.ok) {
-      throw new Error('Failed to fetch habits');
-    }
+    const data: Habits = await response.json();
 
-    const data: Habit[] = await response.json();
-
-    if (data.length === 0) {
+    if (data.habits.length === 0) {
       return (
         <div className="h-24 flex items-center justify-center">
           <p className="text-sm text-center">Nenhum hábito encontrado. Que tal adicionar um novo hábito para começar?</p>
@@ -38,7 +36,7 @@ export async function Habits() {
 
     return (
       <div className="mt-4 space-y-4 pb-4">
-        {data.map(habit => {
+        {data.habits.map(habit => {
           return <Habit key={habit.id} id={habit.id} title={habit.title} />;
         })}
       </div>
