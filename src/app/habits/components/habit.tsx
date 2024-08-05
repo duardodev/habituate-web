@@ -21,7 +21,7 @@ interface Day {
   date: Date;
 }
 
-async function fetchDaysWithCompletedHabit(id: string, token: string) {
+async function fetchDatesTheHabitWasCompleted(id: string, token: string) {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/completed-habits/${id}/days`, {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -29,7 +29,7 @@ async function fetchDaysWithCompletedHabit(id: string, token: string) {
   });
 
   const data = await response.json();
-  return data.map((dayWithSpecificHabitCompleted: Day) => dayWithSpecificHabitCompleted.date);
+  return data.datesTheHabitWasCompleted.map((dateTheHabitWasCompleted: Day) => dateTheHabitWasCompleted.date);
 }
 
 export function Habit({ id, title }: HabitProps) {
@@ -44,12 +44,12 @@ export function Habit({ id, title }: HabitProps) {
   const currentWeekDays = Array.from({ length: 7 }, (_, i) => currentDate.startOf('week').add(i, 'day'));
   const today = dayjs();
 
-  const { data: daysWithSpecificHabitCompleted = [], isSuccess } = useQuery({
+  const { data: datesTheHabitWasCompleted = [], isSuccess } = useQuery({
     queryKey: ['days-with-specific-comleted-habit', id],
     queryFn: async () => {
       const token = await getToken();
       if (!token) throw new Error('Token not available');
-      return fetchDaysWithCompletedHabit(id, token);
+      return fetchDatesTheHabitWasCompleted(id, token);
     },
   });
 
@@ -67,7 +67,7 @@ export function Habit({ id, title }: HabitProps) {
 
   useEffect(() => {
     if (isSuccess) {
-      setCompletedDays(daysWithSpecificHabitCompleted);
+      setCompletedDays(datesTheHabitWasCompleted);
     }
   }, [isSuccess]);
 
