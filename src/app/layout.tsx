@@ -11,7 +11,8 @@ import './globals.css';
 export const metadata: Metadata = {
   metadataBase: new URL('https://habituate-duardodev.vercel.app'),
   title: 'Habituate - Monitore seus hábitos com simplicidade.',
-  description: 'Uma ferramenta que ajuda você a monitorar seus hábitos de forma simples e objetiva.',
+  description:
+    'Uma ferramenta que ajuda você a monitorar seus hábitos de forma simples e objetiva.',
   keywords: 'habituate, hábitos, monitoramento de hábitos, produtividade',
   authors: [
     {
@@ -33,11 +34,9 @@ export default function RootLayout({
       }}
     >
       <html lang="pt-BR" className="h-full">
-        <body className={cn('flex flex-col min-h-screen antialiased dark', GeistSans.className)}>
-          <Providers>
-            {children}
-            <Footer />
-          </Providers>
+        <body className={cn('antialiased dark', GeistSans.className)}>
+          <Providers>{children}</Providers>
+          <Footer />
           <Toaster position="top-center" richColors className="font-medium" />
         </body>
       </html>
