@@ -13,8 +13,8 @@ export default function HomePage() {
       </h1>
 
       <p className="text-secondary-foreground/90 text-center text-lg md:text-xl">
-        Habituate ajuda você construir, gerenciar, e manter hábitos positivos. <br /> Comece sua
-        jornada para um você melhor hoje.
+        Habituate ajuda você construir, gerenciar, e manter hábitos positivos.{' '}
+        <br className="hidden sm:block" /> Comece sua jornada para um você melhor hoje.
       </p>
 
       <div className="mt-2 flex flex-wrap justify-center items-center gap-4">
@@ -41,7 +41,7 @@ export default function HomePage() {
         >
           <Link href="https://github.com/duardodev/habituate-web" target="_blank">
             <Github className="h-[18px] w-[18px] mr-2" />
-            Meu GitHub
+            GitHub
           </Link>
         </Button>
       </div>
