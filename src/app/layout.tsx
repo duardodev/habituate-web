@@ -34,9 +34,11 @@ export default function RootLayout({
       }}
     >
       <html lang="pt-BR" className="h-full">
-        <body className={cn('antialiased dark', GeistSans.className)}>
-          <Providers>{children}</Providers>
-          <Footer />
+        <body className={cn('antialiased', GeistSans.className)}>
+          <Providers>
+            <div className="min-h-screen flex-1">{children}</div>
+            <Footer />
+          </Providers>
           <Toaster position="top-center" richColors className="font-medium" />
         </body>
       </html>

@@ -8,13 +8,13 @@ export default function HomePage() {
 
   return (
     <div className="flex flex-col items-center gap-5">
-      <h1 className="text-4xl md:text-[42px] md:leading-[46px] font-bold text-center">
+      <h1 className="text-foreground/95 text-4xl md:text-[42px] md:leading-[46px] font-bold text-center">
         Domine Seus Hábitos, <br /> Transforme Sua Vida
       </h1>
 
-      <p className="max-w-[640px] text-foreground/95 text-center text-lg md:text-xl">
-        Habituate ajuda você construir, gerenciar, e manter hábitos positivos. Comece sua jornada
-        para um você melhor hoje.
+      <p className="text-secondary-foreground/90 text-center text-lg md:text-xl">
+        Habituate ajuda você construir, gerenciar, e manter hábitos positivos. <br /> Comece sua
+        jornada para um você melhor hoje.
       </p>
 
       <div className="mt-2 flex flex-wrap justify-center items-center gap-4">
@@ -37,7 +37,7 @@ export default function HomePage() {
         <Button
           variant="outline"
           asChild
-          className="h-9 font-semibold bg-secondary-foreground text-black hover:text-black hover:bg-secondary-foreground/90"
+          className="h-9 font-semibold bg-secondary-foreground/95 text-background hover:text-background hover:bg-secondary-foreground/85"
         >
           <Link href="https://github.com/duardodev/habituate-web" target="_blank">
             <Github className="h-[18px] w-[18px] mr-2" />

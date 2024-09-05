@@ -1,4 +1,5 @@
-import Image from 'next/image';
+import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import { currentUser } from '@clerk/nextjs/server';
 import { AddHabitDialog } from './add-habit-dialog';
 import { UserProfileMenu } from './user-profile-menu';
@@ -6,8 +7,10 @@ import { DropdownMenu, DropdownMenuTrigger } from '@/components/ui/dropdown-menu
 import { Avatar, AvatarImage } from '@/components/ui/avatar';
 import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
-import logo from '@/../public/logo.svg';
-import Link from 'next/link';
+
+const Logo = dynamic(() => import('../../../components/logo').then(mod => mod.Logo), {
+  ssr: false,
+});
 
 export async function Header() {
   const user = await currentUser();
@@ -16,7 +19,7 @@ export async function Header() {
     <header className="max-w-[860px] w-full px-4 pt-6 mx-auto">
       <div className="flex items-center">
         <Link href="/">
-          <Image src={logo} alt="Logo do Habituate" className="hidden min-[450px]:block" priority />
+          <Logo />
         </Link>
 
         <div className="w-full min-[450px]:w-auto min-[450px]:ml-auto flex items-center justify-between min-[450px]:justify-normal gap-6">
