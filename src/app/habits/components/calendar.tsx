@@ -30,11 +30,17 @@ export function Calendar() {
 
         <div className="flex gap-x-2">
           <button aria-label="go to previous week" onClick={handleGoToPreviuosWeek}>
-            <ChevronLeft className="text-foreground/70 h-5 w-5" />
+            <ChevronLeft className="text-foreground/95 h-5 w-5" />
           </button>
 
-          <button aria-label="go to next week" disabled={currentDate.isToday()} onClick={handleGoToNextWeek}>
-            <ChevronRight className={cn('text-foreground/70 h-5 w-5', currentDate.isToday() && 'opacity-60')} />
+          <button
+            aria-label="go to next week"
+            disabled={currentDate.isToday()}
+            onClick={handleGoToNextWeek}
+          >
+            <ChevronRight
+              className={cn('text-foreground/95 h-5 w-5', currentDate.isToday() && 'opacity-60')}
+            />
           </button>
         </div>
       </div>
@@ -50,7 +56,7 @@ export function Calendar() {
                 </span>
               )}
 
-              <p className="w-7 text-sm text-center text-foreground/70">
+              <p className="w-7 text-sm text-center text-foreground/95 font-medium">
                 {daysNames[currentWeekDay.day()]}
                 <span className="block">{currentWeekDay.format('DD')}</span>
               </p>
