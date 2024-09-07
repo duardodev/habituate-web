@@ -2,7 +2,7 @@
 
 Front-end da aplicação de monitoramento de hábitos desenvolvido com Next.js, React Query, Clerk, Day.js, e TailwindCSS.
 
-![Screenshot](https://i.imgur.com/qLPaMvZ.png)
+![Screenshot](https://imgur.com/ZUKk8x4.png)
 
 ---
 
