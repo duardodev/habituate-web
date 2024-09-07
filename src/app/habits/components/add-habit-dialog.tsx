@@ -10,7 +10,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
-import { AddHabitButton } from './add-habit-button';
+import { ConfirmButton } from './confirm-button';
 import { Button } from '../../../components/ui/button';
 import { Input } from '../../../components/ui/input';
 import { Plus } from 'lucide-react';
@@ -54,7 +54,12 @@ export function AddHabitDialog() {
         </DialogHeader>
 
         <form action={handleAddHabit} className="space-y-4">
-          <Input name="title" placeholder="Nome do hábito" className="text-base placeholder:text-foreground/70" autoComplete="off" />
+          <Input
+            name="title"
+            placeholder="Nome do hábito"
+            className="text-base placeholder:text-foreground/70"
+            autoComplete="off"
+          />
 
           <DialogFooter className="flex items-center gap-2">
             <DialogClose asChild>
@@ -63,7 +68,7 @@ export function AddHabitDialog() {
               </Button>
             </DialogClose>
 
-            <AddHabitButton />
+            <ConfirmButton />
           </DialogFooter>
         </form>
       </DialogContent>
