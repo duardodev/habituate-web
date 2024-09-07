@@ -33,7 +33,7 @@ export function AddHabitDialog() {
       return;
     }
 
-    toast.success('Hábito adicionado com sucesso!');
+    toast.success('Hábito cadastrado com sucesso!');
   }
 
   return (
@@ -41,14 +41,16 @@ export function AddHabitDialog() {
       <DialogTrigger asChild>
         <Button variant="outline">
           <Plus className="h-5 w-5 mr-2" />
-          Novo hábito
+          Cadastrar hábito
         </Button>
       </DialogTrigger>
 
       <DialogContent className="w-[460px]">
         <DialogHeader>
-          <DialogTitle>Novo hábito</DialogTitle>
-          <DialogDescription className="text-base leading-tight">Adicione um novo hábito.</DialogDescription>
+          <DialogTitle>Cadastrar hábito</DialogTitle>
+          <DialogDescription className="text-base leading-tight">
+            Cadastre um novo hábito.
+          </DialogDescription>
         </DialogHeader>
 
         <form action={handleAddHabit} className="space-y-4">
