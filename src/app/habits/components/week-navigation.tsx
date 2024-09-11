@@ -1,13 +1,13 @@
-import { useWeekNavigation } from '@/hooks/useWeekNavigation';
+import { useWeekNavigation } from '@/hooks/use-week-navigation';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export function WeekNavigation() {
-  const { handleGoToNextWeek, handleGoToPreviuosWeek, currentDate } = useWeekNavigation();
+  const { handleGoToNextWeek, handleGoToPreviousWeek, currentDate } = useWeekNavigation();
 
   return (
     <div className="flex gap-x-2">
-      <button aria-label="Navegar para semana anterior" onClick={handleGoToPreviuosWeek}>
+      <button aria-label="Navegar para semana anterior" onClick={handleGoToPreviousWeek}>
         <ChevronLeft className="text-foreground/95 h-5 w-5" />
       </button>
 
