@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { toggleHabit, updateHabit } from '@/app/actions';
-import { useDateStore } from '@/store/date-store';
+import { useCurrentWeekDays } from '@/hooks/use-current-week-days';
 import { UserActionsMenu } from './user-actions-menu';
 import { DropdownMenu, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { useAuth } from '@clerk/nextjs';
@@ -22,18 +22,23 @@ interface Day {
 }
 
 async function fetchDatesTheHabitWasCompleted(id: string, token: string) {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/completed-habits/${id}/days`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/completed-habits/${id}/days`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
 
   const data = await response.json();
-  return data.datesTheHabitWasCompleted.map((dateTheHabitWasCompleted: Day) => dateTheHabitWasCompleted.date);
+  return data.datesTheHabitWasCompleted.map(
+    (dateTheHabitWasCompleted: Day) => dateTheHabitWasCompleted.date
+  );
 }
 
 export function Habit({ id, title }: HabitProps) {
-  const { currentDate } = useDateStore();
+  const { currentWeekDays } = useCurrentWeekDays();
   const [currentTitle, setCurrentTitle] = useState(title);
   const [temporaryTitle, setTemporaryTitle] = useState(title);
   const [isTitleEditing, setIsTitleEditing] = useState(false);
@@ -41,7 +46,6 @@ export function Habit({ id, title }: HabitProps) {
   const queryClient = useQueryClient();
   const { getToken } = useAuth();
 
-  const currentWeekDays = Array.from({ length: 7 }, (_, i) => currentDate.startOf('week').add(i, 'day'));
   const today = dayjs();
 
   const { data: datesTheHabitWasCompleted = [], isSuccess } = useQuery({
@@ -125,7 +129,9 @@ export function Habit({ id, title }: HabitProps) {
         ) : (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <h2 className="text-start truncate hover:text-foreground/85 cursor-pointer transition-colors">{currentTitle}</h2>
+              <h2 className="text-start truncate hover:text-foreground/85 cursor-pointer transition-colors">
+                {currentTitle}
+              </h2>
             </DropdownMenuTrigger>
             <UserActionsMenu habitId={id} onRename={() => setIsTitleEditing(true)} />
           </DropdownMenu>
@@ -135,7 +141,9 @@ export function Habit({ id, title }: HabitProps) {
       <div className="flex items-center gap-x-6">
         {currentWeekDays.map(currentWeekDay => {
           const isDisabled = currentWeekDay.isAfter(today, 'day');
-          const isChecked = completedDays.includes(currentWeekDay.utc().startOf('day').toISOString());
+          const isChecked = completedDays.includes(
+            currentWeekDay.utc().startOf('day').toISOString()
+          );
           return (
             <Checkbox
               key={currentWeekDay.toString()}
