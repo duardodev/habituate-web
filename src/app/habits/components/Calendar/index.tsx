@@ -1,8 +1,8 @@
 'use client';
 
 import { useDateStore } from '@/store/date-store';
-import { WeekDays } from './week-days';
-import { WeekNavigation } from './week-navigation';
+import { WeekDays } from '../week-days';
+import { WeekNavigation } from '../WeekNavigation';
 import { monthsNames } from '@/lib/data';
 
 export function Calendar() {

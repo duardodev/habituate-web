@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
-import { Calendar } from '@/app/habits/components/calendar';
+import { Calendar } from '@/app/habits/components/Calendar';
 import { Habits } from './components/habits';
 import { SkeletonHabit } from './components/skeleton-habit';
 import { HabitsErrorFallback } from './components/habits-error-fallback';
