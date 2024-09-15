@@ -8,7 +8,7 @@ interface HabitsResponse {
   }[];
 }
 
-export const useHabits = async (): Promise<HabitsResponse> => {
+export async function useHabits(): Promise<HabitsResponse> {
   const { getToken } = auth();
   const token = await getToken();
 
@@ -24,4 +24,4 @@ export const useHabits = async (): Promise<HabitsResponse> => {
 
   const data: HabitsResponse = await response.json();
   return data;
-};
+}

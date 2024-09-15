@@ -1,5 +1,5 @@
 import { Habit } from './habit';
-import { useHabits } from '@/hooks/useHabits';
+import { useHabits } from '@/hooks/use-habits';
 
 export async function Habits() {
   const data = await useHabits();

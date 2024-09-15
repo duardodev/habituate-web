@@ -1,6 +1,6 @@
 import { useDateStore } from '@/store/date-store';
 
-export const useWeekNavigation = () => {
+export function useWeekNavigation() {
   const { currentDate, setNewCurrentDate } = useDateStore();
 
   function handleGoToPreviousWeek() {
@@ -16,4 +16,4 @@ export const useWeekNavigation = () => {
     handleGoToNextWeek,
     handleGoToPreviousWeek,
   };
-};
+}
