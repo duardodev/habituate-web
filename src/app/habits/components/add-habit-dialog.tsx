@@ -49,14 +49,14 @@ export function AddHabitDialog() {
         <DialogHeader>
           <DialogTitle>Cadastrar hábito</DialogTitle>
           <DialogDescription className="text-base leading-tight">
-            Cadastre um novo hábito.
+            Adicione hábitos diários que você constuma praticar.
           </DialogDescription>
         </DialogHeader>
 
         <form action={handleAddHabit} className="space-y-4">
           <Input
             name="title"
-            placeholder="Nome do hábito"
+            placeholder="Correr, ler um livro, etc..."
             className="text-base placeholder:text-foreground/70"
             autoComplete="off"
           />
