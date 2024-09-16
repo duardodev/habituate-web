@@ -8,12 +8,12 @@ Front-end da aplicação de monitoramento de hábitos desenvolvido com Next.js, 
 
 ### Características
 
-- Criação, renomeação, exclusão e conclusão de hábitos;
-- Acompanhamento do progresso;
+- Usuário pode criar um hábito, renomear, alternar entre concluído ou não concluído e por fim deletar o mesmo.
+- Usuário pode ver seu progresso navegando por semanas;
 - Integração com API REST para gerenciamento dos hábitos [(repositório da API)](https://github.com/duardodev/habituate-api);
 - Manipulação de datas com Day.js e Zustand;
-- Sistema de autenticação feito com Clerk.
-- Testes unitários e testes End-to-End;
+- Implementação de autenticação com Clerk;
+- Testes unitários com Jest e End-to-End com Cypress.
 
 ### Ferramentas
 
