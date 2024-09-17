@@ -10,10 +10,11 @@ import './globals.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://habituate-duardodev.vercel.app'),
-  title: 'Habituate - Monitore seus hábitos com simplicidade.',
+  title: 'Habituate - Gerencia seus hábitos com simplicidade.',
   description:
-    'Uma ferramenta que ajuda você a monitorar seus hábitos de forma simples e objetiva.',
-  keywords: 'habituate, hábitos, monitoramento de hábitos, produtividade',
+    'Habituate ajuda você construir, gerenciar, e manter hábitos positivos. Comece sua jornada para um melhor hoje.',
+  keywords:
+    'habituate, hábitos, monitoramento de hábitos, gerenciamento, produtividade, bons hábitos, desenvolvimento pessoal',
   authors: [
     {
       name: 'duardodev',
