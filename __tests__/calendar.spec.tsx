@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
-import { Calendar } from '@/app/habits/components/Calendar';
 import { monthsNames } from '@/lib/data';
+import { Calendar } from '@/app/habits/components/calendar';
 import userEvent from '@testing-library/user-event';
 import dayjs from 'dayjs';
 import '@testing-library/jest-dom';
