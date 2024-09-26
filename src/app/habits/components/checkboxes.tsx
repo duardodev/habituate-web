@@ -18,6 +18,7 @@ export function Checkboxes({ habitId }: CheckboxesProps) {
             key={currentWeekDay.toString()}
             habitId={habitId}
             currentWeekDay={currentWeekDay}
+            data-testid={`day-checkbox-${currentWeekDay.toISOString()}`}
           />
         );
       })}
