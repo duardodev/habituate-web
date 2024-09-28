@@ -20,7 +20,7 @@ export function useDayCheckbox({ habitId, currentWeekDay }: useDayCheckboxProps)
   const { mutateAsync: toggleHabitFn } = useMutation({
     mutationFn: (date: string) => toggleHabit(habitId, date),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['days-with-specific-comleted-habit', habitId] });
+      queryClient.invalidateQueries({ queryKey: ['days-with-specific-completed-habit', habitId] });
     },
   });
 
