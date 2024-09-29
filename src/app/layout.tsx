@@ -1,11 +1,12 @@
 import type { Metadata } from 'next';
-import { ClerkProvider } from '@clerk/nextjs';
-import { Toaster } from '@/components/ui/sonner';
 import { Providers } from './providers';
-import { Footer } from '@/components/footer';
 import { GeistSans } from 'geist/font/sans';
-import { cn } from '@/lib/utils';
+import { ClerkProvider } from '@clerk/nextjs';
+import { Analytics } from '@vercel/analytics/react';
+import { Toaster } from '@/components/ui/sonner';
+import { Footer } from '@/components/footer';
 import { dark } from '@clerk/themes';
+import { cn } from '@/lib/utils';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -41,6 +42,7 @@ export default function RootLayout({
             <Footer />
           </Providers>
           <Toaster position="top-center" richColors className="font-medium" />
+          <Analytics />
         </body>
       </html>
     </ClerkProvider>
