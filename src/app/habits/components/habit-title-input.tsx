@@ -1,7 +1,7 @@
 'use client';
 
 import { Input } from '@/components/ui/input';
-import { useHabitInput } from '@/hooks/use-habit-input';
+import { useHabitTitleInput } from '@/hooks/use-habit-title-input';
 
 interface HabitTitleInputProps {
   title: string;
@@ -9,7 +9,10 @@ interface HabitTitleInputProps {
 }
 
 export function HabitTitleInput({ title, onTitleSave }: HabitTitleInputProps) {
-  const { handleTitleChange, saveTitle, temporaryTitle } = useHabitInput({ title, onTitleSave });
+  const { handleTitleChange, saveTitle, temporaryTitle } = useHabitTitleInput({
+    title,
+    onTitleSave,
+  });
 
   return (
     <Input

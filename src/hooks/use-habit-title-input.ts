@@ -5,7 +5,7 @@ interface useHabitInputProps {
   onTitleSave: (newTitle: string) => void;
 }
 
-export function useHabitInput({ title, onTitleSave }: useHabitInputProps) {
+export function useHabitTitleInput({ title, onTitleSave }: useHabitInputProps) {
   const [temporaryTitle, setTemporaryTitle] = useState(title);
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -13,10 +13,11 @@ export function useHabitInput({ title, onTitleSave }: useHabitInputProps) {
   };
 
   const saveTitle = () => {
-    if (temporaryTitle.trim() === '') {
+    const trimmedTitle = temporaryTitle.trim();
+    if (trimmedTitle === '') {
       setTemporaryTitle(title);
     } else {
-      onTitleSave(temporaryTitle);
+      onTitleSave(trimmedTitle);
     }
   };
 
