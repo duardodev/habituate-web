@@ -1,7 +1,7 @@
 import { api } from '@/functions/api';
 import { auth } from '@clerk/nextjs/server';
 
-interface HabitsResponse {
+export interface HabitsResponse {
   habits: {
     id: string;
     title: string;
