@@ -53,7 +53,13 @@ export function AddHabitDialog() {
           </DialogDescription>
         </DialogHeader>
 
-        <form action={handleAddHabit} className="space-y-4">
+        <form
+          onSubmit={e => {
+            e.preventDefault();
+            handleAddHabit(new FormData(e.currentTarget));
+          }}
+          className="space-y-4"
+        >
           <Input
             name="title"
             placeholder="Correr, ler um livro, etc..."
