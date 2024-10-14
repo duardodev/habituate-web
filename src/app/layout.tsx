@@ -11,7 +11,7 @@ import './globals.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://habituate-duardodev.vercel.app'),
-  title: 'Habituate - Gerencia seus hábitos com simplicidade.',
+  title: 'Habituate | Domine seus hábitos, transforme sua vida.',
   description:
     'Habituate ajuda você construir, gerenciar, e manter hábitos positivos. Comece sua jornada para um melhor hoje.',
   keywords:
