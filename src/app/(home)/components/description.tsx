@@ -11,7 +11,7 @@ export function Description() {
       duration={1.5}
       filter={false}
       words={words}
-      className="w-[740px] text-secondary-foreground/95 text-center text-lg md:text-xl"
+      className="max-w-[740px] text-secondary-foreground/95 text-center text-lg md:text-xl"
     />
   );
 }
