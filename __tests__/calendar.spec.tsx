@@ -10,7 +10,7 @@ describe('Calendar Component', () => {
     render(<Calendar />);
 
     const currentDate = dayjs();
-    const currentMonth = monthsNames[currentDate.month()];
+    const currentMonth = monthsNames[currentDate.month()].slice(0, 3);
     const currentYear = currentDate.format('YYYY');
 
     expect(screen.getByText(new RegExp(`${currentMonth}`, 'i'))).toBeInTheDocument();
@@ -21,9 +21,7 @@ describe('Calendar Component', () => {
     render(<Calendar />);
 
     const currentDate = dayjs();
-    const currentWeekDays = Array.from({ length: 7 }, (_, i) =>
-      currentDate.startOf('week').add(i, 'day')
-    );
+    const currentWeekDays = Array.from({ length: 7 }, (_, i) => currentDate.startOf('week').add(i, 'day'));
 
     currentWeekDays.forEach(currentWeekDay => {
       expect(screen.getByText(currentWeekDay.format('DD'))).toBeInTheDocument();
