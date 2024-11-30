@@ -13,12 +13,12 @@ describe('AddHabitDialog component', () => {
 
   it('should render the dialog trigger button', () => {
     render(<AddHabitDialog />);
-    expect(screen.getByRole('button', { name: 'Cadastrar hábito' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Adicionar hábito' })).toBeInTheDocument();
   });
 
   it('should open the dialog when the trigger button is clicked', () => {
     render(<AddHabitDialog />);
-    fireEvent.click(screen.getByRole('button', { name: 'Cadastrar hábito' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Adicionar hábito' }));
     expect(screen.getByRole('dialog')).toBeInTheDocument();
   });
 
@@ -27,7 +27,7 @@ describe('AddHabitDialog component', () => {
     useFormStatusMock.mockReturnValue({ pending: true });
 
     render(<AddHabitDialog />);
-    fireEvent.click(screen.getByRole('button', { name: 'Cadastrar hábito' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Adicionar hábito' }));
 
     const confirmButton = screen.getByRole('button', { name: 'Confirmando' });
     expect(confirmButton).toBeDisabled();
@@ -39,7 +39,7 @@ describe('AddHabitDialog component', () => {
     useFormStatusMock.mockReturnValue({ pending: false });
 
     render(<AddHabitDialog />);
-    fireEvent.click(screen.getByRole('button', { name: 'Cadastrar hábito' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Adicionar hábito' }));
 
     const confirmButton = screen.getByRole('button', { name: 'Confirmar' });
     expect(confirmButton).not.toBeDisabled();
@@ -48,7 +48,7 @@ describe('AddHabitDialog component', () => {
 
   it('should close the dialog when cancel button is clicked', () => {
     render(<AddHabitDialog />);
-    fireEvent.click(screen.getByRole('button', { name: 'Cadastrar hábito' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Adicionar hábito' }));
     expect(screen.getByRole('dialog')).toBeInTheDocument();
 
     fireEvent.click(screen.getByRole('button', { name: 'Cancelar' }));

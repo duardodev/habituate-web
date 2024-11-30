@@ -10,7 +10,7 @@ describe('Add habit', () => {
   });
 
   it('add habit successfully', () => {
-    cy.get('button').contains('Novo hábito').click();
+    cy.get('button').contains('Adicionar hábito').click();
     cy.get('input[placeholder="Nome do hábito"]').type('Correr 1KM');
     cy.get('button').contains('Adicionar').click();
     cy.get('button').contains('Cancelar').click();
@@ -20,7 +20,7 @@ describe('Add habit', () => {
   });
 
   it('do not add habit if input title is empty', () => {
-    cy.get('button').contains('Novo hábito').click();
+    cy.get('button').contains('Adicionar hábito').click();
     cy.get('button').contains('Adicionar').click();
     cy.get('button').contains('Cancelar').click();
 

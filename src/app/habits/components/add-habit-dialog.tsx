@@ -19,10 +19,10 @@ import { toast } from 'sonner';
 
 export function AddHabitDialog() {
   async function handleAddHabit(form: FormData) {
-    const title = form.get('title');
+    const title = form.get('title') as string;
 
-    if (!title) {
-      toast.error('Informe o nome do hábito!');
+    if (!title || title.trim() === '') {
+      toast.error('Informe o novo hábito!');
       return;
     }
 
@@ -33,7 +33,7 @@ export function AddHabitDialog() {
       return;
     }
 
-    toast.success('Hábito cadastrado com sucesso!');
+    toast.success('Hábito adicionado com sucesso!');
   }
 
   return (
@@ -41,13 +41,13 @@ export function AddHabitDialog() {
       <DialogTrigger asChild>
         <Button variant="outline">
           <Plus className="h-5 w-5 mr-2" />
-          Cadastrar hábito
+          Adicionar hábito
         </Button>
       </DialogTrigger>
 
       <DialogContent className="w-[460px]">
         <DialogHeader>
-          <DialogTitle>Cadastrar hábito</DialogTitle>
+          <DialogTitle>Adcionar novo hábito</DialogTitle>
           <DialogDescription className="text-base leading-tight">
             Adicione hábitos diários que você constuma praticar.
           </DialogDescription>
@@ -63,7 +63,7 @@ export function AddHabitDialog() {
           <Input
             name="title"
             placeholder="Correr, ler um livro, etc..."
-            className="text-base placeholder:text-foreground/70"
+            className="placeholder:text-foreground/70"
             autoComplete="off"
           />
 
