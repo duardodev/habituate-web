@@ -3,7 +3,9 @@ import { ErrorBoundary } from 'react-error-boundary';
 import { Calendar } from './components/calendar';
 import { Habits } from './components/habits';
 import { SkeletonHabit } from './components/skeleton-habit';
+import { Tasks } from './components/tasks';
 import { HabitsErrorFallback } from './components/habits-error-fallback';
+import { Separator } from '@/components/ui/separator';
 
 export default function HabitsPage() {
   return (
@@ -15,6 +17,10 @@ export default function HabitsPage() {
           <Habits />
         </Suspense>
       </ErrorBoundary>
+
+      <Separator className="mt-6" />
+
+      <Tasks />
     </div>
   );
 }
