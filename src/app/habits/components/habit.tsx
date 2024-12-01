@@ -2,7 +2,7 @@
 
 import { removeHabit } from '@/app/actions';
 import { Checkboxes } from './checkboxes';
-import { HabitTitleInput } from './habit-title-input';
+import { TitleEditor } from './title-editor';
 import { UserActionsMenu } from './user-actions-menu';
 import { DropdownMenu, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { useHabit } from '@/hooks/use-habit';
@@ -21,7 +21,7 @@ export function Habit({ id, title }: HabitProps) {
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             {isTitleEditing ? (
-              <HabitTitleInput title={title} onTitleSave={handleHabitTitleUpdate} />
+              <TitleEditor title={title} onTitleSave={handleHabitTitleUpdate} isHabitTitle={true} />
             ) : (
               <h2 className="text-start truncate hover:text-foreground/85 cursor-pointer transition-colors">{title}</h2>
             )}

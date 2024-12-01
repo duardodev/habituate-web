@@ -1,11 +1,11 @@
 import { useState } from 'react';
 
-interface useHabitInputProps {
+interface useTitleEditorProps {
   title: string;
   onTitleSave: (newTitle: string) => void;
 }
 
-export function useHabitTitleInput({ title, onTitleSave }: useHabitInputProps) {
+export function useTitleEditor({ title, onTitleSave }: useTitleEditorProps) {
   const [temporaryTitle, setTemporaryTitle] = useState(title);
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

@@ -1,19 +1,15 @@
 import { renderHook, act, waitFor } from '@testing-library/react';
-import { useHabitTitleInput } from '@/hooks/use-habit-title-input';
+import { useTitleEditor } from '@/hooks/use-title-editor';
 import React from 'react';
 
-describe('useHabitTitleInput hook', () => {
+describe('useTitleEditor hook', () => {
   it('should initialize with the provided title', () => {
-    const { result } = renderHook(() =>
-      useHabitTitleInput({ title: 'Initial title', onTitleSave: jest.fn() })
-    );
+    const { result } = renderHook(() => useTitleEditor({ title: 'Initial title', onTitleSave: jest.fn() }));
     expect(result.current.temporaryTitle).toBe('Initial title');
   });
 
   it('should update temporaryTitle when handleTitleChange is called', () => {
-    const { result } = renderHook(() =>
-      useHabitTitleInput({ title: 'Initial title', onTitleSave: jest.fn() })
-    );
+    const { result } = renderHook(() => useTitleEditor({ title: 'Initial title', onTitleSave: jest.fn() }));
 
     act(() => {
       result.current.handleTitleChange({
@@ -26,9 +22,7 @@ describe('useHabitTitleInput hook', () => {
 
   it('should call onTitleSave with trimmed title when saveTitle is called with non-empty title', async () => {
     const onTitleSaveMock = jest.fn();
-    const { result } = renderHook(() =>
-      useHabitTitleInput({ title: 'Initial title', onTitleSave: onTitleSaveMock })
-    );
+    const { result } = renderHook(() => useTitleEditor({ title: 'Initial title', onTitleSave: onTitleSaveMock }));
 
     act(() => {
       result.current.handleTitleChange({
@@ -49,9 +43,7 @@ describe('useHabitTitleInput hook', () => {
 
   it('should revert to original title if new title is empty or only whitespace', async () => {
     const onTitleSaveMock = jest.fn();
-    const { result } = renderHook(() =>
-      useHabitTitleInput({ title: 'Initial title', onTitleSave: onTitleSaveMock })
-    );
+    const { result } = renderHook(() => useTitleEditor({ title: 'Initial title', onTitleSave: onTitleSaveMock }));
 
     act(() => {
       result.current.handleTitleChange({
