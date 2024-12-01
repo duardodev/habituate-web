@@ -1,5 +1,6 @@
 'use client';
 
+import { removeHabit } from '@/app/actions';
 import { Checkboxes } from './checkboxes';
 import { HabitTitleInput } from './habit-title-input';
 import { UserActionsMenu } from './user-actions-menu';
@@ -22,13 +23,11 @@ export function Habit({ id, title }: HabitProps) {
             {isTitleEditing ? (
               <HabitTitleInput title={title} onTitleSave={handleHabitTitleUpdate} />
             ) : (
-              <h2 className="text-start truncate hover:text-foreground/85 cursor-pointer transition-colors">
-                {title}
-              </h2>
+              <h2 className="text-start truncate hover:text-foreground/85 cursor-pointer transition-colors">{title}</h2>
             )}
           </DropdownMenuTrigger>
 
-          <UserActionsMenu habitId={id} onRename={startEditing} />
+          <UserActionsMenu onRename={startEditing} onRemove={() => removeHabit(id)} />
         </DropdownMenu>
       </div>
 
