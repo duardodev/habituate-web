@@ -12,7 +12,7 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from './ui/dropdown-menu';
-import { Avatar, AvatarImage } from './ui/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 
 export async function UserProfileInfo() {
   const user = await currentUser();
@@ -27,6 +27,7 @@ export async function UserProfileInfo() {
         >
           <Avatar>
             <AvatarImage src={user?.imageUrl} alt="Foto de perfil" />
+            <AvatarFallback>H</AvatarFallback>
           </Avatar>
         </Button>
       </DropdownMenuTrigger>
@@ -36,10 +37,7 @@ export async function UserProfileInfo() {
           <div className="flex flex-col space-y-2">
             <p className="text-sm font-medium leading-none">{user?.fullName}</p>
             <p className="text-xs leading-none text-muted-foreground">
-              {
-                user?.emailAddresses.find(email => email.id === user.primaryEmailAddressId)
-                  ?.emailAddress
-              }
+              {user?.emailAddresses.find(email => email.id === user.primaryEmailAddressId)?.emailAddress}
             </p>
           </div>
         </DropdownMenuLabel>
