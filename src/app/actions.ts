@@ -95,3 +95,14 @@ export async function addTask(formData: FormData) {
   revalidateTag('get-tasks');
 }
 
+export async function toggleTask(id: string) {
+  const { getToken } = auth();
+  const token = await getToken();
+
+  await api(`/tasks/${id}/toggle`, {
+    method: 'PATCH',
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+}
