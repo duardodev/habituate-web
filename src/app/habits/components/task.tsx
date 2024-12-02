@@ -2,7 +2,9 @@
 
 import { useState } from 'react';
 import { CheckCircle2, Circle, MoreHorizontal } from 'lucide-react';
-import { toggleTask } from '@/app/actions';
+import { DropdownMenu, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import { removeTask, toggleTask } from '@/app/actions';
+import { UserActionsMenu } from './user-actions-menu';
 import { cn } from '@/lib/utils';
 
 interface TaskProps {
@@ -58,9 +60,15 @@ export function Task({ id, completed, title, priority }: TaskProps) {
         </span>
       </div>
 
-      <button type="button" className="opacity-0 group-hover:opacity-100 transition-opacity">
-        <MoreHorizontal className="w-5 h-5 text-zinc-400" />
-      </button>
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <button type="button" className="opacity-0 group-hover:opacity-100 data-[state=open]:opacity-100 transition-opacity">
+            <MoreHorizontal className="w-5 h-5 text-zinc-400" />
+          </button>
+        </DropdownMenuTrigger>
+
+        <UserActionsMenu onRemove={() => removeTask(id)} />
+      </DropdownMenu>
     </div>
   );
 }

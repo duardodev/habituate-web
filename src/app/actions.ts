@@ -106,3 +106,18 @@ export async function toggleTask(id: string) {
     },
   });
 }
+
+export async function removeTask(id: string) {
+  const { getToken } = auth();
+  const token = await getToken();
+
+  await api(`/tasks/${id}`, {
+    method: 'DELETE',
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  revalidateTag('get-tasks');
+}
+
