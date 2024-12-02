@@ -12,7 +12,7 @@ export async function Header() {
   return (
     <header className="max-w-[860px] w-full px-4 pt-8 mx-auto">
       <div className="flex items-center">
-        <Link href="/">
+        <Link href="/" className="max-[450px]:hidden">
           <Logo />
         </Link>
 
