@@ -3,8 +3,9 @@
 import { useState } from 'react';
 import { CheckCircle2, Circle, MoreHorizontal } from 'lucide-react';
 import { DropdownMenu, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-import { removeTask, toggleTask } from '@/app/actions';
+import { removeTask, toggleTask, updateTask } from '@/app/actions';
 import { UserActionsMenu } from './user-actions-menu';
+import { TitleEditor } from './title-editor';
 import { cn } from '@/lib/utils';
 
 interface TaskProps {
@@ -16,6 +17,7 @@ interface TaskProps {
 
 export function Task({ id, completed, title, priority }: TaskProps) {
   const [isCompleted, setIsCompleted] = useState(completed);
+  const [isTitleEditing, setIsTitleEditing] = useState(false);
 
   async function handleTaskToggle() {
     setIsCompleted(!isCompleted);
@@ -25,6 +27,11 @@ export function Task({ id, completed, title, priority }: TaskProps) {
     } catch (error) {
       setIsCompleted(isCompleted);
     }
+  }
+
+  function handleTaskTitleUpdate(newTitle: string) {
+    updateTask(id, newTitle);
+    setIsTitleEditing(false);
   }
 
   return (
@@ -38,14 +45,18 @@ export function Task({ id, completed, title, priority }: TaskProps) {
       </button>
 
       <div className="flex-1 flex gap-3 min-w-0">
-        <p
-          className={cn(
-            'text-sm',
-            isCompleted ? 'text-zinc-400 dark:text-zinc-500 line-through' : 'text-zinc-900 dark:text-zinc-100'
-          )}
-        >
-          {title}
-        </p>
+        {isTitleEditing ? (
+          <TitleEditor title={title} onTitleSave={handleTaskTitleUpdate} />
+        ) : (
+          <p
+            className={cn(
+              'text-sm',
+              isCompleted ? 'text-zinc-400 dark:text-zinc-500 line-through' : 'text-zinc-900 dark:text-zinc-100'
+            )}
+          >
+            {title}
+          </p>
+        )}
 
         <span
           className={cn(
@@ -67,7 +78,7 @@ export function Task({ id, completed, title, priority }: TaskProps) {
           </button>
         </DropdownMenuTrigger>
 
-        <UserActionsMenu onRemove={() => removeTask(id)} />
+        <UserActionsMenu onRename={() => setIsTitleEditing(true)} onRemove={() => removeTask(id)} />
       </DropdownMenu>
     </div>
   );

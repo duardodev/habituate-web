@@ -2,7 +2,7 @@ import { DropdownMenuContent, DropdownMenuItem } from '@/components/ui/dropdown-
 import { Edit, Trash2 } from 'lucide-react';
 
 interface UserActionsMenuProps {
-  onRename?: () => void;
+  onRename: () => void;
   onRemove: () => void;
 }
 
