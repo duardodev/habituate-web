@@ -70,3 +70,28 @@ export async function updateHabit(id: string, title: string) {
 
   revalidateTag('get-habits');
 }
+
+export async function addTask(formData: FormData) {
+  const { getToken } = auth();
+  const title = formData.get('title') as string;
+  const priority = formData.get('priority') as string;
+  const token = await getToken();
+
+  try {
+    await api('/tasks', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ title, priority }),
+    });
+  } catch (error) {
+    return {
+      error: 'Error ao adicionar uma nova tarefa!',
+    };
+  }
+
+  revalidateTag('get-tasks');
+}
+

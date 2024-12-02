@@ -1,5 +1,6 @@
 import { Task } from './task';
 import { TasksInfo } from './tasks-info';
+import { AddTaskDialog } from './add-task-dialog';
 import { api } from '@/functions/api';
 import { auth } from '@clerk/nextjs/server';
 import { cn } from '@/lib/utils';
@@ -30,7 +31,9 @@ export async function Tasks() {
   const { tasks }: TasksResponse = await tasksResponse.json();
 
   return (
-    <div className={cn('w-full max-w-sm mt-6', 'bg-white dark:bg-background', 'border border-border', 'rounded-2xl shadow-lg')}>
+    <div
+      className={cn('w-full md:max-w-sm mt-6', 'bg-white dark:bg-background', 'border border-border', 'rounded-2xl shadow-lg')}
+    >
       <TasksInfo tasksCount={tasks?.length} />
 
       <div className="divide-y divide-zinc-100 dark:divide-zinc-800">
@@ -40,9 +43,11 @@ export async function Tasks() {
           </p>
         ) : (
           tasks.map(task => {
-            return <Task key={task.id} title={task.title} priority={task.priority} />;
+            return <Task key={task.id} id={task.id} completed={task.completed} title={task.title} priority={task.priority} />;
           })
         )}
+
+        <AddTaskDialog />
       </div>
     </div>
   );
