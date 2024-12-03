@@ -42,7 +42,7 @@ export async function Tasks() {
             Nenhuma tarefa para hoje. <br /> Que tal adicionar uma para começar?
           </p>
         ) : (
-          tasks.map(task => {
+          tasks?.map(task => {
             return <Task key={task.id} id={task.id} completed={task.completed} title={task.title} priority={task.priority} />;
           })
         )}
