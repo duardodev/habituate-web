@@ -4,7 +4,7 @@ import { Calendar } from './components/calendar';
 import { Habits } from './components/habits';
 import { SkeletonHabit } from './components/skeleton-habit';
 import { Tasks } from './components/tasks';
-import { HabitsErrorFallback } from './components/habits-error-fallback';
+import { ErrorFallback } from './components/error-fallback';
 import { Separator } from '@/components/ui/separator';
 
 export default function HabitsPage() {
@@ -12,15 +12,19 @@ export default function HabitsPage() {
     <div className="flex flex-col overflow-x-auto min-[530px]:overflow-visible">
       <Calendar />
 
-      <ErrorBoundary fallback={<HabitsErrorFallback />}>
+      <ErrorBoundary
+        fallback={
+          <ErrorFallback message="Não foi possível carregar os dados dos hábitos e tarefas. Por favor, tente novamente recarregando a página." />
+        }
+      >
         <Suspense fallback={<SkeletonHabit />}>
           <Habits />
         </Suspense>
+
+        <Separator className="mt-6" />
+
+        <Tasks />
       </ErrorBoundary>
-
-      <Separator className="mt-6" />
-
-      <Tasks />
     </div>
   );
 }
