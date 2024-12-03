@@ -37,7 +37,7 @@ export async function Tasks() {
       <TasksInfo tasksCount={tasks?.length} />
 
       <div className="divide-y divide-zinc-100 dark:divide-zinc-800">
-        {tasks.length === 0 ? (
+        {tasks?.length === 0 ? (
           <p className="py-4 opacity-90 text-sm text-center">
             Nenhuma tarefa para hoje. <br /> Que tal adicionar uma para começar?
           </p>
