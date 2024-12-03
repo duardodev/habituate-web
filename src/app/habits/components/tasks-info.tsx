@@ -1,14 +1,30 @@
+import { api } from '@/functions/api';
 import { monthsNames } from '@/lib/data';
+import { auth } from '@clerk/nextjs/server';
 import dayjs from 'dayjs';
 
 interface TasksInfo {
   tasksCount: number;
 }
 
-export function TasksInfo({ tasksCount = 0 }: TasksInfo) {
+export async function TasksInfo({ tasksCount = 0 }: TasksInfo) {
+  const { getToken } = auth();
+  const token = await getToken();
   const currentMonth = monthsNames[dayjs().month()];
   const currentYear = dayjs().year();
   const currentDay = dayjs().date();
+
+  const amountCompletedTasksResposne = await api('/tasks/completed/amount', {
+    next: {
+      revalidate: 3600,
+      tags: ['get-amount-completed-tasks'],
+    },
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  const amountCompletedTasks: number = await amountCompletedTasksResposne.json();
 
   return (
     <div className="p-4 flex items-center justify-between border-b border-border">
@@ -20,7 +36,7 @@ export function TasksInfo({ tasksCount = 0 }: TasksInfo) {
       </div>
       <div className="flex items-center gap-2">
         <span className="text-xs font-medium px-2 py-1 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400">
-          {tasksCount} tarefas
+          {amountCompletedTasks}/{tasksCount} feitas
         </span>
       </div>
     </div>

@@ -105,6 +105,8 @@ export async function toggleTask(id: string) {
       Authorization: `Bearer ${token}`,
     },
   });
+
+  revalidateTag('get-amount-completed-tasks');
 }
 
 export async function removeTask(id: string) {
