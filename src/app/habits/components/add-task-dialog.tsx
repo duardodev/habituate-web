@@ -66,11 +66,11 @@ export function AddTaskDialog() {
             }}
             className="space-y-4"
           >
-            <div className="flex justify-between gap-4">
+            <div className="flex flex-col sm:flex-row justify-between gap-4">
               <Input
                 name="title"
                 placeholder="Pagar conta de luz, etc..."
-                className="placeholder:text-foreground/70 w-3/5"
+                className="placeholder:text-foreground/70 w-full sm:w-3/5"
                 autoComplete="off"
               />
 

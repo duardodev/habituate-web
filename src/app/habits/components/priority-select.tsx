@@ -3,7 +3,7 @@ import { StatusDot } from '@/components/ui/status-dot';
 
 export function PrioritySelect() {
   return (
-    <div className="w-2/5 group relative">
+    <div className="w-full sm:w-2/5 group relative">
       <label
         htmlFor="select-28"
         className="absolute start-1 top-0 z-10 block -translate-y-1/2 bg-background px-2 text-xs font-medium text-foreground group-has-[:disabled]:opacity-50"
