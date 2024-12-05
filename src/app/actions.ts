@@ -138,3 +138,17 @@ export async function updateTask(id: string, title: string) {
 
   revalidateTag('get-tasks');
 }
+
+export async function removeTasks() {
+  const { getToken } = auth();
+  const token = await getToken();
+
+  await api('/tasks', {
+    method: 'DELETE',
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  revalidateTag('get-tasks');
+}

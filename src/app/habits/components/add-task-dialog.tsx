@@ -38,57 +38,55 @@ export function AddTaskDialog() {
   }
 
   return (
-    <div className="p-3 border-t border-zinc-200 dark:border-zinc-800">
-      <Dialog>
-        <DialogTrigger asChild>
-          <Button
-            variant="ghost"
-            className="flex justify-start items-center gap-2 w-full px-3 py-2 text-sm text-zinc-500 dark:text-zinc-400 
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button
+          variant="ghost"
+          className="flex justify-start items-center gap-2 w-full px-3 py-2 text-sm text-zinc-500 dark:text-zinc-400 
                     hover:text-zinc-600 dark:hover:text-zinc-300 
                     hover:bg-zinc-50 dark:hover:bg-zinc-800/50
                     rounded-lg transition-colors"
-          >
-            <Plus className="w-4 h-4" />
-            Adicionar nova tarefa
-          </Button>
-        </DialogTrigger>
+        >
+          <Plus className="w-4 h-4" />
+          Adicionar nova tarefa
+        </Button>
+      </DialogTrigger>
 
-        <DialogContent className="w-[460px]">
-          <DialogHeader>
-            <DialogTitle>Adicionar tarefa</DialogTitle>
-            <DialogDescription className="text-base leading-tight">Adicione uma nova tarefa.</DialogDescription>
-          </DialogHeader>
+      <DialogContent className="w-[460px]">
+        <DialogHeader>
+          <DialogTitle>Adicionar tarefa</DialogTitle>
+          <DialogDescription className="text-base leading-tight">Adicione uma nova tarefa.</DialogDescription>
+        </DialogHeader>
 
-          <form
-            onSubmit={e => {
-              e.preventDefault();
-              handleAddTask(new FormData(e.currentTarget));
-            }}
-            className="space-y-4"
-          >
-            <div className="flex flex-col sm:flex-row justify-between gap-4">
-              <Input
-                name="title"
-                placeholder="Pagar conta de luz, etc..."
-                className="placeholder:text-foreground/70 w-full sm:w-3/5"
-                autoComplete="off"
-              />
+        <form
+          onSubmit={e => {
+            e.preventDefault();
+            handleAddTask(new FormData(e.currentTarget));
+          }}
+          className="space-y-4"
+        >
+          <div className="flex flex-col sm:flex-row justify-between gap-4">
+            <Input
+              name="title"
+              placeholder="Pagar conta de luz, etc..."
+              className="placeholder:text-foreground/70 w-full sm:w-3/5"
+              autoComplete="off"
+            />
 
-              <PrioritySelect />
-            </div>
+            <PrioritySelect />
+          </div>
 
-            <DialogFooter className="flex items-center gap-2">
-              <DialogClose asChild>
-                <Button type="button" variant="outline" className="h-[42px]">
-                  Cancelar
-                </Button>
-              </DialogClose>
+          <DialogFooter className="flex items-center gap-2">
+            <DialogClose asChild>
+              <Button type="button" variant="outline" className="h-[42px]">
+                Cancelar
+              </Button>
+            </DialogClose>
 
-              <ConfirmButton />
-            </DialogFooter>
-          </form>
-        </DialogContent>
-      </Dialog>
-    </div>
+            <ConfirmButton />
+          </DialogFooter>
+        </form>
+      </DialogContent>
+    </Dialog>
   );
 }

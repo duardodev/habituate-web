@@ -1,6 +1,7 @@
 import { Task } from './task';
 import { TasksInfo } from './tasks-info';
 import { AddTaskDialog } from './add-task-dialog';
+import { RemoveTasksButton } from './remove-tasks-button';
 import { api } from '@/functions/api';
 import { auth } from '@clerk/nextjs/server';
 import { cn } from '@/lib/utils';
@@ -47,7 +48,10 @@ export async function Tasks() {
           })
         )}
 
-        <AddTaskDialog />
+        <div className="p-3 flex items-center justify-between border-t border-zinc-200 dark:border-zinc-800">
+          <AddTaskDialog />
+          <RemoveTasksButton tasksCount={tasks?.length ?? 0} />
+        </div>
       </div>
     </div>
   );
