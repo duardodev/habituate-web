@@ -9,17 +9,19 @@ import { Separator } from '@/components/ui/separator';
 
 export default function HabitsPage() {
   return (
-    <div className="flex flex-col overflow-x-auto min-[530px]:overflow-visible">
-      <Calendar />
-
+    <div className="flex flex-col overflow-x-hidden">
       <ErrorBoundary
         fallback={
           <ErrorFallback message="Não foi possível carregar os dados dos hábitos e tarefas. Por favor, tente novamente recarregando a página." />
         }
       >
-        <Suspense fallback={<SkeletonHabit />}>
-          <Habits />
-        </Suspense>
+        <div className="pb-4 overflow-x-auto min-[530px]:overflow-x-hidden min-[530px]:pb-0">
+          <Calendar />
+
+          <Suspense fallback={<SkeletonHabit />}>
+            <Habits />
+          </Suspense>
+        </div>
 
         <Separator className="mt-6" />
 
