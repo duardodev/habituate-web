@@ -9,7 +9,7 @@ import { Separator } from '@/components/ui/separator';
 
 export default function HabitsPage() {
   return (
-    <div className="flex flex-col overflow-x-hidden">
+    <div className="flex flex-col overflow-x-hidden min-[530px]:overflow-visible">
       <ErrorBoundary
         fallback={
           <div>

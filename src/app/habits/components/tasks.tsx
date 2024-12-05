@@ -33,7 +33,12 @@ export async function Tasks() {
 
   return (
     <div
-      className={cn('w-full md:max-w-sm mt-6', 'bg-white dark:bg-background', 'border border-border', 'rounded-2xl shadow-lg')}
+      className={cn(
+        'w-full md:max-w-sm mt-6',
+        'bg-white dark:bg-background',
+        'border border-border',
+        'rounded-2xl shadow-none min-[530px]:shadow-lg'
+      )}
     >
       <TasksInfo tasksCount={tasks?.length} />
 
