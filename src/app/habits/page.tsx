@@ -12,10 +12,13 @@ export default function HabitsPage() {
     <div className="flex flex-col overflow-x-hidden">
       <ErrorBoundary
         fallback={
-          <ErrorFallback message="Não foi possível carregar os dados dos hábitos e tarefas. Por favor, tente novamente recarregando a página." />
+          <div>
+            <Calendar />
+            <ErrorFallback message="Não foi possível carregar os dados dos hábitos e tarefas. Por favor, tente novamente recarregando a página." />
+          </div>
         }
       >
-        <div className="pb-4 overflow-x-auto min-[530px]:overflow-x-hidden min-[530px]:pb-0">
+        <div className="pb-4 overflow-x-auto min-[530px]:overflow-x-hidden">
           <Calendar />
 
           <Suspense fallback={<SkeletonHabit />}>
