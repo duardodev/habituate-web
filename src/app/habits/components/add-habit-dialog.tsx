@@ -1,5 +1,6 @@
 'use client';
 
+import { ConfirmButton } from './confirm-button';
 import {
   Dialog,
   DialogClose,
@@ -10,31 +11,13 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
-import { ConfirmButton } from './confirm-button';
-import { Button } from '../../../components/ui/button';
-import { Input } from '../../../components/ui/input';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { useAddHabitDialog } from '@/hooks/use-add-habit-dialog';
 import { Plus } from 'lucide-react';
-import { addHabit } from '@/app/actions';
-import { toast } from 'sonner';
 
 export function AddHabitDialog() {
-  async function handleAddHabit(form: FormData) {
-    const title = form.get('title') as string;
-
-    if (!title || title.trim() === '') {
-      toast.error('Informe o novo hábito!');
-      return;
-    }
-
-    const response = await addHabit(form);
-
-    if (response?.error) {
-      toast.error(response.error);
-      return;
-    }
-
-    toast.success('Hábito adicionado com sucesso!');
-  }
+  const { handleAddHabit } = useAddHabitDialog();
 
   return (
     <Dialog>

@@ -1,9 +1,9 @@
 'use client';
 
-import { useState } from 'react';
 import { CheckCircle2, Circle, MoreHorizontal } from 'lucide-react';
 import { DropdownMenu, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-import { removeTask, toggleTask, updateTask } from '@/app/actions';
+import { removeTask } from '@/app/actions';
+import { useTask } from '@/hooks/use-task';
 import { UserActionsMenu } from './user-actions-menu';
 import { TitleEditor } from './title-editor';
 import { cn } from '@/lib/utils';
@@ -16,23 +16,7 @@ interface TaskProps {
 }
 
 export function Task({ id, completed, title, priority }: TaskProps) {
-  const [isCompleted, setIsCompleted] = useState(completed);
-  const [isTitleEditing, setIsTitleEditing] = useState(false);
-
-  async function handleTaskToggle() {
-    setIsCompleted(!isCompleted);
-
-    try {
-      await toggleTask(id);
-    } catch (error) {
-      setIsCompleted(isCompleted);
-    }
-  }
-
-  function handleTaskTitleUpdate(newTitle: string) {
-    updateTask(id, newTitle);
-    setIsTitleEditing(false);
-  }
+  const { isCompleted, isTitleEditing, setIsTitleEditing, handleTaskToggle, handleTaskTitleUpdate } = useTask({ id, completed });
 
   return (
     <div className="p-3 flex items-center gap-3 group">

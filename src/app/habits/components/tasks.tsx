@@ -2,34 +2,11 @@ import { Task } from './task';
 import { TasksInfo } from './tasks-info';
 import { AddTaskDialog } from './add-task-dialog';
 import { RemoveTasksButton } from './remove-tasks-button';
-import { api } from '@/functions/api';
-import { auth } from '@clerk/nextjs/server';
+import { useTasks } from '@/hooks/use-tasks';
 import { cn } from '@/lib/utils';
 
-export interface TasksResponse {
-  tasks: {
-    id: string;
-    title: string;
-    priority: string;
-    completed: boolean;
-  }[];
-}
-
 export async function Tasks() {
-  const { getToken } = auth();
-  const token = await getToken();
-
-  const tasksResponse = await api('/tasks', {
-    next: {
-      revalidate: 3600,
-      tags: ['get-tasks'],
-    },
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-
-  const { tasks }: TasksResponse = await tasksResponse.json();
+  const { tasks } = await useTasks();
 
   return (
     <div

@@ -14,28 +14,11 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
-import { addTask } from '@/app/actions';
 import { Plus } from 'lucide-react';
-import { toast } from 'sonner';
+import { useAddTaskDialog } from '@/hooks/use-add-task-dialog';
 
 export function AddTaskDialog() {
-  async function handleAddTask(form: FormData) {
-    const title = form.get('title') as string;
-
-    if (!title || title.trim() === '') {
-      toast.error('Informe a nova tarefa!');
-      return;
-    }
-
-    const response = await addTask(form);
-
-    if (response?.error) {
-      toast.error(response.error);
-      return;
-    }
-
-    toast.success('Tarefa adicionada com sucesso!');
-  }
+  const { handleAddTask } = useAddTaskDialog();
 
   return (
     <Dialog>
