@@ -2,7 +2,6 @@
 
 import { CheckCircle2, Circle, MoreHorizontal } from 'lucide-react';
 import { DropdownMenu, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-import { removeTask } from '@/app/actions';
 import { useTask } from '@/hooks/use-task';
 import { UserActionsMenu } from './user-actions-menu';
 import { TitleEditor } from './title-editor';
@@ -16,12 +15,12 @@ interface TaskProps {
 }
 
 export function Task({ id, completed, title, priority }: TaskProps) {
-  const { isCompleted, isTitleEditing, setIsTitleEditing, handleTaskToggle, handleTaskTitleUpdate } = useTask({ id, completed });
+  const { handleTaskToggle, isTitleEditing, setIsTitleEditing, handleTaskTitleUpdate, removeTask } = useTask({ id });
 
   return (
     <div className="p-3 flex items-center gap-3 group">
-      <button type="submit" onClick={handleTaskToggle} className="flex-none transition-all">
-        {isCompleted ? (
+      <button type="submit" onClick={e => handleTaskToggle(e)} className="flex-none transition-all">
+        {completed ? (
           <CheckCircle2 className="w-5 h-5 text-emerald-500" />
         ) : (
           <Circle className="w-5 h-5 text-zinc-300 dark:text-zinc-600" />
@@ -35,7 +34,7 @@ export function Task({ id, completed, title, priority }: TaskProps) {
           <p
             className={cn(
               'text-sm',
-              isCompleted ? 'text-zinc-400 dark:text-zinc-500 line-through' : 'text-zinc-900 dark:text-zinc-100'
+              completed ? 'text-zinc-400 dark:text-zinc-500 line-through' : 'text-zinc-900 dark:text-zinc-100'
             )}
           >
             {title}
@@ -48,7 +47,7 @@ export function Task({ id, completed, title, priority }: TaskProps) {
             priority === 'p1' && 'bg-rose-100 dark:bg-rose-500/20 text-rose-600 dark:text-rose-400',
             priority === 'p2' && 'bg-yellow-100 dark:bg-yellow-500/20 text-yellow-600 dark:text-yellow-400',
             priority === 'p3' && 'bg-blue-100 dark:bg-blue-500/20 text-blue-600 dark:text-blue-400',
-            isCompleted && 'opacity-50'
+            completed && 'opacity-50'
           )}
         >
           {(priority === 'p1' && 'Alta') || (priority === 'p2' && 'Média') || (priority === 'p3' && 'Baixa')}

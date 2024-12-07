@@ -1,35 +1,31 @@
-import { toggleTask, updateTask } from '@/app/actions';
+import { useTasksStore } from '@/store/use-tasks-store';
 import { useState } from 'react';
 
 interface useTaskProps {
   id: string;
-  completed: boolean;
 }
 
-export function useTask({ id, completed }: useTaskProps) {
-  const [isCompleted, setIsCompleted] = useState(completed);
+export function useTask({ id }: useTaskProps) {
   const [isTitleEditing, setIsTitleEditing] = useState(false);
+  const toggleTask = useTasksStore(state => state.toggleTask);
+  const removeTask = useTasksStore(state => state.removeTask);
+  const updateTaskTitle = useTasksStore(state => state.updateTaskTitle);
 
-  async function handleTaskToggle() {
-    setIsCompleted(!isCompleted);
-
-    try {
-      await toggleTask(id);
-    } catch (error) {
-      setIsCompleted(isCompleted);
-    }
+  function handleTaskToggle(event: React.MouseEvent<HTMLButtonElement>) {
+    event.preventDefault();
+    toggleTask(id);
   }
 
   function handleTaskTitleUpdate(newTitle: string) {
-    updateTask(id, newTitle);
+    updateTaskTitle(id, newTitle);
     setIsTitleEditing(false);
   }
 
   return {
-    isCompleted,
     isTitleEditing,
     setIsTitleEditing,
     handleTaskToggle,
     handleTaskTitleUpdate,
+    removeTask,
   };
 }

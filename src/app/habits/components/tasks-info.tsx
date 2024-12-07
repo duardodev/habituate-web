@@ -1,11 +1,9 @@
+'use client';
+
 import { useTasksInfo } from '@/hooks/use-tasks-info';
 
-interface TasksInfo {
-  tasksCount: number;
-}
-
-export async function TasksInfo({ tasksCount = 0 }: TasksInfo) {
-  const { amountCompletedTasks, currentMonth, currentDay, currentYear } = await useTasksInfo();
+export function TasksInfo() {
+  const { amountCompletedTasks, amountTasks, currentMonth, currentDay, currentYear } = useTasksInfo();
 
   return (
     <div className="p-4 flex items-center justify-between border-b border-border">
@@ -17,7 +15,7 @@ export async function TasksInfo({ tasksCount = 0 }: TasksInfo) {
       </div>
       <div className="flex items-center gap-2">
         <span className="text-xs font-medium px-2 py-1 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400">
-          {amountCompletedTasks ?? 0}/{tasksCount} feitas
+          {amountCompletedTasks}/{amountTasks} feitas
         </span>
       </div>
     </div>

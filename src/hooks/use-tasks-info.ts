@@ -1,29 +1,17 @@
-import { api } from '@/functions/api';
 import { monthsNames } from '@/lib/data';
-import { auth } from '@clerk/nextjs/server';
+import { useTasksStore } from '@/store/use-tasks-store';
 import dayjs from 'dayjs';
 
-export async function useTasksInfo() {
-  const { getToken } = auth();
-  const token = await getToken();
+export function useTasksInfo() {
+  const amountCompletedTasks = useTasksStore(state => state.amountCompletedTasks());
+  const amountTasks = useTasksStore(state => state.amountTasks());
   const currentMonth = monthsNames[dayjs().month()];
   const currentYear = dayjs().year();
   const currentDay = dayjs().date();
 
-  const amountCompletedTasksResponse = await api('/tasks/completed/amount', {
-    next: {
-      revalidate: 3600,
-      tags: ['get-amount-completed-tasks'],
-    },
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-
-  const amountCompletedTasks: number = await amountCompletedTasksResponse.json();
-
   return {
     amountCompletedTasks,
+    amountTasks,
     currentMonth,
     currentYear,
     currentDay,

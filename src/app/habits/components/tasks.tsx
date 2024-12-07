@@ -1,12 +1,23 @@
+'use client';
+
 import { Task } from './task';
 import { TasksInfo } from './tasks-info';
 import { AddTaskDialog } from './add-task-dialog';
 import { RemoveTasksButton } from './remove-tasks-button';
-import { useTasks } from '@/hooks/use-tasks';
+import { useTasksStore } from '@/store/use-tasks-store';
 import { cn } from '@/lib/utils';
 
-export async function Tasks() {
-  const { tasks } = await useTasks();
+interface TasksResponse {
+  tasks: {
+    id: string;
+    title: string;
+    priority: string;
+    completed: boolean;
+  }[];
+}
+
+export function Tasks() {
+  const tasks = useTasksStore(state => state.tasks);
 
   return (
     <div
@@ -17,7 +28,7 @@ export async function Tasks() {
         'rounded-2xl shadow-none min-[530px]:shadow-lg'
       )}
     >
-      <TasksInfo tasksCount={tasks?.length} />
+      <TasksInfo />
 
       <div className="divide-y divide-zinc-100 dark:divide-zinc-800">
         {tasks?.length === 0 ? (
@@ -32,7 +43,7 @@ export async function Tasks() {
 
         <div className="p-3 flex items-center justify-between border-t border-zinc-200 dark:border-zinc-800">
           <AddTaskDialog />
-          <RemoveTasksButton tasksCount={tasks?.length ?? 0} />
+          <RemoveTasksButton />
         </div>
       </div>
     </div>
