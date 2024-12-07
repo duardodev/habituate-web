@@ -18,7 +18,7 @@ export default function HabitsPage() {
           </div>
         }
       >
-        <div className="pb-4 overflow-x-auto min-[530px]:overflow-x-hidden">
+        <div className="w-full max-w-[852px] mx-auto pb-4 min-[530px]:pb-0 px-0 min-[530px]:px-3 overflow-x-auto min-[530px]:overflow-x-hidden">
           <Calendar />
 
           <Suspense fallback={<SkeletonHabit />}>
@@ -26,9 +26,10 @@ export default function HabitsPage() {
           </Suspense>
         </div>
 
-        <Separator className="mt-6" />
-
-        <Tasks />
+        <div className="w-full max-w-[852px] mx-auto px-0 min-[530px]:px-3 mt-6">
+          <Separator />
+          <Tasks />
+        </div>
       </ErrorBoundary>
     </div>
   );
