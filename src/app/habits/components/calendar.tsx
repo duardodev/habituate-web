@@ -11,7 +11,7 @@ export function Calendar() {
   const currentYear = currentDate.year();
 
   return (
-    <div className="mt-6 overflow-visible flex items-center justify-between gap-x-10">
+    <div className="overflow-visible flex items-center justify-between gap-x-10">
       <div className="flex items-center gap-x-3">
         <h2 className="text-foreground/95 font-medium text-nowrap">
           {currentMonth} {currentYear}

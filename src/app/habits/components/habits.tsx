@@ -6,7 +6,7 @@ export async function Habits() {
 
   if (data?.habits.length === 0) {
     return (
-      <div className="h-24 flex items-center justify-center">
+      <div className="mt-4 h-12 flex items-center justify-center">
         <p className="text-sm text-center">Nenhum hábito encontrado. Que tal adicionar um novo hábito para começar?</p>
       </div>
     );

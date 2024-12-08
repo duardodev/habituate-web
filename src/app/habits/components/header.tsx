@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { AddHabitDialog } from './add-habit-dialog';
-import { Separator } from '@/components/ui/separator';
 import { UserProfileInfo } from '@/components/user-profile-info';
 
 const Logo = dynamic(() => import('../../../components/logo').then(mod => mod.Logo), {
@@ -21,8 +20,6 @@ export async function Header() {
           <UserProfileInfo />
         </div>
       </div>
-
-      <Separator className="mt-6" />
     </header>
   );
 }

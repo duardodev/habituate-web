@@ -9,28 +9,32 @@ import { Separator } from '@/components/ui/separator';
 
 export default function HabitsPage() {
   return (
-    <div className="flex flex-col overflow-x-hidden min-[530px]:overflow-visible">
-      <ErrorBoundary
-        fallback={
-          <div>
-            <Calendar />
-            <ErrorFallback message="Não foi possível carregar os dados dos hábitos e tarefas. Por favor, tente novamente recarregando a página." />
+    <div className="flex flex-col overflow-visible min-h-screen">
+      <div className="mt-6 w-full max-w-[832px] mx-auto">
+        <div className="overflow-x-hidden rounded-2xl border border-border bg-white shadow-lg dark:bg-background">
+          <div className="overflow-x-auto p-4">
+            <div className="min-w-max">
+              <Calendar />
+
+              <Separator className="mt-4" />
+
+              <ErrorBoundary
+                fallback={
+                  <ErrorFallback message="Não foi possível carregar os dados dos hábitos. Por favor, espere um pouco e tente novamente recarregando a página." />
+                }
+              >
+                <Suspense fallback={<SkeletonHabit />}>
+                  <Habits />
+                </Suspense>
+              </ErrorBoundary>
+            </div>
           </div>
-        }
-      >
-        <div className="w-full max-w-[852px] mx-auto pb-4 min-[530px]:pb-0 px-0 min-[530px]:px-3 overflow-x-auto min-[530px]:overflow-x-hidden">
-          <Calendar />
-
-          <Suspense fallback={<SkeletonHabit />}>
-            <Habits />
-          </Suspense>
         </div>
+      </div>
 
-        <div className="w-full max-w-[852px] mx-auto px-0 min-[530px]:px-3 mt-6">
-          <Separator />
-          <Tasks />
-        </div>
-      </ErrorBoundary>
+      <div className="w-full max-w-[832px] mx-auto mt-6">
+        <Tasks />
+      </div>
     </div>
   );
 }

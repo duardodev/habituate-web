@@ -7,7 +7,7 @@ export default function HabitsLayout({ children }: { children: ReactNode }) {
     <div className="min-h-screen">
       <Header />
       <ThemeToggle floating={true} />
-      <main className="h-full w-full px-4">{children}</main>
+      <main className="h-full w-full px-4 overflow-x-hidden">{children}</main>
     </div>
   );
 }

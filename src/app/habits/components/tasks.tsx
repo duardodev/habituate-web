@@ -5,29 +5,12 @@ import { TasksInfo } from './tasks-info';
 import { AddTaskDialog } from './add-task-dialog';
 import { RemoveTasksButton } from './remove-tasks-button';
 import { useTasksStore } from '@/store/use-tasks-store';
-import { cn } from '@/lib/utils';
-
-interface TasksResponse {
-  tasks: {
-    id: string;
-    title: string;
-    priority: string;
-    completed: boolean;
-  }[];
-}
 
 export function Tasks() {
   const tasks = useTasksStore(state => state.tasks);
 
   return (
-    <div
-      className={cn(
-        'w-full md:max-w-sm mt-6',
-        'bg-white dark:bg-background',
-        'border border-border',
-        'rounded-2xl shadow-none min-[530px]:shadow-lg'
-      )}
-    >
+    <div className="bg-white dark:bg-background w-full md:max-w-sm border border-border rounded-2xl shadow-lg">
       <TasksInfo />
 
       <div className="divide-y divide-zinc-100 dark:divide-zinc-800">
