@@ -20,7 +20,7 @@ export default function HabitsPage() {
 
               <ErrorBoundary
                 fallback={
-                  <ErrorFallback message="Não foi possível carregar os dados dos hábitos. Por favor, espere um pouco e tente novamente recarregando a página." />
+                  <ErrorFallback message="Não foi possível carregar os dados dos hábitos. Espere um instante e tente novamente recarregando a página." />
                 }
               >
                 <Suspense fallback={<SkeletonHabit />}>
