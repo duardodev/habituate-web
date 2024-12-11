@@ -1,3 +1,4 @@
+import { HabitProvider } from '@/contexts/habit-context';
 import { Habit } from './habit';
 import { useHabits } from '@/hooks/use-habits';
 
@@ -18,7 +19,17 @@ export async function Habits() {
   return (
     <div className="mt-4 space-y-4">
       {data?.habits.map(habit => {
-        return <Habit key={habit.id} id={habit.id} title={habit.title} />;
+        return (
+          <HabitProvider
+            key={habit.id}
+            habit={{
+              id: habit.id,
+              title: habit.title,
+            }}
+          >
+            <Habit key={habit.id} id={habit.id} />
+          </HabitProvider>
+        );
       })}
     </div>
   );

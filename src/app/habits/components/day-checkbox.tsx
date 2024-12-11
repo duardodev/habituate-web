@@ -7,15 +7,14 @@ import dayjs from 'dayjs';
 
 interface DayCheckboxProps extends CheckboxProps {
   currentWeekDay: dayjs.Dayjs;
-  habitId: string;
 }
 
-export function DayCheckbox({ currentWeekDay, habitId, ...rest }: DayCheckboxProps) {
-  const { handleHabitToggle, isChecked, isDisabled } = useDayCheckbox({ habitId, currentWeekDay });
+export function DayCheckbox({ currentWeekDay, ...rest }: DayCheckboxProps) {
+  const { handleHabitToggle, isChecked, isDisabled } = useDayCheckbox({ currentWeekDay });
 
   return (
     <Checkbox
-      onClick={() => handleHabitToggle(currentWeekDay.utc().startOf('day').toISOString())}
+      onClick={() => handleHabitToggle(currentWeekDay.startOf('day').toISOString())}
       checked={isChecked}
       disabled={isDisabled}
       {...rest}
