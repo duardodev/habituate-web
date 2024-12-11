@@ -3,7 +3,7 @@
 import { Suspense, use } from 'react';
 
 const mockingEnabledPromise =
-  typeof window !== 'undefined' && process.env.NODE_ENV === 'development'
+  typeof window !== 'undefined' && process.env.NODE_ENV === 'test'
     ? import('../app/api/mocks/browser').then(async ({ worker }) => {
         await worker.start({
           onUnhandledRequest: 'bypass',
