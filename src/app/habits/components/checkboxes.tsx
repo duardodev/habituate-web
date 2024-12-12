@@ -1,14 +1,25 @@
 'use client';
 
-import { useCheckboxes } from '@/hooks/use-checkboxes';
+import { useEffect } from 'react';
 import { DayCheckbox } from './day-checkbox';
+import { useCompletedDaysStore } from '@/store/completed-days-store';
+import { useCurrentWeekDays } from '@/hooks/use-current-week-days';
+import { useHabitContext } from '@/hooks/use-habit-context';
 
 interface CheckboxesProps {
-  habitId: string;
+  datesTheHabitWasCompleted: string[];
 }
 
-export function Checkboxes({ habitId }: CheckboxesProps) {
-  const { currentWeekDays } = useCheckboxes({ habitId });
+export function Checkboxes({ datesTheHabitWasCompleted }: CheckboxesProps) {
+  const { setCompletedDays } = useCompletedDaysStore();
+  const { currentWeekDays } = useCurrentWeekDays();
+  const { id } = useHabitContext();
+
+  useEffect(() => {
+    if (datesTheHabitWasCompleted) {
+      setCompletedDays(id, datesTheHabitWasCompleted);
+    }
+  }, []);
 
   return (
     <div className="flex items-center gap-x-6">
@@ -16,7 +27,6 @@ export function Checkboxes({ habitId }: CheckboxesProps) {
         return (
           <DayCheckbox
             key={currentWeekDay.toString()}
-            habitId={habitId}
             currentWeekDay={currentWeekDay}
             data-testid={`day-checkbox-${currentWeekDay.toISOString()}`}
           />

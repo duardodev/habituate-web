@@ -1,6 +1,3 @@
-'use client';
-
-import { removeHabit } from '@/app/actions';
 import { Checkboxes } from './checkboxes';
 import { HabitTitle } from './habit-title';
 import { useHabit } from '@/hooks/use-habit';
@@ -10,12 +7,12 @@ interface HabitProps {
 }
 
 export async function Habit({ id }: HabitProps) {
-  const { isTitleEditing, handleHabitTitleUpdate, startEditing } = useHabit({ id });
+  const datesTheHabitWasCompleted = await useHabit({ id });
 
   return (
     <li className="flex items-center justify-between gap-10">
       <HabitTitle />
-      <Checkboxes habitId={id} />
+      <Checkboxes datesTheHabitWasCompleted={datesTheHabitWasCompleted} />
     </li>
   );
 }

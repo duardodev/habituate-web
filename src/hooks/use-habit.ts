@@ -1,23 +1,37 @@
-import { useState } from 'react';
-import { updateHabit } from '@/app/actions';
+import { api } from '@/functions/api';
+import { auth } from '@clerk/nextjs/server';
 
 interface useHabitProps {
   id: string;
 }
 
-export function useHabit({ id }: useHabitProps) {
-  const [isTitleEditing, setIsTitleEditing] = useState(false);
+interface Day {
+  id: string;
+  date: Date;
+}
 
-  const handleHabitTitleUpdate = (newTitle: string) => {
-    updateHabit(id, newTitle);
-    setIsTitleEditing(false);
-  };
+interface DatesTheHabitWasCompletedData {
+  datesTheHabitWasCompleted: Day[];
+}
 
-  const startEditing = () => setIsTitleEditing(true);
+export async function useHabit({ id }: useHabitProps): Promise<string[]> {
+  const { getToken } = auth();
+  const token = await getToken();
 
-  return {
-    isTitleEditing,
-    handleHabitTitleUpdate,
-    startEditing,
-  };
+  const response = await api(`/completed-habits/${id}/days`, {
+    next: {
+      revalidate: 3600,
+      tags: ['days-with-specific-comleted-habit'],
+    },
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  const data: DatesTheHabitWasCompletedData = await response.json();
+  const datesTheHabitWasCompleted: string[] = data.datesTheHabitWasCompleted.map(dateTheHabitWasCompleted =>
+    dateTheHabitWasCompleted.date.toString()
+  );
+
+  return datesTheHabitWasCompleted;
 }
