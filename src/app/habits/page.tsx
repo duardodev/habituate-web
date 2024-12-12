@@ -6,6 +6,7 @@ import { HabitSkeleton } from './components/habit-skeleton';
 import { Tasks } from './components/tasks';
 import { ErrorFallback } from './components/error-fallback';
 import { Separator } from '@/components/ui/separator';
+import { DailyProgress } from './components/daily-progress';
 
 export default function HabitsPage() {
   return (
@@ -32,8 +33,9 @@ export default function HabitsPage() {
         </div>
       </div>
 
-      <div className="w-full max-w-[832px] mx-auto mt-6">
+      <div className="w-full max-w-[828px] mx-auto mt-8 flex justify-center gap-20">
         <Tasks />
+        <DailyProgress />
       </div>
     </div>
   );

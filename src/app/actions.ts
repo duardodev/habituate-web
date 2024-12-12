@@ -39,6 +39,8 @@ export async function toggleHabit(id: string, date: string) {
     },
     body: JSON.stringify({ date }),
   });
+
+  revalidateTag('get-completed-habits-count');
 }
 
 export async function removeHabit(id: string) {
