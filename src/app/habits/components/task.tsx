@@ -18,7 +18,7 @@ export function Task({ id, completed, title, priority }: TaskProps) {
   const { handleTaskToggle, isTitleEditing, setIsTitleEditing, handleTaskTitleUpdate, removeTask } = useTask({ id });
 
   return (
-    <div className="p-3 flex items-center gap-3 group">
+    <div className="p-4 flex items-center gap-3 group">
       <button type="submit" onClick={e => handleTaskToggle(e)} className="flex-none transition-all">
         {completed ? (
           <CheckCircle2 className="w-5 h-5 text-emerald-500" />
@@ -33,7 +33,7 @@ export function Task({ id, completed, title, priority }: TaskProps) {
         ) : (
           <p
             className={cn(
-              'text-sm',
+              'max-w-40 truncate text-sm',
               completed ? 'text-zinc-400 dark:text-zinc-500 line-through' : 'text-zinc-900 dark:text-zinc-100'
             )}
           >
