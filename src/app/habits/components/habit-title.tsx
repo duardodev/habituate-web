@@ -1,20 +1,27 @@
 'use client';
 
-import { removeHabit, updateHabit } from '@/app/actions';
-import { DropdownMenu, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { useState } from 'react';
 import { TitleEditor } from './title-editor';
-import { useHabitContext } from '@/hooks/use-habit-context';
 import { UserActionsMenu } from './user-actions-menu';
+import { removeHabit, updateHabit } from '@/app/actions';
+import { DropdownMenu, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import { useHabitContext } from '@/hooks/use-habit-context';
+import { useQueryClient } from '@tanstack/react-query';
 
 export function HabitTitle() {
   const { id, title } = useHabitContext();
   const [isTitleEditing, setIsTitleEditing] = useState(false);
+  const queryClient = useQueryClient();
 
-  const handleHabitTitleUpdate = (newTitle: string) => {
+  function handleHabitTitleUpdate(newTitle: string) {
     updateHabit(id, newTitle);
     setIsTitleEditing(false);
-  };
+  }
+
+  async function handleRemoveHabit() {
+    await removeHabit(id);
+    queryClient.invalidateQueries({ queryKey: ['get-habits'] });
+  }
 
   const startEditing = () => setIsTitleEditing(true);
 
@@ -29,7 +36,7 @@ export function HabitTitle() {
           )}
         </DropdownMenuTrigger>
 
-        <UserActionsMenu onRename={startEditing} onRemove={() => removeHabit(id)} />
+        <UserActionsMenu onRename={startEditing} onRemove={handleRemoveHabit} />
       </DropdownMenu>
     </div>
   );
