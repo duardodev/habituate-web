@@ -1,6 +1,3 @@
-import { api } from '@/functions/api';
-import { auth } from '@clerk/nextjs/server';
-
 export interface HabitsResponse {
   habits: {
     id: string;
@@ -8,11 +5,8 @@ export interface HabitsResponse {
   }[];
 }
 
-export async function useHabits(): Promise<HabitsResponse> {
-  const { getToken } = auth();
-  const token = await getToken();
-
-  const response = await api('/habits', {
+export async function useFetchHabits(token: string | null): Promise<HabitsResponse> {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/habits`, {
     next: {
       revalidate: 3600,
       tags: ['get-habits'],

@@ -1,11 +1,15 @@
-import { HabitProvider } from '@/contexts/habit-context';
 import { Habit } from './habit';
-import { useHabits } from '@/hooks/use-habits';
+import { HabitProvider } from '@/contexts/habit-context';
+import { useFetchHabits } from '@/hooks/use-fetch-habits';
+import { auth } from '@clerk/nextjs/server';
 
 export async function Habits() {
-  const data = await useHabits();
+  const { getToken } = auth();
+  const token = await getToken();
 
-  if (data?.habits.length === 0) {
+  const { habits } = await useFetchHabits(token);
+
+  if (habits.length === 0) {
     return (
       <div className="mt-4 flex items-center justify-center">
         <p className="text-sm text-center">
@@ -18,7 +22,7 @@ export async function Habits() {
 
   return (
     <div className="mt-4 space-y-4">
-      {data?.habits.map(habit => {
+      {habits.map(habit => {
         return (
           <HabitProvider
             key={habit.id}
