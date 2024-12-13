@@ -14,7 +14,7 @@ export function useDayCheckbox({ currentWeekDay }: useDayCheckboxProps) {
 
   const isDisabled = currentWeekDay.isAfter(today, 'day');
   const habitCompletedDays = completedDays[id] || [];
-  const isChecked = habitCompletedDays.includes(currentWeekDay.startOf('day').toISOString());
+  const isChecked = habitCompletedDays.includes(currentWeekDay.utcOffset(-3).startOf('day').toISOString());
 
   async function handleHabitToggle(date: string) {
     setCompletedDay(id, date);

@@ -14,7 +14,7 @@ export function DayCheckbox({ currentWeekDay, ...rest }: DayCheckboxProps) {
 
   return (
     <Checkbox
-      onClick={() => handleHabitToggle(currentWeekDay.startOf('day').toISOString())}
+      onClick={() => handleHabitToggle(currentWeekDay.startOf('day').utcOffset(-3).toISOString())}
       checked={isChecked}
       disabled={isDisabled}
       {...rest}
