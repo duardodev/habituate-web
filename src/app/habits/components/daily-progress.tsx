@@ -1,7 +1,5 @@
-import { Suspense } from 'react';
 import { TasksMetric } from './tasks-metric';
 import { HabitsMetric } from './habits-metric';
-import { MetricRingSkeleton } from './metric-ring-skeleton';
 import { Activity } from 'lucide-react';
 
 export function DailyProgress() {
@@ -19,10 +17,7 @@ export function DailyProgress() {
       </div>
 
       <div className="grid grid-cols-2 gap-12">
-        <Suspense fallback={<MetricRingSkeleton label="Hábitos" sublabel="feito(s)" />}>
-          <HabitsMetric />
-        </Suspense>
-
+        <HabitsMetric />
         <TasksMetric />
       </div>
     </div>
