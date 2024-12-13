@@ -1,7 +1,7 @@
 interface MetricRingProps {
   label: string;
   value: number;
-  color: string;
+  color?: string;
   sublabel: string;
   percentage?: number;
 }

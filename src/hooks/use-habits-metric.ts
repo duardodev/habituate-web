@@ -9,7 +9,7 @@ export function useHabitsMetric() {
   const { getToken } = useAuth();
   const today = dayjs().utcOffset(-3).startOf('day').toISOString();
 
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, isError } = useQuery({
     queryKey: ['get-habits'],
     queryFn: async () => {
       const token = await getToken();
@@ -26,5 +26,6 @@ export function useHabitsMetric() {
     completedHabitsCount,
     percentage,
     isLoading,
+    isError,
   };
 }
