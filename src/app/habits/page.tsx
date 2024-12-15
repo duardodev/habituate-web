@@ -33,7 +33,7 @@ export default function HabitsPage() {
         </div>
       </div>
 
-      <div className="w-full max-w-[828px] mx-auto mt-8 pb-5 flex flex-wrap justify-center items-center gap-x-20 gap-y-10">
+      <div className="w-full max-w-[828px] mx-auto mt-8 pb-5 flex flex-wrap justify-center gap-x-20 gap-y-10">
         <Tasks />
         <DailyProgress />
       </div>
