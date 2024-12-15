@@ -22,7 +22,7 @@ export async function UserProfileInfo() {
       <DropdownMenuTrigger asChild>
         <Button
           variant="ghost"
-          className="order-first min-[450px]:order-last relative h-10 w-10 select-none rounded-full bg-muted"
+          className="order-last relative h-10 w-10 select-none rounded-full bg-muted"
           aria-label="Foto de perfil"
         >
           <Avatar>
