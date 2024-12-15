@@ -4,7 +4,7 @@ import { Activity } from 'lucide-react';
 
 export function DailyProgress() {
   return (
-    <div className="relative h-[250px] min-w-[320px] rounded-3xl p-4 bg-white dark:bg-background border border-zinc-200 dark:border-zinc-800 transition-all duration-300 shadow-lg">
+    <div className="relative min-h-[250px] w-[320px] rounded-3xl p-4 bg-white dark:bg-background border border-zinc-200 dark:border-zinc-800 transition-all duration-300 shadow-lg">
       <div className="flex items-center gap-3 mb-6">
         <div className="p-2 rounded-full bg-zinc-100 dark:bg-zinc-800/50">
           <Activity className="w-6 h-6 text-primary" />
@@ -16,7 +16,7 @@ export function DailyProgress() {
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-12">
+      <div className="grid grid-cols-1 min-[375px]:grid-cols-2 gap-8">
         <HabitsMetric />
         <TasksMetric />
       </div>
