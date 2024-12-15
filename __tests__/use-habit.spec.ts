@@ -1,35 +1,32 @@
-import { renderHook, act } from '@testing-library/react';
 import { useHabit } from '@/hooks/use-habit';
-import { updateHabit } from '@/app/actions';
+import { auth } from '@clerk/nextjs/server';
+import { server } from '@/app/api/mocks/server';
+import { getDatesTheHabitWasCompletedMock } from '@/app/api/mocks/get-dates-the-habit-was-completed';
 
-jest.mock('../src/app/actions', () => ({
-  updateHabit: jest.fn(),
-}));
+jest.mock('@clerk/nextjs/server');
 
-describe('useHabit hook', () => {
-  it('should initialize with isTitleEditing as false', () => {
-    const { result } = renderHook(() => useHabit({ id: '1' }));
-    expect(result.current.isTitleEditing).toBe(false);
+describe('useHabit', () => {
+  const mockHabitId = 'habit123';
+  const mockToken = 'mock-token';
+
+  beforeEach(() => {
+    jest.resetAllMocks();
+    (auth as jest.Mock).mockReturnValue({
+      getToken: jest.fn().mockResolvedValue(mockToken),
+    });
   });
 
-  it('should set isTitleEditing to true when startEditing is called', () => {
-    const { result } = renderHook(() => useHabit({ id: '1' }));
-
-    act(() => {
-      result.current.startEditing();
-    });
-
-    expect(result.current.isTitleEditing).toBe(true);
+  it('should fetch and return formatted dates', async () => {
+    server.use(getDatesTheHabitWasCompletedMock);
+    const result = await useHabit({ id: mockHabitId });
+    expect(result).toEqual(['2024-10-01T00:00:00.000Z', '2024-09-30T00:00:00.000Z', '2024-09-28T00:00:00.000Z']);
   });
 
-  it('should update habit title and set isTitleEditing to false when handleHabitTitleUpdate is called with not-empty title', () => {
-    const { result } = renderHook(() => useHabit({ id: '1' }));
-
-    act(() => {
-      result.current.handleHabitTitleUpdate('New title');
+  it('should handle authentication errors', async () => {
+    (auth as jest.Mock).mockReturnValue({
+      getToken: jest.fn().mockRejectedValue(new Error('Auth Error')),
     });
 
-    expect(updateHabit).toHaveBeenCalledWith('1', 'New title');
-    expect(result.current.isTitleEditing).toBe(false);
+    await expect(useHabit({ id: mockHabitId })).rejects.toThrow('Auth Error');
   });
 });

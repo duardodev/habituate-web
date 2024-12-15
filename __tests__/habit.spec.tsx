@@ -1,67 +1,48 @@
+import { render, screen, waitFor } from '@testing-library/react';
 import { Habit } from '@/app/habits/components/habit';
 import { useHabit } from '@/hooks/use-habit';
-import { render, screen } from '@testing-library/react';
 
 jest.mock('../src/hooks/use-habit', () => ({
   useHabit: jest.fn(),
 }));
 
-jest.mock('../src/app/habits/components/checkboxes', () => ({
-  Checkboxes: () => <div data-testid="checkboxes">Checkboxes</div>,
+jest.mock('../src/app/habits/components/habit-title', () => ({
+  HabitTitle: () => <div data-testid="habit-title">Habit Title</div>,
 }));
 
-jest.mock('../src/app/habits/components/habit-title-input', () => ({
-  HabitTitleInput: ({ title, onTitleSave }: any) => (
-    <input
-      data-testid="habit-title-input"
-      value={title}
-      onChange={e => onTitleSave(e.target.value)}
-    />
+jest.mock('../src/app/habits/components/checkboxes', () => ({
+  Checkboxes: ({ datesTheHabitWasCompleted }: { datesTheHabitWasCompleted: string[] }) => (
+    <div data-testid="checkboxes">Checkboxes for dates: {JSON.stringify(datesTheHabitWasCompleted)}</div>
   ),
 }));
 
-jest.mock('../src/app/habits/components/user-actions-menu', () => ({
-  UserActionsMenu: () => <div data-testid="user-actions-menu">User Actions Menu</div>,
-}));
+describe('Habit Component', () => {
+  const mockHabitId = 'habit-1';
+  const mockDatesTheHabitWasCompleted = ['2024-12-05', '2024-12-06'];
 
-describe('Habit component', () => {
   beforeEach(() => {
-    (useHabit as jest.Mock).mockReturnValue({
-      isTitleEditing: false,
-      handleHabitTitleUpdate: jest.fn(),
-      startEditing: jest.fn(),
-    });
+    (useHabit as jest.Mock).mockResolvedValue(mockDatesTheHabitWasCompleted);
   });
 
-  it('should render HabitTitleInput when is isTitleEditing is true', () => {
-    (useHabit as jest.Mock).mockReturnValue({
-      isTitleEditing: true,
-      handleHabitTitleUpdate: jest.fn(),
-      startEditing: jest.fn(),
-    });
+  it('should render correctly', async () => {
+    render(await Habit({ id: mockHabitId }));
 
-    render(<Habit id="1" title="Test habit" />);
-    expect(screen.getByTestId('habit-title-input')).toBeInTheDocument();
-  });
-
-  it('should render habit title when is isTitleEditing is false', () => {
-    (useHabit as jest.Mock).mockReturnValue({
-      isTitleEditing: false,
-      handleHabitTitleUpdate: jest.fn(),
-      startEditing: jest.fn(),
-    });
-
-    render(<Habit id="1" title="Test habit" />);
-    expect(screen.getByText('Test habit')).toBeInTheDocument();
-  });
-
-  it('should render Checkboxes component', () => {
-    render(<Habit id="1" title="Test habit" />);
+    expect(screen.getByTestId('habit-title')).toBeInTheDocument();
     expect(screen.getByTestId('checkboxes')).toBeInTheDocument();
   });
 
-  it('should render UserActionsMenu component', () => {
-    render(<Habit id="1" title="Test habit" />);
-    expect(screen.getByTestId('user-actions-menu')).toBeInTheDocument();
+  it('should call useHabit with the correct id', async () => {
+    render(await Habit({ id: mockHabitId }));
+
+    await waitFor(() => {
+      expect(useHabit).toHaveBeenCalledWith({ id: mockHabitId });
+    });
+  });
+
+  it('should render Checkboxes component with correct props', async () => {
+    render(await Habit({ id: mockHabitId }));
+
+    const checkboxes = await screen.findByTestId('checkboxes');
+    expect(checkboxes).toHaveTextContent(JSON.stringify(mockDatesTheHabitWasCompleted));
   });
 });

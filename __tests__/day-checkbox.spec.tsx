@@ -24,19 +24,17 @@ describe('DayCheckbox component', () => {
   });
 
   it('should render correctly', () => {
-    const { getByRole } = render(<DayCheckbox habitId="1" currentWeekDay={dayjs()} />);
+    const { getByRole } = render(<DayCheckbox currentWeekDay={dayjs().utcOffset(-3)} />);
     expect(getByRole('checkbox')).toBeInTheDocument();
   });
 
   it('should call the handleHabitToggle function when clicked', async () => {
     const currentWeekDay = dayjs();
-    const { getByRole } = render(<DayCheckbox habitId="1" currentWeekDay={currentWeekDay} />);
+    const { getByRole } = render(<DayCheckbox currentWeekDay={currentWeekDay} />);
 
     const checkbox = getByRole('checkbox');
     await userEvent.click(checkbox);
 
-    expect(mockHandleHabitToggle).toHaveBeenCalledWith(
-      currentWeekDay.utc().startOf('day').toISOString()
-    );
+    expect(mockHandleHabitToggle).toHaveBeenCalledWith(currentWeekDay.utcOffset(-3).startOf('day').toISOString());
   });
 });

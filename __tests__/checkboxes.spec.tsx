@@ -1,10 +1,12 @@
 import { render, screen } from '@testing-library/react';
 import { Checkboxes } from '@/app/habits/components/checkboxes';
-import { useCheckboxes } from '@/hooks/use-checkboxes';
+import { useCompletedDaysStore } from '@/store/completed-days-store';
+import { useCurrentWeekDays } from '@/hooks/use-current-week-days';
+import { useHabitContext } from '@/hooks/use-habit-context';
 
-jest.mock('../src/hooks/use-checkboxes', () => ({
-  useCheckboxes: jest.fn(),
-}));
+jest.mock('../src/store/completed-days-store');
+jest.mock('../src/hooks/use-current-week-days');
+jest.mock('../src/hooks/use-habit-context');
 
 jest.mock('../src/app/habits/components/day-checkbox', () => ({
   DayCheckbox: ({
@@ -23,21 +25,35 @@ jest.mock('../src/app/habits/components/day-checkbox', () => ({
 }));
 
 describe('Checkboxes component', () => {
-  it('should render checkboxes for each day of the week', () => {
-    const mockCurrentWeekDays = [
-      new Date('2024-09-24'),
-      new Date('2024-09-25'),
-      new Date('2024-09-26'),
-    ];
+  const mockSetCompletedDays = jest.fn();
+  const mockCurrentWeekDays = [new Date('2024-12-05'), new Date('2024-12-04'), new Date('2024-12-03')];
+  const mockHabitId = 'habit-1';
 
-    (useCheckboxes as jest.Mock).mockReturnValue({
+  beforeEach(() => {
+    (useCompletedDaysStore as unknown as jest.Mock).mockReturnValue({
+      setCompletedDays: mockSetCompletedDays,
+    });
+
+    (useCurrentWeekDays as jest.Mock).mockReturnValue({
       currentWeekDays: mockCurrentWeekDays,
     });
 
-    render(<Checkboxes habitId="habit-123" />);
+    (useHabitContext as jest.Mock).mockReturnValue({
+      id: mockHabitId,
+    });
+  });
+
+  it('should render checkboxes for each day of the week', () => {
+    render(<Checkboxes datesTheHabitWasCompleted={[]} />);
 
     mockCurrentWeekDays.forEach(day => {
       expect(screen.getByTestId(`day-checkbox-${day.toISOString()}`)).toBeInTheDocument();
     });
+  });
+
+  it('should call setCompletedDays with correct arguments on mount', () => {
+    const mockDates = ['2024-12-03', '2024-12-04'];
+    render(<Checkboxes datesTheHabitWasCompleted={mockDates} />);
+    expect(mockSetCompletedDays).toHaveBeenCalledWith(mockHabitId, mockDates);
   });
 });

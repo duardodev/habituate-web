@@ -45,7 +45,7 @@ export function AddHabitDialog() {
         >
           <Input
             name="title"
-            placeholder="Correr, ler um livro, etc..."
+            placeholder="Meditar, exercitar-se, estudar inglês..."
             className="placeholder:text-foreground/70"
             autoComplete="off"
           />

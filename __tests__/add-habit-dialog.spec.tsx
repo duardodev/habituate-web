@@ -1,5 +1,10 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { AddHabitDialog } from '@/app/habits/components/add-habit-dialog';
+import { useAddHabitDialog } from '@/hooks/use-add-habit-dialog';
+
+jest.mock('@/hooks/use-add-habit-dialog', () => ({
+  useAddHabitDialog: jest.fn(),
+}));
 
 jest.mock('react-dom', () => ({
   ...jest.requireActual('react-dom'),
@@ -7,8 +12,14 @@ jest.mock('react-dom', () => ({
 }));
 
 describe('AddHabitDialog component', () => {
+  const mockHandleAddHabit = jest.fn();
+
   beforeEach(() => {
     jest.clearAllMocks();
+
+    (useAddHabitDialog as jest.Mock).mockReturnValue({
+      handleAddHabit: mockHandleAddHabit,
+    });
   });
 
   it('should render the dialog trigger button', () => {
@@ -22,28 +33,16 @@ describe('AddHabitDialog component', () => {
     expect(screen.getByRole('dialog')).toBeInTheDocument();
   });
 
-  it('should disable the confirm button while submitting', async () => {
-    const useFormStatusMock = jest.requireMock('react-dom').useFormStatus;
-    useFormStatusMock.mockReturnValue({ pending: true });
-
+  it('should render and allow input for habit title', () => {
     render(<AddHabitDialog />);
     fireEvent.click(screen.getByRole('button', { name: 'Adicionar hábito' }));
+    expect(screen.getByRole('dialog')).toBeInTheDocument();
 
-    const confirmButton = screen.getByRole('button', { name: 'Confirmando' });
-    expect(confirmButton).toBeDisabled();
-    expect(screen.getByTestId('loader')).toBeInTheDocument();
-  });
+    const input = screen.getByPlaceholderText('Meditar, exercitar-se, estudar inglês...');
+    expect(input).toBeInTheDocument();
 
-  it('should enable the confirm button after submission', async () => {
-    const useFormStatusMock = jest.requireMock('react-dom').useFormStatus;
-    useFormStatusMock.mockReturnValue({ pending: false });
-
-    render(<AddHabitDialog />);
-    fireEvent.click(screen.getByRole('button', { name: 'Adicionar hábito' }));
-
-    const confirmButton = screen.getByRole('button', { name: 'Confirmar' });
-    expect(confirmButton).not.toBeDisabled();
-    expect(screen.queryByTestId('loader')).not.toBeInTheDocument();
+    fireEvent.change(input, { target: { value: 'Novo hábito' } });
+    expect(input).toHaveValue('Novo hábito');
   });
 
   it('should close the dialog when cancel button is clicked', () => {

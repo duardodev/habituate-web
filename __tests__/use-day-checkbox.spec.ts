@@ -1,4 +1,7 @@
+import { toggleHabit } from '@/app/actions';
 import { useDayCheckbox } from '@/hooks/use-day-checkbox';
+import { useHabitContext } from '@/hooks/use-habit-context';
+import { useCompletedDaysStore } from '@/store/completed-days-store';
 import { renderHook, act } from '@testing-library/react';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
@@ -13,39 +16,27 @@ jest.mock('../src/store/completed-days-store', () => ({
   useCompletedDaysStore: jest.fn(),
 }));
 
-const mockMutateAsync = jest.fn();
-
-jest.mock('@tanstack/react-query', () => ({
-  useMutation: jest.fn().mockImplementation(({ onSuccess }) => ({
-    mutateAsync: mockMutateAsync.mockImplementation(async () => {
-      await Promise.resolve();
-      onSuccess();
-    }),
-  })),
-  useQueryClient: jest.fn().mockReturnValue({
-    invalidateQueries: jest.fn(),
-  }),
+jest.mock('../src/hooks/use-habit-context', () => ({
+  useHabitContext: jest.fn(),
 }));
 
 describe('useDayCheckbox hook', () => {
   const mockSetCompletedDay = jest.fn();
-  const mockInvalidateQueries = jest.fn();
+  const habitId = 'habit-1';
 
   beforeEach(() => {
     jest.clearAllMocks();
 
-    jest.requireMock('../src/store/completed-days-store').useCompletedDaysStore.mockReturnValue({
+    (useHabitContext as jest.Mock).mockReturnValue({ id: habitId });
+
+    (useCompletedDaysStore as unknown as jest.Mock).mockReturnValue({
       completedDays: {},
       setCompletedDay: mockSetCompletedDay,
-    });
-
-    jest.requireMock('@tanstack/react-query').useQueryClient.mockReturnValue({
-      invalidateQueries: mockInvalidateQueries,
     });
   });
 
   it('should return correct initial values', () => {
-    const { result } = renderHook(() => useDayCheckbox({ habitId: '1', currentWeekDay: dayjs() }));
+    const { result } = renderHook(() => useDayCheckbox({ currentWeekDay: dayjs() }));
 
     expect(result.current.isChecked).toBe(false);
     expect(result.current.isDisabled).toBe(false);
@@ -54,45 +45,36 @@ describe('useDayCheckbox hook', () => {
 
   it('should disable checkbox for future dates', () => {
     const futureDate = dayjs().add(1, 'day');
-    const { result } = renderHook(() =>
-      useDayCheckbox({ habitId: '1', currentWeekDay: futureDate })
-    );
+    const { result } = renderHook(() => useDayCheckbox({ currentWeekDay: futureDate }));
 
     expect(result.current.isDisabled).toBe(true);
   });
 
   it('should mark checkbox as checked for completed days', () => {
     const completedDate = dayjs().subtract(1, 'day');
-    const completedDateString = dayjs.utc(completedDate).startOf('day').toISOString();
+    const completedDateString = dayjs(completedDate).utcOffset(-3).startOf('day').toISOString();
 
-    jest.requireMock('../src/store/completed-days-store').useCompletedDaysStore.mockReturnValue({
-      completedDays: { '1': [completedDateString] },
+    (useCompletedDaysStore as unknown as jest.Mock).mockReturnValue({
+      completedDays: { [habitId]: [completedDateString] },
       setCompletedDay: jest.fn(),
     });
 
-    const { result } = renderHook(() =>
-      useDayCheckbox({ habitId: '1', currentWeekDay: completedDate })
-    );
+    const { result } = renderHook(() => useDayCheckbox({ currentWeekDay: completedDate }));
 
     expect(result.current.isChecked).toBe(true);
   });
 
   it('should handle habit toggle correctly', async () => {
     const currentDate = dayjs();
-    const dateString = dayjs.utc(currentDate).startOf('day').toISOString();
+    const dateString = dayjs(currentDate).utcOffset(-3).startOf('day').toISOString();
 
-    const { result } = renderHook(() =>
-      useDayCheckbox({ habitId: '1', currentWeekDay: currentDate })
-    );
+    const { result } = renderHook(() => useDayCheckbox({ currentWeekDay: currentDate }));
 
     await act(async () => {
       await result.current.handleHabitToggle(dateString);
     });
 
-    expect(mockSetCompletedDay).toHaveBeenCalledWith('1', dateString);
-    expect(mockMutateAsync).toHaveBeenCalledWith(dateString);
-    expect(mockInvalidateQueries).toHaveBeenCalledWith({
-      queryKey: ['days-with-specific-completed-habit', '1'],
-    });
+    expect(mockSetCompletedDay).toHaveBeenCalledWith(habitId, dateString);
+    expect(toggleHabit).toHaveBeenCalledWith(habitId, dateString);
   });
 });
