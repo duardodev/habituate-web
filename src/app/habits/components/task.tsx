@@ -56,7 +56,10 @@ export function Task({ id, completed, title, priority }: TaskProps) {
 
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <button type="button" className="opacity-0 group-hover:opacity-100 data-[state=open]:opacity-100 transition-opacity">
+          <button
+            type="button"
+            className="opacity-100 lg:opacity-0 group-hover:opacity-100 data-[state=open]:opacity-100 transition-opacity"
+          >
             <MoreHorizontal className="w-5 h-5 text-zinc-400" />
           </button>
         </DropdownMenuTrigger>
