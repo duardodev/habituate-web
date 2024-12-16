@@ -5,12 +5,7 @@ import { Moon, Sun } from 'lucide-react';
 import { useTheme } from 'next-themes';
 
 import { Button } from '@/components/ui/button';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { cn } from '@/lib/utils';
 
 interface ModeToggleProps {
@@ -26,7 +21,7 @@ export function ThemeToggle({ floating }: ModeToggleProps) {
         <Button
           variant="outline"
           size="icon"
-          className={cn('w-8 h-8', floating && 'w-9 h-9 rounded-3xl fixed bottom-10 right-8')}
+          className={cn('w-8 h-8', floating && 'w-9 h-9 rounded-3xl fixed bottom-10 right-8 z-40')}
         >
           <Sun
             className={cn(
