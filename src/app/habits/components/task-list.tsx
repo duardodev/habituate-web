@@ -4,6 +4,7 @@ import { Task } from './task';
 import { TaskSkeleton } from './task-skeleton';
 import { useTasksStore } from '@/store/use-tasks-store';
 import { useLoading } from '@/hooks/use-loading';
+import { TaskProvider } from '@/contexts/task-context';
 
 export function TaskList() {
   const tasks = useTasksStore(state => state.tasks);
@@ -21,7 +22,19 @@ export function TaskList() {
         </p>
       ) : (
         tasks.map(task => {
-          return <Task key={task.id} id={task.id} completed={task.completed} title={task.title} priority={task.priority} />;
+          return (
+            <TaskProvider
+              key={task.id}
+              task={{
+                id: task.id,
+                title: task.title,
+                completed: task.completed,
+                priority: task.priority,
+              }}
+            >
+              <Task />
+            </TaskProvider>
+          );
         })
       )}
     </>
