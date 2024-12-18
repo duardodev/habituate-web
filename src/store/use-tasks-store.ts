@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 import { produce } from 'immer';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
@@ -7,6 +8,7 @@ interface Task {
   title: string;
   priority: 'p1' | 'p2' | 'p3';
   completed: boolean;
+  expiresAt?: number | null;
 }
 
 interface TasksStore {
@@ -20,10 +22,15 @@ interface TasksStore {
   removeAllTasks: () => void;
 }
 
+function cleanExpiredTasks(tasks: Task[]) {
+  const now = dayjs();
+  return tasks.filter(task => !task.expiresAt || dayjs(task.expiresAt).isAfter(now));
+}
+
 export const useTasksStore = create<TasksStore>()(
   persist(
     (set, get) => ({
-      tasks: [],
+      tasks: cleanExpiredTasks([]),
       amountCompletedTasks: () => get().tasks.filter(task => task.completed).length,
       amountTasks: () => get().tasks.length,
       addTask: newTask =>
@@ -45,6 +52,7 @@ export const useTasksStore = create<TasksStore>()(
 
             if (task) {
               task.completed = !task.completed;
+              task.expiresAt = task.completed ? dayjs().add(1, 'day').utcOffset(-3).startOf('day').valueOf() : null;
             }
           })
         ),
@@ -73,7 +81,7 @@ export const useTasksStore = create<TasksStore>()(
     }),
     {
       name: 'tasks',
-      partialize: state => ({ tasks: state.tasks }),
+      partialize: state => ({ tasks: cleanExpiredTasks(state.tasks) }),
     }
   )
 );
