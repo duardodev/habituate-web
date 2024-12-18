@@ -45,7 +45,11 @@ export function AddTaskDialog() {
           onSubmit={e => {
             e.preventDefault();
             handleAddTask(new FormData(e.currentTarget));
-            e.currentTarget.reset();
+
+            const titleInput = e.currentTarget.elements.namedItem('title');
+            if (titleInput instanceof HTMLInputElement) {
+              titleInput.value = '';
+            }
           }}
           className="space-y-4"
         >
