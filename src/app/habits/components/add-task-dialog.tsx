@@ -45,6 +45,7 @@ export function AddTaskDialog() {
           onSubmit={e => {
             e.preventDefault();
             handleAddTask(new FormData(e.currentTarget));
+            e.currentTarget.reset();
           }}
           className="space-y-4"
         >

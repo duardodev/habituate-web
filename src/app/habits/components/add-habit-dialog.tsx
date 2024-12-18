@@ -40,6 +40,7 @@ export function AddHabitDialog() {
           onSubmit={e => {
             e.preventDefault();
             handleAddHabit(new FormData(e.currentTarget));
+            e.currentTarget.reset();
           }}
           className="space-y-4"
         >
