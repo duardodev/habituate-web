@@ -5,7 +5,7 @@ import { persist } from 'zustand/middleware';
 interface Task {
   id: string;
   title: string;
-  priority: string;
+  priority: 'p1' | 'p2' | 'p3';
   completed: boolean;
 }
 
@@ -30,6 +30,12 @@ export const useTasksStore = create<TasksStore>()(
         set(
           produce((draft: TasksStore) => {
             draft.tasks.push(newTask);
+
+            const priorityOrder: Record<'p1' | 'p2' | 'p3', number> = { p1: 1, p2: 2, p3: 3 };
+
+            draft.tasks.sort((a, b) => {
+              return priorityOrder[a.priority] - priorityOrder[b.priority];
+            });
           })
         ),
       toggleTask: id =>

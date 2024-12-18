@@ -1,13 +1,11 @@
 import { toast } from 'sonner';
 import { useTasksStore } from '@/store/use-tasks-store';
 
-interface TasksResponse {
-  tasks: {
-    id: string;
-    title: string;
-    priority: string;
-    completed: boolean;
-  }[];
+interface TaskType {
+  id: string;
+  title: string;
+  priority: 'p1' | 'p2' | 'p3';
+  completed: boolean;
 }
 
 export function useAddTaskDialog() {
@@ -15,7 +13,7 @@ export function useAddTaskDialog() {
 
   function handleAddTask(form: FormData) {
     const title = form.get('title') as string;
-    const priority = form.get('priority') as string;
+    const priority = form.get('priority') as 'p1' | 'p2' | 'p3';
     const randomId = `_${Math.random().toString(30).substring(2, 17) + Math.random().toString(30).substring(2, 17)}`;
 
     if (!title || title.trim() === '') {
@@ -23,7 +21,7 @@ export function useAddTaskDialog() {
       return;
     }
 
-    const newTask = {
+    const newTask: TaskType = {
       id: randomId,
       title,
       priority,
