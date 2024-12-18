@@ -1,16 +1,14 @@
 'use client';
 
-import { useTasksStore } from '@/store/use-tasks-store';
 import { TitleEditor } from './title-editor';
 import { useTaskContext } from '@/hooks/use-task-context';
 import { useTaskTitleStore } from '@/store/use-task-title-store';
-import { cn } from '@/lib/utils';
 import { useTaskTitle } from '@/hooks/use-task-title';
+import { cn } from '@/lib/utils';
 
 export function TaskTitle() {
   const { title, completed } = useTaskContext();
-  const { isTitleEditing } = useTaskTitleStore();
-  const { handleTaskTitleUpdate } = useTaskTitle();
+  const { handleTaskTitleUpdate, isTitleEditing } = useTaskTitle();
 
   return (
     <>

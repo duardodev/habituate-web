@@ -9,7 +9,7 @@ import { useTasksStore } from '@/store/use-tasks-store';
 
 export function TaskActionsMenu() {
   const { id } = useTaskContext();
-  const { setIsTitleEditing } = useTaskTitleStore();
+  const toggleEditingTask = useTaskTitleStore(state => state.toggleEditingTask);
   const removeTask = useTasksStore(state => state.removeTask);
 
   return (
@@ -23,7 +23,7 @@ export function TaskActionsMenu() {
         </button>
       </DropdownMenuTrigger>
 
-      <UserActionsMenu onRename={setIsTitleEditing} onRemove={() => removeTask(id)} />
+      <UserActionsMenu onRename={() => toggleEditingTask(id)} onRemove={() => removeTask(id)} />
     </DropdownMenu>
   );
 }

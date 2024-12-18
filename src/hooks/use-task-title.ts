@@ -4,15 +4,19 @@ import { useTasksStore } from '@/store/use-tasks-store';
 
 export function useTaskTitle() {
   const { id } = useTaskContext();
-  const { setIsTitleEditing } = useTaskTitleStore();
+  const toggleEditingTask = useTaskTitleStore(state => state.toggleEditingTask);
   const updateTaskTitle = useTasksStore(state => state.updateTaskTitle);
+
+  const activeEditingTaskId = useTaskTitleStore(state => state.activeEditingTaskId);
+  const isTitleEditing = activeEditingTaskId === id;
 
   function handleTaskTitleUpdate(newTitle: string) {
     updateTaskTitle(id, newTitle);
-    setIsTitleEditing();
+    toggleEditingTask(id);
   }
 
   return {
     handleTaskTitleUpdate,
+    isTitleEditing,
   };
 }
