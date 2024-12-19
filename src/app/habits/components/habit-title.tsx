@@ -1,29 +1,14 @@
 'use client';
 
-import { useState } from 'react';
 import { TitleEditor } from './title-editor';
 import { UserActionsMenu } from './user-actions-menu';
-import { removeHabit, updateHabit } from '@/app/actions';
 import { DropdownMenu, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { useHabitContext } from '@/hooks/use-habit-context';
-import { useQueryClient } from '@tanstack/react-query';
+import { useHabitTitle } from '@/hooks/use-habit-title';
 
 export function HabitTitle() {
-  const { id, title } = useHabitContext();
-  const [isTitleEditing, setIsTitleEditing] = useState(false);
-  const queryClient = useQueryClient();
-
-  function handleHabitTitleUpdate(newTitle: string) {
-    updateHabit(id, newTitle);
-    setIsTitleEditing(false);
-  }
-
-  async function handleRemoveHabit() {
-    await removeHabit(id);
-    queryClient.invalidateQueries({ queryKey: ['get-habits'] });
-  }
-
-  const startEditing = () => setIsTitleEditing(true);
+  const { isTitleEditing, handleHabitTitleUpdate, handleRemoveHabit, startEditing } = useHabitTitle();
+  const { title } = useHabitContext();
 
   return (
     <div className="group flex items-center min-w-32">
