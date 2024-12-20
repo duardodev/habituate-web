@@ -1,8 +1,11 @@
-import { useTasksInfo } from '@/hooks/use-tasks-info';
 import { AmountTasks } from './amount-tasks';
+import { monthsNames } from '@/lib/data';
+import dayjs from 'dayjs';
 
 export function TasksInfo() {
-  const { currentMonth, currentDay, currentYear } = useTasksInfo();
+  const currentMonth = monthsNames[dayjs().month()];
+  const currentYear = dayjs().year();
+  const currentDay = dayjs().date();
 
   return (
     <div className="p-4 flex items-center justify-between border-b border-border">
