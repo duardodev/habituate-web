@@ -1,8 +1,8 @@
 'use client';
 
-import { PrioritySelect } from './priority-select';
 import { ConfirmButton } from './confirm-button';
-import { Button } from '@/components/ui/button';
+import { PriorityItem } from './priority-item';
+import { useAddTaskDialog } from '@/hooks/use-add-task-dialog';
 import {
   Dialog,
   DialogClose,
@@ -13,22 +13,20 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
+import { Select, SelectContent, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Plus } from 'lucide-react';
-import { useAddTaskDialog } from '@/hooks/use-add-task-dialog';
 
 export function AddTaskDialog() {
-  const { handleAddTask } = useAddTaskDialog();
+  const { handleSubmit } = useAddTaskDialog();
 
   return (
     <Dialog>
       <DialogTrigger asChild>
         <Button
           variant="ghost"
-          className="flex justify-start items-center gap-2 w-full px-3 py-2 text-sm text-zinc-500 dark:text-zinc-400 
-                    hover:text-zinc-600 dark:hover:text-zinc-300 
-                    hover:bg-zinc-50 dark:hover:bg-zinc-800/50
-                    rounded-lg transition-colors"
+          className="flex justify-start items-center gap-2 w-full px-3 py-2 text-sm text-zinc-500 dark:text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-800/50 rounded-lg transition-colors"
         >
           <Plus className="w-4 h-4" />
           Adicionar nova tarefa
@@ -41,18 +39,7 @@ export function AddTaskDialog() {
           <DialogDescription className="text-base leading-tight">Adicione uma nova tarefa.</DialogDescription>
         </DialogHeader>
 
-        <form
-          onSubmit={e => {
-            e.preventDefault();
-            handleAddTask(new FormData(e.currentTarget));
-
-            const titleInput = e.currentTarget.elements.namedItem('title');
-            if (titleInput instanceof HTMLInputElement) {
-              titleInput.value = '';
-            }
-          }}
-          className="space-y-4"
-        >
+        <form onSubmit={e => handleSubmit(e)} className="space-y-4">
           <div className="flex flex-col sm:flex-row justify-between gap-4">
             <Input
               name="title"
@@ -61,7 +48,25 @@ export function AddTaskDialog() {
               autoComplete="off"
             />
 
-            <PrioritySelect />
+            <div className="w-full sm:w-2/5 group relative">
+              <label
+                htmlFor="select-28"
+                className="absolute start-1 top-0 z-10 block -translate-y-1/2 bg-background px-2 text-xs font-medium text-foreground group-has-[:disabled]:opacity-50"
+              >
+                Selecionar prioridade
+              </label>
+
+              <Select defaultValue="p1" name="priority">
+                <SelectTrigger id="select-28">
+                  <SelectValue placeholder="Select framework" />
+                </SelectTrigger>
+                <SelectContent className="[&_*[role=option]>span>svg]:shrink-0 [&_*[role=option]>span>svg]:text-muted-foreground/80 [&_*[role=option]>span]:end-2 [&_*[role=option]>span]:start-auto [&_*[role=option]>span]:flex [&_*[role=option]>span]:items-center [&_*[role=option]>span]:gap-2 [&_*[role=option]]:pe-8 [&_*[role=option]]:ps-2">
+                  <PriorityItem value="p1" name="Alta" className="text-red-500" />
+                  <PriorityItem value="p2" name="Média" className="text-amber-500" />
+                  <PriorityItem value="p3" name="Baixa" className="text-blue-500" />
+                </SelectContent>
+              </Select>
+            </div>
           </div>
 
           <DialogFooter className="flex items-center gap-2">

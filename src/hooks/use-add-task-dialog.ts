@@ -1,5 +1,6 @@
-import { toast } from 'sonner';
+import { FormEvent } from 'react';
 import { useTasksStore } from '@/store/use-tasks-store';
+import { toast } from 'sonner';
 
 interface TaskType {
   id: string;
@@ -33,7 +34,18 @@ export function useAddTaskDialog() {
     toast.success('Tarefa adicionada com sucesso!');
   }
 
+  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    handleAddTask(formData);
+
+    const titleInput = e.currentTarget.elements.namedItem('title') as HTMLInputElement;
+    if (titleInput) {
+      titleInput.value = '';
+    }
+  }
+
   return {
-    handleAddTask,
+    handleSubmit,
   };
 }
