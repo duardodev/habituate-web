@@ -18,7 +18,6 @@ export function useHabitsMetric() {
   });
 
   const habitsCount = data?.habits.length ?? 0;
-
   const completedHabitsCount = data?.habits.filter(habit => completedDays[habit.id]?.some(date => date === today)).length ?? 0;
   const percentage = completedHabitsCount > 0 ? (completedHabitsCount / habitsCount) * 100 : 0;
 
