@@ -2,12 +2,25 @@ import { Habit } from './habit';
 import { HabitProvider } from '@/contexts/habit-context';
 import { useFetchHabits } from '@/hooks/use-fetch-habits';
 import { auth } from '@clerk/nextjs/server';
+import { unstable_cache } from 'next/cache';
 
 export async function Habits() {
   const { getToken } = auth();
   const token = await getToken();
 
-  const { habits } = await useFetchHabits(token);
+  const getCachedHabits = unstable_cache(
+    async () => {
+      const { habits } = await useFetchHabits(token);
+      return habits;
+    },
+    ['habits-list'],
+    {
+      revalidate: 3600,
+      tags: ['get-habits'],
+    }
+  );
+
+  const habits = await getCachedHabits();
 
   if (habits.length === 0) {
     return (
