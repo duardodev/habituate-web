@@ -12,17 +12,16 @@ export function HabitTitle() {
 
   return (
     <div className="group flex items-center min-w-32">
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          {isTitleEditing ? (
-            <TitleEditor title={title} onTitleSave={handleHabitTitleUpdate} isHabitTitle={true} />
-          ) : (
-            <h2 className="text-start truncate hover:text-foreground/85 cursor-pointer transition-colors">{title}</h2>
-          )}
-        </DropdownMenuTrigger>
-
-        <UserActionsMenu onRename={startEditing} onRemove={handleRemoveHabit} />
-      </DropdownMenu>
+      {isTitleEditing ? (
+        <TitleEditor title={title} onTitleSave={handleHabitTitleUpdate} isHabitTitle={true} />
+      ) : (
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <h2 className="max-w-96 text-start truncate hover:text-foreground/85 cursor-pointer transition-colors">{title}</h2>
+          </DropdownMenuTrigger>
+          <UserActionsMenu onRename={startEditing} onRemove={handleRemoveHabit} />
+        </DropdownMenu>
+      )}
     </div>
   );
 }

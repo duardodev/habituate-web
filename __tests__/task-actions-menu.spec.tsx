@@ -1,4 +1,5 @@
 import { TaskActionsMenu } from '@/app/habits/components/task-actions-menu';
+import { useTaskTitle } from '@/hooks/use-task-title';
 import { useTaskTitleStore } from '@/store/use-task-title-store';
 import { useTasksStore } from '@/store/use-tasks-store';
 import { render, screen } from '@testing-library/react';
@@ -12,6 +13,7 @@ jest.mock('@/hooks/use-task-context', () => ({
 
 jest.mock('@/store/use-task-title-store');
 jest.mock('@/store/use-tasks-store');
+jest.mock('@/hooks/use-task-title');
 
 describe('TaskActionsMenu component', () => {
   const mockToggleEditingTask = jest.fn();
@@ -35,6 +37,19 @@ describe('TaskActionsMenu component', () => {
 
       return selector(state);
     });
+
+    (useTaskTitle as jest.Mock).mockReturnValue({
+      isTitleEditing: false,
+    });
+  });
+
+  it('should not render DropdownMenu when isTitleEditing is true', () => {
+    (useTaskTitle as jest.Mock).mockReturnValue({
+      isTitleEditing: true,
+    });
+
+    render(<TaskActionsMenu />);
+    expect(screen.queryByRole('button')).not.toBeInTheDocument();
   });
 
   it('should render UserActionsMenu when click trigger button is clicked', async () => {

@@ -6,11 +6,17 @@ import { UserActionsMenu } from './user-actions-menu';
 import { useTaskTitleStore } from '@/store/use-task-title-store';
 import { useTaskContext } from '@/hooks/use-task-context';
 import { useTasksStore } from '@/store/use-tasks-store';
+import { useTaskTitle } from '@/hooks/use-task-title';
 
 export function TaskActionsMenu() {
   const { id } = useTaskContext();
+  const { isTitleEditing } = useTaskTitle();
   const toggleEditingTask = useTaskTitleStore(state => state.toggleEditingTask);
   const removeTask = useTasksStore(state => state.removeTask);
+
+  if (isTitleEditing) {
+    return;
+  }
 
   return (
     <DropdownMenu>

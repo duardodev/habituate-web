@@ -23,7 +23,7 @@ export function TitleEditor({ title, onTitleSave, isHabitTitle }: TitleEditorPro
       className={cn('w-32 h-5 py-3 focus-visible:ring-transparent', isHabitTitle && 'text-base')}
       onChange={handleTitleChange}
       onBlur={saveTitle}
-      autoFocus={process.env.NODE_ENV === 'production'}
+      autoFocus={true}
       onKeyDown={e => {
         if (e.key === 'Enter') {
           saveTitle();

@@ -2,10 +2,9 @@
 
 import { TitleEditor } from './title-editor';
 import { useTaskContext } from '@/hooks/use-task-context';
-import { useTaskTitleStore } from '@/store/use-task-title-store';
 import { useTaskTitle } from '@/hooks/use-task-title';
-import { cn } from '@/lib/utils';
 import { Tooltip } from '@/components/ui/tooltip';
+import { cn } from '@/lib/utils';
 
 export function TaskTitle() {
   const { title, completed } = useTaskContext();
