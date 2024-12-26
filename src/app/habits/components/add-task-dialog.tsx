@@ -36,7 +36,7 @@ export function AddTaskDialog() {
       <DialogContent className="w-[460px]">
         <DialogHeader>
           <DialogTitle>Adicionar tarefa</DialogTitle>
-          <DialogDescription className="text-base leading-tight">Adicione uma nova tarefa.</DialogDescription>
+          <DialogDescription className="text-base leading-tight">Adicione uma tarefa para realizar hoje.</DialogDescription>
         </DialogHeader>
 
         <form onSubmit={e => handleSubmit(e)} className="space-y-4">

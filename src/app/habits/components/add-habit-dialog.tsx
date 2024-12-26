@@ -32,7 +32,7 @@ export function AddHabitDialog() {
         <DialogHeader>
           <DialogTitle>Adcionar novo hábito</DialogTitle>
           <DialogDescription className="text-base leading-tight">
-            Adicione hábitos diários que você constuma praticar.
+            Adicione um hábito que você constuma praticar.
           </DialogDescription>
         </DialogHeader>
 
