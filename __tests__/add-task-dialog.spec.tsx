@@ -1,4 +1,4 @@
-import { AddTaskDialog } from '@/app/habits/components/add-task-dialog';
+import { AddTaskDialog } from '@/app/management/components/add-task-dialog';
 import { useAddTaskDialog } from '@/hooks/use-add-task-dialog';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';

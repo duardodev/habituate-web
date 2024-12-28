@@ -3,7 +3,7 @@ import { setupClerkTestingToken } from '@clerk/testing/cypress';
 describe('Testing Tokens', () => {
   it('sign in', () => {
     setupClerkTestingToken();
-    cy.visit('/habits');
+    cy.visit('/management');
 
     cy.contains('h1', 'Sign in to Habituate');
     cy.get('.cl-signIn-root').should('exist');
@@ -14,8 +14,8 @@ describe('Testing Tokens', () => {
 
     cy.get('.cl-formButtonPrimary').contains('button', 'Continue').click();
 
-    cy.visit('/habits');
-    cy.url().should('include', 'habits');
+    cy.visit('/management');
+    cy.url().should('include', 'management');
   });
 
   it('sign up', () => {
@@ -30,7 +30,7 @@ describe('Testing Tokens', () => {
 
     cy.get('.cl-formButtonPrimary').contains('button', 'Continue').click();
 
-    cy.visit('/habits');
-    cy.url().should('include', 'habits');
+    cy.visit('/management');
+    cy.url().should('include', 'management');
   });
 });

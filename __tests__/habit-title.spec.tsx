@@ -1,5 +1,5 @@
-import { HabitTitle } from '@/app/habits/components/habit-title';
-import { TitleEditor } from '@/app/habits/components/title-editor';
+import { HabitTitle } from '@/app/management/components/habit-title';
+import { TitleEditor } from '@/app/management/components/title-editor';
 import { useHabitTitle } from '@/hooks/use-habit-title';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';

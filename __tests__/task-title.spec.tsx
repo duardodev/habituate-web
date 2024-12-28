@@ -1,4 +1,4 @@
-import { TaskTitle } from '@/app/habits/components/task-title';
+import { TaskTitle } from '@/app/management/components/task-title';
 import { useTaskContext } from '@/hooks/use-task-context';
 import { useTaskTitle } from '@/hooks/use-task-title';
 import { render, screen } from '@testing-library/react';

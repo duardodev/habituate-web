@@ -8,7 +8,7 @@ import { ErrorFallback } from './components/error-fallback';
 import { Separator } from '@/components/ui/separator';
 import { DailyProgress } from './components/daily-progress';
 
-export default function HabitsPage() {
+export default function ManagementPage() {
   return (
     <div className="flex flex-col overflow-visible min-h-screen">
       <div className="mt-6 w-full max-w-[828px] mx-auto">

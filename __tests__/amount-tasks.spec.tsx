@@ -1,4 +1,4 @@
-import { AmountTasks } from '@/app/habits/components/amount-tasks';
+import { AmountTasks } from '@/app/management/components/amount-tasks';
 import { useLoading } from '@/hooks/use-loading';
 import { render, screen } from '@testing-library/react';
 

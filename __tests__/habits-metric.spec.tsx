@@ -1,4 +1,4 @@
-import { HabitsMetric } from '@/app/habits/components/habits-metric';
+import { HabitsMetric } from '@/app/management/components/habits-metric';
 import { useHabitsMetric } from '@/hooks/use-habits-metric';
 import { render, screen } from '@testing-library/react';
 

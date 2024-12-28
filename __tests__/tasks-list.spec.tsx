@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { TaskList } from '@/app/habits/components/task-list';
+import { TaskList } from '@/app/management/components/task-list';
 import { useLoading } from '@/hooks/use-loading';
 import { useTasksStore } from '@/store/use-tasks-store';
 import { ReactNode } from 'react';
@@ -19,11 +19,11 @@ jest.mock('@/store/use-tasks-store', () => ({
   useTasksStore: jest.fn(),
 }));
 
-jest.mock('@/app/habits/components/task-skeleton', () => ({
+jest.mock('@/app/management/components/task-skeleton', () => ({
   TaskSkeleton: () => <div data-testid="task-skeleton" />,
 }));
 
-jest.mock('@/app/habits/components/task', () => ({
+jest.mock('@/app/management/components/task', () => ({
   Task: () => <div data-testid="task-component" />,
 }));
 

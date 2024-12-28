@@ -1,5 +1,5 @@
 import { SignIn } from '@clerk/nextjs';
 
 export default function Page() {
-  return <SignIn forceRedirectUrl="/habits" />;
+  return <SignIn forceRedirectUrl="/management" />;
 }

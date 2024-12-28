@@ -1,5 +1,5 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
-import { AddHabitDialog } from '@/app/habits/components/add-habit-dialog';
+import { AddHabitDialog } from '@/app/management/components/add-habit-dialog';
 import { useAddHabitDialog } from '@/hooks/use-add-habit-dialog';
 
 jest.mock('@/hooks/use-add-habit-dialog', () => ({

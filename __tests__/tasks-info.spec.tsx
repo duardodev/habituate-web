@@ -1,9 +1,9 @@
-import { TasksInfo } from '@/app/habits/components/tasks-info';
+import { TasksInfo } from '@/app/management/components/tasks-info';
 import { monthsNames } from '@/lib/data';
 import { render, screen } from '@testing-library/react';
 import dayjs from 'dayjs';
 
-jest.mock('@/app/habits/components/amount-tasks', () => ({
+jest.mock('@/app/management/components/amount-tasks', () => ({
   AmountTasks: () => <div data-testid="amount-tasks">Mocked AmountTasks</div>,
 }));
 

@@ -1,6 +1,6 @@
 import userEvent from '@testing-library/user-event';
 import { render } from '@testing-library/react';
-import { DayCheckbox } from '@/app/habits/components/day-checkbox';
+import { DayCheckbox } from '@/app/management/components/day-checkbox';
 import { useDayCheckbox } from '@/hooks/use-day-checkbox';
 
 import dayjs from 'dayjs';

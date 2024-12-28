@@ -22,7 +22,7 @@ export function Buttons({ userId }: ButtonsProps) {
     >
       {userId ? (
         <Button className="h-9 border-none font-semibold" asChild>
-          <Link href="/habits">
+          <Link href="/management">
             Começar
             <ArrowRight className="h-[18px] w-[18px] ml-2" />
           </Link>

@@ -1,4 +1,4 @@
-import { TitleEditor } from '@/app/habits/components/title-editor';
+import { TitleEditor } from '@/app/management/components/title-editor';
 import { fireEvent, render, screen } from '@testing-library/react';
 
 jest.mock('../src/components/ui/input', () => ({

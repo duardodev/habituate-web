@@ -6,7 +6,7 @@ describe('Add habit', () => {
       identifier: Cypress.env('test_user'),
       password: Cypress.env('test_password'),
     });
-    cy.visit('/habits');
+    cy.visit('/management');
   });
 
   it('add habit successfully', () => {

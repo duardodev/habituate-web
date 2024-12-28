@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { Checkboxes } from '@/app/habits/components/checkboxes';
+import { Checkboxes } from '@/app/management/components/checkboxes';
 import { useCompletedDaysStore } from '@/store/completed-days-store';
 import { useCurrentWeekDays } from '@/hooks/use-current-week-days';
 import { useHabitContext } from '@/hooks/use-habit-context';
@@ -8,7 +8,7 @@ jest.mock('../src/store/completed-days-store');
 jest.mock('../src/hooks/use-current-week-days');
 jest.mock('../src/hooks/use-habit-context');
 
-jest.mock('../src/app/habits/components/day-checkbox', () => ({
+jest.mock('../src/app/management/components/day-checkbox', () => ({
   DayCheckbox: ({
     habitId,
     currentWeekDay,

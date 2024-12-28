@@ -1,7 +1,7 @@
 import userEvent from '@testing-library/user-event';
 import { render, screen } from '@testing-library/react';
 import { useWeekNavigation } from '@/hooks/use-week-navigation';
-import { WeekNavigation } from '../src/app/habits/components/week-navigation';
+import { WeekNavigation } from '../src/app/management/components/week-navigation';
 
 jest.mock('../src/hooks/use-week-navigation', () => ({
   useWeekNavigation: jest.fn(),
@@ -24,12 +24,8 @@ describe('WeekNavigation component', () => {
   it('should render navigation buttons', () => {
     render(<WeekNavigation />);
 
-    expect(
-      screen.getByRole('button', { name: /Navegar para semana anterior/i })
-    ).toBeInTheDocument();
-    expect(
-      screen.getByRole('button', { name: /Navegar para próxima semana/i })
-    ).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Navegar para semana anterior/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Navegar para próxima semana/i })).toBeInTheDocument();
   });
 
   it('shoud disable the next week button when current date is today', () => {

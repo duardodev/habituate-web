@@ -1,4 +1,4 @@
-import { TaskActionsMenu } from '@/app/habits/components/task-actions-menu';
+import { TaskActionsMenu } from '@/app/management/components/task-actions-menu';
 import { useTaskTitle } from '@/hooks/use-task-title';
 import { useTaskTitleStore } from '@/store/use-task-title-store';
 import { useTasksStore } from '@/store/use-tasks-store';

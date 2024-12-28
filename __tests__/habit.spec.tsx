@@ -1,16 +1,16 @@
 import { render, screen, waitFor } from '@testing-library/react';
-import { Habit } from '@/app/habits/components/habit';
+import { Habit } from '@/app/management/components/habit';
 import { useHabit } from '@/hooks/use-habit';
 
 jest.mock('../src/hooks/use-habit', () => ({
   useHabit: jest.fn(),
 }));
 
-jest.mock('../src/app/habits/components/habit-title', () => ({
+jest.mock('../src/app/management/components/habit-title', () => ({
   HabitTitle: () => <div data-testid="habit-title">Habit Title</div>,
 }));
 
-jest.mock('../src/app/habits/components/checkboxes', () => ({
+jest.mock('../src/app/management/components/checkboxes', () => ({
   Checkboxes: ({ datesTheHabitWasCompleted }: { datesTheHabitWasCompleted: string[] }) => (
     <div data-testid="checkboxes">Checkboxes for dates: {JSON.stringify(datesTheHabitWasCompleted)}</div>
   ),
