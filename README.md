@@ -31,7 +31,7 @@ Front-end da aplicação de monitoramento de hábitos desenvolvido com Next.js, 
 - [Shadcn/ui](https://ui.shadcn.com/)
 - [Radix UI](https://www.radix-ui.com/)
 - [Sonner](https://sonner.emilkowal.ski/)
-- [MSW]([https://sonner.emilkowal.ski/](https://mswjs.io/))
+- [MSW](https://mswjs.io/)
 
 ---
 
