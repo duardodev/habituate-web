@@ -1,6 +1,7 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { AddHabitDialog } from '@/app/management/components/add-habit-dialog';
 import { useAddHabitDialog } from '@/hooks/use-add-habit-dialog';
+import { useHabitsQuery } from '@/hooks/use-habits-query';
 
 jest.mock('@/hooks/use-add-habit-dialog', () => ({
   useAddHabitDialog: jest.fn(),
@@ -9,6 +10,10 @@ jest.mock('@/hooks/use-add-habit-dialog', () => ({
 jest.mock('react-dom', () => ({
   ...jest.requireActual('react-dom'),
   useFormStatus: jest.fn(() => ({ pending: false })),
+}));
+
+jest.mock('@/hooks/use-habits-query', () => ({
+  useHabitsQuery: jest.fn(),
 }));
 
 describe('AddHabitDialog component', () => {
@@ -20,11 +25,33 @@ describe('AddHabitDialog component', () => {
     (useAddHabitDialog as jest.Mock).mockReturnValue({
       handleAddHabit: mockHandleAddHabit,
     });
+
+    (useHabitsQuery as jest.Mock).mockReturnValue({
+      isLoading: false,
+      isError: false,
+    });
   });
 
   it('should render the dialog trigger button', () => {
     render(<AddHabitDialog />);
     expect(screen.getByRole('button', { name: 'Adicionar hábito' })).toBeInTheDocument();
+  });
+
+  it('should disable the dialog trigger button when isLoading or isError is true', () => {
+    (useHabitsQuery as jest.Mock).mockReturnValue({
+      isLoading: true,
+      isError: false,
+    });
+
+    render(<AddHabitDialog />);
+    expect(screen.getByRole('button', { name: 'Adicionar hábito' })).toBeDisabled();
+
+    (useHabitsQuery as jest.Mock).mockReturnValue({
+      isLoading: false,
+      isError: true,
+    });
+
+    expect(screen.getByRole('button', { name: 'Adicionar hábito' })).toBeDisabled();
   });
 
   it('should open the dialog when the trigger button is clicked', () => {

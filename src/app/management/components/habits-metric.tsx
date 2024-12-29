@@ -3,9 +3,11 @@
 import { MetricRing } from './metric-ring';
 import { MetricRingSkeleton } from './metric-ring-skeleton';
 import { useHabitsMetric } from '@/hooks/use-habits-metric';
+import { useHabitsQuery } from '@/hooks/use-habits-query';
 
 export function HabitsMetric() {
-  const { completedHabitsCount, percentage, isLoading, isError } = useHabitsMetric();
+  const { completedHabitsCount, percentage } = useHabitsMetric();
+  const { isLoading, isError } = useHabitsQuery();
 
   if (isLoading) {
     return <MetricRingSkeleton label="Hábitos" sublabel="feito(s)" />;

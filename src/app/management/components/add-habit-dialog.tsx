@@ -15,14 +15,16 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useAddHabitDialog } from '@/hooks/use-add-habit-dialog';
 import { Plus } from 'lucide-react';
+import { useHabitsQuery } from '@/hooks/use-habits-query';
 
 export function AddHabitDialog() {
   const { handleAddHabit } = useAddHabitDialog();
+  const { isLoading, isError } = useHabitsQuery();
 
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">
+        <Button variant="outline" disabled={isLoading || isError}>
           <Plus className="h-5 w-5 mr-2" />
           Adicionar hábito
         </Button>

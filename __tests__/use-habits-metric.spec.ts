@@ -1,14 +1,14 @@
 import { useHabitsMetric } from '@/hooks/use-habits-metric';
+import { useHabitsQuery } from '@/hooks/use-habits-query';
 import { useCompletedDaysStore } from '@/store/completed-days-store';
-import { useQuery } from '@tanstack/react-query';
 import { renderHook, waitFor } from '@testing-library/react';
 
 jest.mock('@/store/completed-days-store', () => ({
   useCompletedDaysStore: jest.fn(),
 }));
 
-jest.mock('@tanstack/react-query', () => ({
-  useQuery: jest.fn(),
+jest.mock('@/hooks/use-habits-query', () => ({
+  useHabitsQuery: jest.fn(),
 }));
 
 jest.mock('dayjs', () => {
@@ -33,12 +33,10 @@ describe('useHabitsMetric hook', () => {
       completedDays: {},
     });
 
-    (useQuery as jest.Mock).mockReturnValue({
+    (useHabitsQuery as jest.Mock).mockReturnValue({
       data: {
         habits: [{ id: 'habit-1' }, { id: 'habit-2' }, { id: 'habit-3' }],
       },
-      isLoading: false,
-      isError: false,
     });
   });
 
@@ -59,8 +57,6 @@ describe('useHabitsMetric hook', () => {
       expect(result.current).toEqual({
         completedHabitsCount: 3,
         percentage: 100,
-        isLoading: false,
-        isError: false,
       });
     });
   });
@@ -82,8 +78,6 @@ describe('useHabitsMetric hook', () => {
       expect(result.current).toEqual({
         completedHabitsCount: 2,
         percentage: 66.66666666666666,
-        isLoading: false,
-        isError: false,
       });
     });
   });
@@ -95,8 +89,6 @@ describe('useHabitsMetric hook', () => {
       expect(result.current).toEqual({
         completedHabitsCount: 0,
         percentage: 0,
-        isLoading: false,
-        isError: false,
       });
     });
   });

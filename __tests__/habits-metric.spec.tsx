@@ -1,9 +1,14 @@
 import { HabitsMetric } from '@/app/management/components/habits-metric';
 import { useHabitsMetric } from '@/hooks/use-habits-metric';
+import { useHabitsQuery } from '@/hooks/use-habits-query';
 import { render, screen } from '@testing-library/react';
 
 jest.mock('@/hooks/use-habits-metric', () => ({
   useHabitsMetric: jest.fn(),
+}));
+
+jest.mock('@/hooks/use-habits-query', () => ({
+  useHabitsQuery: jest.fn(),
 }));
 
 describe('HabitsMetric component', () => {
@@ -13,6 +18,9 @@ describe('HabitsMetric component', () => {
     (useHabitsMetric as jest.Mock).mockReturnValue({
       completedHabitsCount: 10,
       percentage: 50,
+    });
+
+    (useHabitsQuery as jest.Mock).mockReturnValue({
       isLoading: false,
       isError: false,
     });
@@ -26,7 +34,7 @@ describe('HabitsMetric component', () => {
   });
 
   it('should display loading skeleton while fetching data', () => {
-    (useHabitsMetric as jest.Mock).mockReturnValue({
+    (useHabitsQuery as jest.Mock).mockReturnValue({
       isLoading: true,
     });
 
@@ -37,7 +45,7 @@ describe('HabitsMetric component', () => {
   });
 
   it('should show zero values when an error occurs', () => {
-    (useHabitsMetric as jest.Mock).mockReturnValue({
+    (useHabitsQuery as jest.Mock).mockReturnValue({
       isError: true,
     });
 

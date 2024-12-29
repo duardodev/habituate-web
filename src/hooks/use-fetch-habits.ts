@@ -16,6 +16,9 @@ export async function useFetchHabits(token: string | null): Promise<HabitsRespon
     },
   });
 
-  const data: HabitsResponse = await response.json();
-  return data;
+  const { habits }: HabitsResponse = await response.json();
+
+  return {
+    habits,
+  };
 }
