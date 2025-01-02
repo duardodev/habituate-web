@@ -11,9 +11,9 @@ interface useDayCheckboxProps {
 export function useDayCheckbox({ currentWeekDay }: useDayCheckboxProps) {
   const { id } = useHabitContext();
   const { completedDays, setCompletedDay } = useCompletedDaysStore();
-  const { currentDate } = useDateStore();
+  const { today } = useDateStore();
 
-  const isDisabled = currentWeekDay.isAfter(currentDate);
+  const isDisabled = currentWeekDay.isAfter(today);
   const habitCompletedDays = completedDays[id] || [];
   const isChecked = habitCompletedDays.includes(currentWeekDay.startOf('day').utc().toISOString());
 
