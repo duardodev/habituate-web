@@ -1,6 +1,7 @@
 import { toggleHabit } from '@/app/actions';
 import { useCompletedDaysStore } from '@/store/completed-days-store';
 import { useHabitContext } from './use-habit-context';
+import { useDateStore } from '@/store/date-store';
 import dayjs from 'dayjs';
 
 interface useDayCheckboxProps {
@@ -10,11 +11,11 @@ interface useDayCheckboxProps {
 export function useDayCheckbox({ currentWeekDay }: useDayCheckboxProps) {
   const { id } = useHabitContext();
   const { completedDays, setCompletedDay } = useCompletedDaysStore();
-  const today = dayjs();
+  const { currentDate } = useDateStore();
 
-  const isDisabled = currentWeekDay.isAfter(today, 'day');
+  const isDisabled = currentWeekDay.isAfter(currentDate);
   const habitCompletedDays = completedDays[id] || [];
-  const isChecked = habitCompletedDays.includes(currentWeekDay.utcOffset(-3).startOf('day').toISOString());
+  const isChecked = habitCompletedDays.includes(currentWeekDay.startOf('day').utc().toISOString());
 
   async function handleHabitToggle(date: string) {
     setCompletedDay(id, date);

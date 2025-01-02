@@ -7,17 +7,15 @@ import { Toaster } from '@/components/ui/sonner';
 import { Footer } from '@/components/footer';
 import { dark } from '@clerk/themes';
 import { cn } from '@/lib/utils';
-import dayjs from 'dayjs';
-import utc from 'dayjs/plugin/utc';
 import './globals.css';
-
-dayjs.extend(utc);
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://habituate-duardodev.vercel.app'),
   title: 'Habituate | Domine seus hábitos, transforme sua vida.',
-  description: 'Habituate ajuda você construir, gerenciar, e manter hábitos positivos. Comece sua jornada para um melhor hoje.',
-  keywords: 'habituate, hábitos, monitoramento de hábitos, gerenciamento, produtividade, bons hábitos, desenvolvimento pessoal',
+  description:
+    'Habituate ajuda você construir, gerenciar, e manter hábitos positivos. Comece sua jornada para um melhor hoje.',
+  keywords:
+    'habituate, hábitos, monitoramento de hábitos, gerenciamento, produtividade, bons hábitos, desenvolvimento pessoal',
   authors: [
     {
       name: 'duardodev',

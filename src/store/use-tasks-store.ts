@@ -1,14 +1,20 @@
-import dayjs from 'dayjs';
+import dayjs, { Dayjs } from 'dayjs';
 import { produce } from 'immer';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+
+import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
 
 interface Task {
   id: string;
   title: string;
   priority: 'p1' | 'p2' | 'p3';
   completed: boolean;
-  expiresAt?: number | null;
+  expiresAt: number | null;
 }
 
 interface TasksStore {
@@ -23,7 +29,7 @@ interface TasksStore {
 }
 
 function cleanExpiredTasks(tasks: Task[]) {
-  const now = dayjs();
+  const now = dayjs().utc();
   return tasks.filter(task => !task.expiresAt || dayjs(task.expiresAt).isAfter(now));
 }
 
@@ -52,7 +58,9 @@ export const useTasksStore = create<TasksStore>()(
 
             if (task) {
               task.completed = !task.completed;
-              task.expiresAt = task.completed ? dayjs().add(1, 'day').utcOffset(-3).startOf('day').valueOf() : null;
+              task.expiresAt = task.completed
+                ? dayjs().tz(dayjs.tz.guess()).add(1, 'day').startOf('day').utc().valueOf()
+                : null;
             }
           })
         ),
