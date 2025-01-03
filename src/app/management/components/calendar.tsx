@@ -1,22 +1,23 @@
-'use client';
-
-import { useDateStore } from '@/store/date-store';
-import { WeekDays } from './week-days';
+import { MonthYearDisplaySkeleton } from './month-year-display-skeleton';
+import { WeekDaysSkeleton } from './week-days-skeleton';
 import { WeekNavigation } from './week-navigation';
-import { monthsNames } from '@/lib/data';
+import dynamic from 'next/dynamic';
+
+const MonthYearDisplay = dynamic(() => import('./month-year-display').then(mod => mod.MonthYearDisplay), {
+  loading: () => <MonthYearDisplaySkeleton />,
+  ssr: false,
+});
+
+const WeekDays = dynamic(() => import('./week-days').then(mod => mod.WeekDays), {
+  loading: () => <WeekDaysSkeleton />,
+  ssr: false,
+});
 
 export function Calendar() {
-  const { currentDate } = useDateStore();
-  const currentMonth = monthsNames[currentDate.month()].slice(0, 3);
-  const currentYear = currentDate.year();
-
   return (
     <div className="overflow-visible flex items-center justify-between gap-x-10">
       <div className="flex items-center gap-x-3">
-        <h2 className="text-foreground/95 font-medium text-nowrap">
-          {currentMonth} {currentYear}
-        </h2>
-
+        <MonthYearDisplay />
         <WeekNavigation />
       </div>
 

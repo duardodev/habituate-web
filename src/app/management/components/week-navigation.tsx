@@ -1,3 +1,5 @@
+'use client';
+
 import { useWeekNavigation } from '@/hooks/use-week-navigation';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';

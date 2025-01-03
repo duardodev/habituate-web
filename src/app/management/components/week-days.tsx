@@ -1,3 +1,5 @@
+'use client';
+
 import { useCurrentWeekDays } from '@/hooks/use-current-week-days';
 import { daysNames } from '@/lib/data';
 
