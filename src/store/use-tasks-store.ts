@@ -14,7 +14,7 @@ interface Task {
   title: string;
   priority: 'p1' | 'p2' | 'p3';
   completed: boolean;
-  expiresAt: number | null;
+  expiresAt?: number | null;
 }
 
 interface TasksStore {
