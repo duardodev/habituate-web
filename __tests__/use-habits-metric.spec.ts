@@ -1,7 +1,12 @@
 import { useHabitsMetric } from '@/hooks/use-habits-metric';
 import { useHabitsQuery } from '@/hooks/use-habits-query';
 import { useCompletedDaysStore } from '@/store/completed-days-store';
+import { useDateStore } from '@/store/date-store';
 import { renderHook, waitFor } from '@testing-library/react';
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+
+dayjs.extend(utc);
 
 jest.mock('@/store/completed-days-store', () => ({
   useCompletedDaysStore: jest.fn(),
@@ -11,20 +16,13 @@ jest.mock('@/hooks/use-habits-query', () => ({
   useHabitsQuery: jest.fn(),
 }));
 
-jest.mock('dayjs', () => {
-  const mockDayjs = jest.fn(() => ({
-    utcOffset: () => ({
-      startOf: () => ({
-        toISOString: () => '2024-12-23T00:00:00.000Z',
-      }),
-    }),
-  }));
-
-  return mockDayjs;
-});
+jest.mock('@/store/date-store', () => ({
+  useDateStore: jest.fn(),
+}));
 
 describe('useHabitsMetric hook', () => {
-  const mockToday = '2024-12-23T00:00:00.000Z';
+  const mockToday = '2025-01-05T00:00:00.000Z';
+  const mockCurrentDate = dayjs('2025-01-05').utc();
 
   beforeEach(() => {
     jest.clearAllMocks();
@@ -37,6 +35,10 @@ describe('useHabitsMetric hook', () => {
       data: {
         habits: [{ id: 'habit-1' }, { id: 'habit-2' }, { id: 'habit-3' }],
       },
+    });
+
+    (useDateStore as unknown as jest.Mock).mockReturnValue({
+      currentDate: mockCurrentDate,
     });
   });
 
@@ -65,7 +67,7 @@ describe('useHabitsMetric hook', () => {
     const mockCompletedDays = {
       'habit-1': [mockToday],
       'habit-2': [mockToday],
-      'habit-3': ['2024-12-22T00:00:00.000Z'],
+      'habit-3': ['2025-01-04T00:00:00.000Z'],
     };
 
     (useCompletedDaysStore as unknown as jest.Mock).mockReturnValue({
@@ -83,6 +85,21 @@ describe('useHabitsMetric hook', () => {
   });
 
   it('should return zero values when no habits completed', async () => {
+    const { result } = renderHook(() => useHabitsMetric());
+
+    await waitFor(() => {
+      expect(result.current).toEqual({
+        completedHabitsCount: 0,
+        percentage: 0,
+      });
+    });
+  });
+
+  it('should handle undefined habits data', async () => {
+    (useHabitsQuery as jest.Mock).mockReturnValue({
+      data: undefined,
+    });
+
     const { result } = renderHook(() => useHabitsMetric());
 
     await waitFor(() => {

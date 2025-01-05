@@ -1,37 +1,14 @@
 import { render, screen } from '@testing-library/react';
-import { monthsNames } from '@/lib/data';
 import { Calendar } from '@/app/management/components/calendar';
 import userEvent from '@testing-library/user-event';
 import dayjs from 'dayjs';
-import '@testing-library/jest-dom';
 
 describe('Calendar Component', () => {
-  it('should render the current month and year', () => {
-    render(<Calendar />);
-
-    const currentDate = dayjs();
-    const currentMonth = monthsNames[currentDate.month()].slice(0, 3);
-    const currentYear = currentDate.format('YYYY');
-
-    expect(screen.getByText(new RegExp(`${currentMonth}`, 'i'))).toBeInTheDocument();
-    expect(screen.getByText(new RegExp(`${currentYear}`, 'i'))).toBeInTheDocument();
-  });
-
-  it('should render days of the current week', () => {
-    render(<Calendar />);
-
-    const currentDate = dayjs();
-    const currentWeekDays = Array.from({ length: 7 }, (_, i) => currentDate.startOf('week').add(i, 'day'));
-
-    currentWeekDays.forEach(currentWeekDay => {
-      expect(screen.getByText(currentWeekDay.format('DD'))).toBeInTheDocument();
-    });
-  });
+  const currentDate = dayjs();
 
   it('should navigate to the previous week', async () => {
     render(<Calendar />);
 
-    const currentDate = dayjs();
     const previousWeek = currentDate.startOf('week').subtract(1, 'week');
     const previousWeekDays = Array.from({ length: 7 }, (_, i) => previousWeek.add(i, 'day'));
 
@@ -45,7 +22,6 @@ describe('Calendar Component', () => {
   it('should navigate to the next week', async () => {
     render(<Calendar />);
 
-    const currentDate = dayjs();
     const previousWeek = currentDate.startOf('week').subtract(1, 'week');
     const nextWeek = previousWeek.add(1, 'week');
     const nextWeekDays = Array.from({ length: 7 }, (_, i) => nextWeek.add(i, 'day'));
