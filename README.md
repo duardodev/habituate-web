@@ -8,11 +8,12 @@ Front-end da aplicação de monitoramento de hábitos desenvolvido com React, Ne
 
 ### Características
 
-- Visualização do progresso dos hábitos navegando pelas semanas
-- Visualização do progresso geral diário.
+- Visualização do progresso dos hábitos navegando pelas semanas;
+- Visualização do progresso geral diário;
 - Integração com API REST para gerenciamento dos hábitos [(repositório da API)](https://github.com/duardodev/habituate-api);
 - Gerenciamento de tarefas diárias implementado com localStorage;
-- Manipulação de datas com Day.js e Zustand;
+- Gerenciamento de estado com Zustand;
+- Manipulação de datas com Day.js;
 - Implementação de autenticação com Clerk;
 - Testes unitários com Jest e Testing Library, e testes End-to-End com Cypress.
 - Utilização do MSW para mockar as requisições.
