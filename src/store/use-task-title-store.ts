@@ -1,8 +1,8 @@
 import { create } from 'zustand';
 
 interface TaskTitleStore {
-  activeEditingTaskId: string | null; // Armazena o ID da task sendo   editada
-  toggleEditingTask: (id: string) => void; // Define qual task está sendo editada
+  activeEditingTaskId: string | null;
+  toggleEditingTask: (id: string) => void;
 }
 
 export const useTaskTitleStore = create<TaskTitleStore>()(set => ({
