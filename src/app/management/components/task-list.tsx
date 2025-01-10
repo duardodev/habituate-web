@@ -2,7 +2,7 @@
 
 import { Task } from './task';
 import { TaskSkeleton } from './task-skeleton';
-import { useTasksStore } from '@/store/use-tasks-store';
+import { useTasksStore } from '@/store/tasks-store';
 import { useLoading } from '@/hooks/use-loading';
 import { TaskProvider } from '@/contexts/task-context';
 

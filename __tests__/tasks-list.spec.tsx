@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { TaskList } from '@/app/management/components/task-list';
 import { useLoading } from '@/hooks/use-loading';
-import { useTasksStore } from '@/store/use-tasks-store';
+import { useTasksStore } from '@/store/tasks-store';
 import { ReactNode } from 'react';
 
 interface Task {
@@ -15,7 +15,7 @@ jest.mock('@/hooks/use-loading', () => ({
   useLoading: jest.fn(),
 }));
 
-jest.mock('@/store/use-tasks-store', () => ({
+jest.mock('@/store/tasks-store', () => ({
   useTasksStore: jest.fn(),
 }));
 

@@ -1,4 +1,4 @@
-import { useTasksStore } from '@/store/use-tasks-store';
+import { useTasksStore } from '@/store/tasks-store';
 import { useTaskContext } from './use-task-context';
 
 export function useTaskToggleButton() {

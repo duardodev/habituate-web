@@ -1,7 +1,7 @@
 import { TaskActionsMenu } from '@/app/management/components/task-actions-menu';
 import { useTaskTitle } from '@/hooks/use-task-title';
-import { useTaskTitleStore } from '@/store/use-task-title-store';
-import { useTasksStore } from '@/store/use-tasks-store';
+import { useTaskTitleStore } from '@/store/task-title-store';
+import { useTasksStore } from '@/store/tasks-store';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
@@ -11,8 +11,8 @@ jest.mock('@/hooks/use-task-context', () => ({
   })),
 }));
 
-jest.mock('@/store/use-task-title-store');
-jest.mock('@/store/use-tasks-store');
+jest.mock('@/store/task-title-store');
+jest.mock('@/store/tasks-store');
 jest.mock('@/hooks/use-task-title');
 
 describe('TaskActionsMenu component', () => {

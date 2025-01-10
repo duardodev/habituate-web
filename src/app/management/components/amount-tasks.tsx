@@ -1,6 +1,6 @@
 'use client';
 
-import { useTasksStore } from '@/store/use-tasks-store';
+import { useTasksStore } from '@/store/tasks-store';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useLoading } from '@/hooks/use-loading';
 

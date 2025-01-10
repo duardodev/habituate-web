@@ -10,7 +10,7 @@ jest.mock('@/components/ui/skeleton', () => ({
   Skeleton: () => <div data-testid="skeleton">Mocked Skeleton</div>,
 }));
 
-jest.mock('@/store/use-tasks-store', () => ({
+jest.mock('@/store/tasks-store', () => ({
   useTasksStore: jest.fn(selector =>
     selector({
       amountCompletedTasks: () => 10,

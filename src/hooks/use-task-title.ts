@@ -1,6 +1,6 @@
-import { useTaskTitleStore } from '@/store/use-task-title-store';
+import { useTaskTitleStore } from '@/store/task-title-store';
 import { useTaskContext } from './use-task-context';
-import { useTasksStore } from '@/store/use-tasks-store';
+import { useTasksStore } from '@/store/tasks-store';
 
 export function useTaskTitle() {
   const { id } = useTaskContext();

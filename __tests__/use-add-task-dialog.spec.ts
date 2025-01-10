@@ -1,9 +1,9 @@
 import { renderHook, act } from '@testing-library/react';
 import { useAddTaskDialog } from '@/hooks/use-add-task-dialog';
-import { useTasksStore } from '@/store/use-tasks-store';
+import { useTasksStore } from '@/store/tasks-store';
 import { toast } from 'sonner';
 
-jest.mock('@/store/use-tasks-store', () => ({
+jest.mock('@/store/tasks-store', () => ({
   useTasksStore: jest.fn(),
 }));
 

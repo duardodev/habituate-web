@@ -1,8 +1,8 @@
 import { useTasksMetric } from '@/hooks/use-tasks-metric';
-import { useTasksStore } from '@/store/use-tasks-store';
+import { useTasksStore } from '@/store/tasks-store';
 import { renderHook, waitFor } from '@testing-library/react';
 
-jest.mock('@/store/use-tasks-store', () => ({
+jest.mock('@/store/tasks-store', () => ({
   useTasksStore: jest.fn(),
 }));
 

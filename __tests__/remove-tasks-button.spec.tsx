@@ -1,9 +1,9 @@
 import { RemoveTasksButton } from '@/app/management/components/remove-tasks-button';
-import { useTasksStore } from '@/store/use-tasks-store';
+import { useTasksStore } from '@/store/tasks-store';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-jest.mock('@/store/use-tasks-store');
+jest.mock('@/store/tasks-store');
 
 describe('RemoveTasksButton component', () => {
   const mockRemoveAllTasks = jest.fn();

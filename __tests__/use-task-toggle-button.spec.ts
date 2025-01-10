@@ -1,6 +1,6 @@
 import { useTaskContext } from '@/hooks/use-task-context';
 import { useTaskToggleButton } from '@/hooks/use-task-toggle-button';
-import { useTasksStore } from '@/store/use-tasks-store';
+import { useTasksStore } from '@/store/tasks-store';
 import { act, renderHook } from '@testing-library/react';
 
 jest.mock('@/hooks/use-task-context', () => ({
@@ -9,7 +9,7 @@ jest.mock('@/hooks/use-task-context', () => ({
   })),
 }));
 
-jest.mock('@/store/use-tasks-store', () => ({
+jest.mock('@/store/tasks-store', () => ({
   useTasksStore: jest.fn(),
 }));
 
@@ -27,7 +27,9 @@ describe('useTaskToggleButton hook', () => {
     const { result } = renderHook(() => useTaskToggleButton());
 
     act(() => {
-      result.current.handleTaskToggle({ preventDefault: mockPreventDefault } as unknown as React.MouseEvent<HTMLButtonElement>);
+      result.current.handleTaskToggle({
+        preventDefault: mockPreventDefault,
+      } as unknown as React.MouseEvent<HTMLButtonElement>);
     });
 
     expect(mockPreventDefault).toHaveBeenCalled();

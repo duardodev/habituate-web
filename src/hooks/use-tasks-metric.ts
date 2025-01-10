@@ -1,4 +1,4 @@
-import { useTasksStore } from '@/store/use-tasks-store';
+import { useTasksStore } from '@/store/tasks-store';
 
 export function useTasksMetric() {
   const tasksCount = useTasksStore(state => state.amountTasks());

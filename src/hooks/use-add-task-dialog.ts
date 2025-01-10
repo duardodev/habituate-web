@@ -1,5 +1,5 @@
 import { FormEvent } from 'react';
-import { useTasksStore } from '@/store/use-tasks-store';
+import { useTasksStore } from '@/store/tasks-store';
 import { toast } from 'sonner';
 
 interface TaskType {

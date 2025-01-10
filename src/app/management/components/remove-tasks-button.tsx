@@ -2,7 +2,7 @@
 
 import { Button } from '@/components/ui/button';
 import { Tooltip } from '@/components/ui/tooltip';
-import { useTasksStore } from '@/store/use-tasks-store';
+import { useTasksStore } from '@/store/tasks-store';
 import { Trash2 } from 'lucide-react';
 
 export function RemoveTasksButton() {

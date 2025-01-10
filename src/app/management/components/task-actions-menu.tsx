@@ -3,9 +3,9 @@
 import { DropdownMenu, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { MoreHorizontal } from 'lucide-react';
 import { UserActionsMenu } from './user-actions-menu';
-import { useTaskTitleStore } from '@/store/use-task-title-store';
+import { useTaskTitleStore } from '@/store/task-title-store';
 import { useTaskContext } from '@/hooks/use-task-context';
-import { useTasksStore } from '@/store/use-tasks-store';
+import { useTasksStore } from '@/store/tasks-store';
 import { useTaskTitle } from '@/hooks/use-task-title';
 
 export function TaskActionsMenu() {
