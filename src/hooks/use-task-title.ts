@@ -1,18 +1,16 @@
-import { useTaskTitleStore } from '@/store/task-title-store';
 import { useTaskContext } from './use-task-context';
 import { useTasksStore } from '@/store/tasks-store';
+import { useActiveTaskEditingContext } from './use-active-task-editing';
 
 export function useTaskTitle() {
   const { id } = useTaskContext();
-  const toggleEditingTask = useTaskTitleStore(state => state.toggleEditingTask);
+  const { handleToggleTaskEditing, activeTaskEditingId } = useActiveTaskEditingContext();
   const updateTaskTitle = useTasksStore(state => state.updateTaskTitle);
-
-  const activeEditingTaskId = useTaskTitleStore(state => state.activeEditingTaskId);
-  const isTitleEditing = activeEditingTaskId === id;
+  const isTitleEditing = activeTaskEditingId === id;
 
   function handleTaskTitleUpdate(newTitle: string) {
     updateTaskTitle(id, newTitle);
-    toggleEditingTask(id);
+    handleToggleTaskEditing(id);
   }
 
   return {

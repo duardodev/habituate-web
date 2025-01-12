@@ -1,16 +1,16 @@
+import { useActiveTaskEditingContext } from '@/hooks/use-active-task-editing';
 import { useTaskContext } from '@/hooks/use-task-context';
 import { useTaskTitle } from '@/hooks/use-task-title';
-import { useTaskTitleStore } from '@/store/task-title-store';
 import { useTasksStore } from '@/store/tasks-store';
 import { act, renderHook } from '@testing-library/react';
 
-jest.mock('@/store/task-title-store');
+jest.mock('@/hooks/use-active-editing-task-context');
 jest.mock('@/hooks/use-task-context');
 jest.mock('@/store/tasks-store');
 
 describe('useTaskTitle hook', () => {
   const mockTaskId = 'task-1';
-  const mockToggleEditingTask = jest.fn();
+  const mockHandleToggleTaskEditing = jest.fn();
   const mockUpdateTaskTitle = jest.fn();
 
   beforeEach(() => {
@@ -18,13 +18,9 @@ describe('useTaskTitle hook', () => {
 
     (useTaskContext as jest.Mock).mockReturnValue({ id: mockTaskId });
 
-    (useTaskTitleStore as unknown as jest.Mock).mockImplementation(selector => {
-      const state = {
-        toggleEditingTask: mockToggleEditingTask,
-        activeEditingTaskId: null,
-      };
-
-      return selector(state);
+    (useActiveTaskEditingContext as jest.Mock).mockReturnValue({
+      handleToggleTaskEditing: mockHandleToggleTaskEditing,
+      activeTaskEditingId: null,
     });
 
     (useTasksStore as unknown as jest.Mock).mockImplementation(selector => {
@@ -43,13 +39,9 @@ describe('useTaskTitle hook', () => {
   });
 
   it('should update isTitleEditing when activeEditingTaskId matches', () => {
-    (useTaskTitleStore as unknown as jest.Mock).mockImplementation(selector => {
-      const state = {
-        toggleEditingTask: mockToggleEditingTask,
-        activeEditingTaskId: mockTaskId,
-      };
-
-      return selector(state);
+    (useActiveTaskEditingContext as jest.Mock).mockReturnValue({
+      handleToggleEditingTask: mockHandleToggleTaskEditing,
+      activeEditingTaskId: mockTaskId,
     });
 
     const { result } = renderHook(() => useTaskTitle());
@@ -65,6 +57,6 @@ describe('useTaskTitle hook', () => {
     });
 
     expect(mockUpdateTaskTitle).toHaveBeenCalledWith(mockTaskId, 'New task title');
-    expect(mockToggleEditingTask).toHaveBeenCalledWith(mockTaskId);
+    expect(mockHandleToggleTaskEditing).toHaveBeenCalledWith(mockTaskId);
   });
 });

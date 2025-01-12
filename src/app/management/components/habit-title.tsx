@@ -17,7 +17,9 @@ export function HabitTitle() {
       ) : (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <h2 className="max-w-96 text-start truncate hover:text-foreground/85 cursor-pointer transition-colors">{title}</h2>
+            <h2 className="max-w-96 text-start truncate hover:text-foreground/85 cursor-pointer transition-colors">
+              {title}
+            </h2>
           </DropdownMenuTrigger>
           <UserActionsMenu onRename={startEditing} onRemove={handleRemoveHabit} />
         </DropdownMenu>

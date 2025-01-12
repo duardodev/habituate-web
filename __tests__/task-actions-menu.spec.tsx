@@ -1,6 +1,6 @@
 import { TaskActionsMenu } from '@/app/management/components/task-actions-menu';
-import { useTaskTitle } from '@/hooks/use-task-title';
-import { useTaskTitleStore } from '@/store/task-title-store';
+import { useActiveTaskEditingContext } from '@/hooks/use-active-task-editing';
+import { useTaskActionsMenu } from '@/hooks/use-task-actions-menu';
 import { useTasksStore } from '@/store/tasks-store';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -11,23 +11,23 @@ jest.mock('@/hooks/use-task-context', () => ({
   })),
 }));
 
-jest.mock('@/store/task-title-store');
+jest.mock('@/hooks/use-active-editing-task-context');
+jest.mock('@/hooks/use-task-actions-menu');
 jest.mock('@/store/tasks-store');
-jest.mock('@/hooks/use-task-title');
 
 describe('TaskActionsMenu component', () => {
-  const mockToggleEditingTask = jest.fn();
+  const mockHandleToggleTaskEditing = jest.fn();
   const mockRemoveTask = jest.fn();
 
   beforeEach(() => {
     jest.clearAllMocks();
 
-    (useTaskTitleStore as unknown as jest.Mock).mockImplementation(selector => {
-      const state = {
-        toggleEditingTask: mockToggleEditingTask,
-      };
+    (useActiveTaskEditingContext as jest.Mock).mockReturnValue({
+      handleToggleTaskEditing: mockHandleToggleTaskEditing,
+    });
 
-      return selector(state);
+    (useTaskActionsMenu as jest.Mock).mockReturnValue({
+      isTitleEditing: false,
     });
 
     (useTasksStore as unknown as jest.Mock).mockImplementation(selector => {
@@ -37,14 +37,10 @@ describe('TaskActionsMenu component', () => {
 
       return selector(state);
     });
-
-    (useTaskTitle as jest.Mock).mockReturnValue({
-      isTitleEditing: false,
-    });
   });
 
   it('should not render DropdownMenu when isTitleEditing is true', () => {
-    (useTaskTitle as jest.Mock).mockReturnValue({
+    (useTaskActionsMenu as jest.Mock).mockReturnValue({
       isTitleEditing: true,
     });
 
@@ -63,7 +59,7 @@ describe('TaskActionsMenu component', () => {
     render(<TaskActionsMenu />);
     await userEvent.click(screen.getByRole('button'));
     await userEvent.click(screen.getByText('Renomear'));
-    expect(mockToggleEditingTask).toHaveBeenCalledWith('task-1');
+    expect(mockHandleToggleTaskEditing).toHaveBeenCalledWith('task-1');
   });
 
   it('should call removeTask when is remove option is clicked', async () => {

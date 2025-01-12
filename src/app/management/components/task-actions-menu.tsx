@@ -3,15 +3,15 @@
 import { DropdownMenu, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { MoreHorizontal } from 'lucide-react';
 import { UserActionsMenu } from './user-actions-menu';
-import { useTaskTitleStore } from '@/store/task-title-store';
 import { useTaskContext } from '@/hooks/use-task-context';
 import { useTasksStore } from '@/store/tasks-store';
-import { useTaskTitle } from '@/hooks/use-task-title';
+import { useTaskActionsMenu } from '@/hooks/use-task-actions-menu';
+import { useActiveTaskEditingContext } from '@/hooks/use-active-task-editing';
 
 export function TaskActionsMenu() {
   const { id } = useTaskContext();
-  const { isTitleEditing } = useTaskTitle();
-  const toggleEditingTask = useTaskTitleStore(state => state.toggleEditingTask);
+  const { isTitleEditing } = useTaskActionsMenu(id);
+  const { handleToggleTaskEditing } = useActiveTaskEditingContext();
   const removeTask = useTasksStore(state => state.removeTask);
 
   if (isTitleEditing) {
@@ -29,7 +29,7 @@ export function TaskActionsMenu() {
         </button>
       </DropdownMenuTrigger>
 
-      <UserActionsMenu onRename={() => toggleEditingTask(id)} onRemove={() => removeTask(id)} />
+      <UserActionsMenu onRename={() => handleToggleTaskEditing(id)} onRemove={() => removeTask(id)} />
     </DropdownMenu>
   );
 }
