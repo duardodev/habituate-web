@@ -1,11 +1,9 @@
 import type { Metadata } from 'next';
 import { Providers } from './providers';
 import { GeistSans } from 'geist/font/sans';
-import { ClerkProvider } from '@clerk/nextjs';
 import { Analytics } from '@vercel/analytics/react';
 import { Toaster } from '@/components/ui/sonner';
 import { Footer } from '@/components/footer';
-import { dark } from '@clerk/themes';
 import { cn } from '@/lib/utils';
 import './globals.css';
 
@@ -30,21 +28,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider
-      appearance={{
-        baseTheme: dark,
-      }}
-    >
-      <html lang="pt-BR" className="h-full">
-        <body className={cn('antialiased', GeistSans.className)}>
-          <Providers>
-            <div className="min-h-[90vh] flex-1">{children}</div>
-            <Footer />
-          </Providers>
+    <html lang="pt-BR" className="h-full">
+      <body className={cn('antialiased', GeistSans.className)}>
+        <Providers>
+          <div className="min-h-[90vh] flex-1">{children}</div>
+          <Footer />
           <Toaster position="top-center" richColors className="font-medium" />
-          <Analytics />
-        </body>
-      </html>
-    </ClerkProvider>
+        </Providers>
+        <Analytics />
+      </body>
+    </html>
   );
 }
