@@ -11,8 +11,8 @@ export function Task() {
 
       <ActiveTaskEditingProvider>
         <div className="flex-1 flex gap-3 min-w-0">
-          <TaskPriority />
           <TaskTitle />
+          <TaskPriority />
         </div>
 
         <TaskActionsMenu />
