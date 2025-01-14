@@ -7,7 +7,7 @@ interface GetDatesTheHabitWasCompletedMockParams {
 interface GetDatesTheHabitWasCompletedMockResponse {
   datesTheHabitWasCompleted: {
     id: string;
-    date: Date;
+    date: string;
   }[];
 }
 
@@ -19,9 +19,9 @@ export const getDatesTheHabitWasCompletedMock = http.get<
   return HttpResponse.json(
     {
       datesTheHabitWasCompleted: [
-        { id: '1', date: new Date('2024-10-01') },
-        { id: '2', date: new Date('2024-09-30') },
-        { id: '3', date: new Date('2024-09-28') },
+        { id: '1', date: '2025-01-10T03:00:00.000Z' },
+        { id: '2', date: '2025-01-09T03:00:00.000Z' },
+        { id: '3', date: '2025-01-08T03:00:00.000Z' },
       ],
     },
     { status: 200 }

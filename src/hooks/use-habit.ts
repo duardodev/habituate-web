@@ -7,7 +7,7 @@ interface useHabitProps {
 
 interface Day {
   id: string;
-  date: Date;
+  date: string;
 }
 
 interface DatesTheHabitWasCompletedData {
@@ -29,8 +29,9 @@ export async function useHabit({ id }: useHabitProps): Promise<string[]> {
   });
 
   const data: DatesTheHabitWasCompletedData = await response.json();
-  const datesTheHabitWasCompleted: string[] = data.datesTheHabitWasCompleted.map(dateTheHabitWasCompleted =>
-    dateTheHabitWasCompleted.date.toString()
+
+  const datesTheHabitWasCompleted: string[] = data.datesTheHabitWasCompleted.map(
+    dateTheHabitWasCompleted => dateTheHabitWasCompleted.date
   );
 
   return datesTheHabitWasCompleted;
