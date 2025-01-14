@@ -1,10 +1,10 @@
-import { useActiveTaskEditingContext } from '@/hooks/use-active-task-editing';
+import { useActiveTaskEditingContext } from '@/hooks/use-active-task-editing-context';
 import { useTaskContext } from '@/hooks/use-task-context';
 import { useTaskTitle } from '@/hooks/use-task-title';
 import { useTasksStore } from '@/store/tasks-store';
 import { act, renderHook } from '@testing-library/react';
 
-jest.mock('@/hooks/use-active-editing-task-context');
+jest.mock('@/hooks/use-active-task-editing-context');
 jest.mock('@/hooks/use-task-context');
 jest.mock('@/store/tasks-store');
 

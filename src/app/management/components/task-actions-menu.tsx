@@ -6,7 +6,7 @@ import { UserActionsMenu } from './user-actions-menu';
 import { useTaskContext } from '@/hooks/use-task-context';
 import { useTasksStore } from '@/store/tasks-store';
 import { useTaskActionsMenu } from '@/hooks/use-task-actions-menu';
-import { useActiveTaskEditingContext } from '@/hooks/use-active-task-editing';
+import { useActiveTaskEditingContext } from '@/hooks/use-active-task-editing-context';
 
 export function TaskActionsMenu() {
   const { id } = useTaskContext();

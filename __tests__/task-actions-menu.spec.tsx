@@ -1,5 +1,5 @@
 import { TaskActionsMenu } from '@/app/management/components/task-actions-menu';
-import { useActiveTaskEditingContext } from '@/hooks/use-active-task-editing';
+import { useActiveTaskEditingContext } from '@/hooks/use-active-task-editing-context';
 import { useTaskActionsMenu } from '@/hooks/use-task-actions-menu';
 import { useTasksStore } from '@/store/tasks-store';
 import { render, screen } from '@testing-library/react';
@@ -11,7 +11,7 @@ jest.mock('@/hooks/use-task-context', () => ({
   })),
 }));
 
-jest.mock('@/hooks/use-active-editing-task-context');
+jest.mock('@/hooks/use-active-task-editing-context');
 jest.mock('@/hooks/use-task-actions-menu');
 jest.mock('@/store/tasks-store');
 

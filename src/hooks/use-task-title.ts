@@ -1,6 +1,6 @@
 import { useTaskContext } from './use-task-context';
 import { useTasksStore } from '@/store/tasks-store';
-import { useActiveTaskEditingContext } from './use-active-task-editing';
+import { useActiveTaskEditingContext } from './use-active-task-editing-context';
 
 export function useTaskTitle() {
   const { id } = useTaskContext();
