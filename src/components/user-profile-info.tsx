@@ -35,7 +35,7 @@ export async function UserProfileInfo() {
       <DropdownMenuContent className="w-56" forceMount>
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-2">
-            <p className="text-sm font-medium leading-none">{user?.fullName}</p>
+            <p className="text-sm font-medium leading-none">{user?.fullName || user?.username}</p>
             <p className="text-xs leading-none text-muted-foreground">
               {user?.emailAddresses.find(email => email.id === user.primaryEmailAddressId)?.emailAddress}
             </p>
