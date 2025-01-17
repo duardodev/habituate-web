@@ -8,19 +8,7 @@ export async function Habits() {
   const { getToken } = auth();
   const token = await getToken();
 
-  const getCachedHabits = unstable_cache(
-    async () => {
-      const { habits } = await useFetchHabits(token);
-      return habits;
-    },
-    ['habits-list'],
-    {
-      revalidate: 3600,
-      tags: ['get-habits'],
-    }
-  );
-
-  const habits = await getCachedHabits();
+  const { habits } = await useFetchHabits(token);
 
   if (habits.length === 0) {
     return (
