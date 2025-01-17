@@ -1,6 +1,6 @@
 import { setupClerkTestingToken } from '@clerk/testing/cypress';
 
-describe('Testing Tokens', () => {
+describe('Authentication', () => {
   it('sign in', () => {
     setupClerkTestingToken();
     cy.visit('/management');
