@@ -1,18 +1,14 @@
-import Link from 'next/link';
-import { Button } from './ui/button';
-import { LogOut } from 'lucide-react';
 import { currentUser } from '@clerk/nextjs/server';
-import { SignOutButton } from '@clerk/nextjs';
+import { SignOutButton } from '@/components/sign-out-button';
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from './ui/dropdown-menu';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
+import { Button } from './ui/button';
 
 export async function UserProfileInfo() {
   const user = await currentUser();
@@ -20,11 +16,7 @@ export async function UserProfileInfo() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button
-          variant="ghost"
-          className="order-last relative h-10 w-10 select-none rounded-full bg-muted"
-          aria-label="Foto de perfil"
-        >
+        <Button className="order-last relative h-8 w-8 select-none rounded-full bg-muted" aria-label="Foto de perfil">
           <Avatar>
             <AvatarImage src={user?.imageUrl} alt="Foto de perfil" />
             <AvatarFallback>H</AvatarFallback>
@@ -43,16 +35,7 @@ export async function UserProfileInfo() {
         </DropdownMenuLabel>
 
         <DropdownMenuSeparator />
-
-        <DropdownMenuItem asChild className="w-full">
-          <SignOutButton>
-            <Link href="/">
-              <LogOut className="mr-2 w-4 h-4" />
-              Sair
-              <DropdownMenuShortcut className="ml-auto">⇧⌘Q</DropdownMenuShortcut>
-            </Link>
-          </SignOutButton>
-        </DropdownMenuItem>
+        <SignOutButton />
       </DropdownMenuContent>
     </DropdownMenu>
   );
