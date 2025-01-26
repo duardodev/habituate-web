@@ -1,38 +1,34 @@
 'use client';
 
-import { useState } from 'react';
-import { motion } from 'framer-motion';
+import * as React from 'react';
+import * as TooltipPrimitive from '@radix-ui/react-tooltip';
+
 import { cn } from '@/lib/utils';
 
-type TooltipProps = {
-  text: string;
-} & React.ComponentProps<'div'>;
+const TooltipProvider = TooltipPrimitive.Provider;
 
-export function Tooltip({ text, children, className }: TooltipProps) {
-  const [isToastVisible, setIsToastVisible] = useState(false);
+const Tooltip = TooltipPrimitive.Root;
 
-  return (
-    <div className="relative inline-block">
-      <motion.div
-        className={cn(
-          'absolute -top-4 left-1/2 whitespace-nowrap rounded-md border border-border dark:bg-neutral-900 bg-neutral-50 px-2 py-1 text-xs text-foreground shadow [translate:-50%_-50%]',
-          className
-        )}
-        initial={{ opacity: 0, y: 5, filter: 'blur(4px)', scale: 0.9 }}
-        animate={{
-          opacity: isToastVisible ? 1 : 0,
-          y: isToastVisible ? 0 : 5,
-          filter: isToastVisible ? 'blur(0px)' : 'blur(4px)',
-          scale: isToastVisible ? 1 : 0.9,
-        }}
-        transition={{ ease: 'easeInOut', duration: 0.15 }}
-      >
-        <span>{text}</span>
-      </motion.div>
+const TooltipTrigger = TooltipPrimitive.Trigger;
 
-      <div onMouseEnter={() => setIsToastVisible(true)} onMouseLeave={() => setIsToastVisible(false)}>
-        {children}
-      </div>
-    </div>
-  );
-}
+// absolute -top-4 left-1/2 whitespace-nowrap rounded-md border border-border  shadow [translate:-50%_-50%]
+
+const TooltipContent = React.forwardRef<
+  React.ElementRef<typeof TooltipPrimitive.Content>,
+  React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Content>
+>(({ className, sideOffset = 4, ...props }, ref) => (
+  <TooltipPrimitive.Portal>
+    <TooltipPrimitive.Content
+      ref={ref}
+      sideOffset={sideOffset}
+      className={cn(
+        'z-50 overflow-hidden rounded-md border dark:bg-neutral-900 bg-neutral-50 px-2 py-1 text-xs text-foreground shadow-md animate-in fade-in-0 duration-75 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
+        className
+      )}
+      {...props}
+    />
+  </TooltipPrimitive.Portal>
+));
+TooltipContent.displayName = TooltipPrimitive.Content.displayName;
+
+export { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider };
