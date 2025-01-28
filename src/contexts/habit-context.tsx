@@ -5,6 +5,7 @@ import { createContext, ReactNode } from 'react';
 interface HabitContextType {
   id: string;
   title: string;
+  emoji: string | null;
 }
 
 export const HabitContext = createContext<HabitContextType | null>(null);

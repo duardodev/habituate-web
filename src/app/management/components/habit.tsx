@@ -1,4 +1,5 @@
 import { Checkboxes } from './checkboxes';
+import { EmojiPickerButton } from './emoji-picker-button';
 import { HabitTitle } from './habit-title';
 import { useHabit } from '@/hooks/use-habit';
 
@@ -11,7 +12,10 @@ export async function Habit({ id }: HabitProps) {
 
   return (
     <li className="flex items-center justify-between gap-10">
-      <HabitTitle />
+      <div className="flex items-center gap-2">
+        <EmojiPickerButton />
+        <HabitTitle />
+      </div>
       <Checkboxes datesTheHabitWasCompleted={datesTheHabitWasCompleted} />
     </li>
   );

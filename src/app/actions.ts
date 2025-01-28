@@ -70,3 +70,17 @@ export async function updateHabit(id: string, title: string) {
 
   revalidateTag('get-habits');
 }
+
+export async function updateHabitEmoji(id: string, emoji: string) {
+  const { getToken } = auth();
+  const token = await getToken();
+
+  await api(`/habits/${id}/emoji`, {
+    method: 'PATCH',
+    headers: {
+      'Content-type': 'application/json',
+      'Authorization': `Bearer ${token}`,
+    },
+    body: JSON.stringify({ emoji }),
+  });
+}

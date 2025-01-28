@@ -2,7 +2,6 @@ import { Habit } from './habit';
 import { HabitProvider } from '@/contexts/habit-context';
 import { useFetchHabits } from '@/hooks/use-fetch-habits';
 import { auth } from '@clerk/nextjs/server';
-import { unstable_cache } from 'next/cache';
 
 export async function Habits() {
   const { getToken } = auth();
@@ -30,6 +29,7 @@ export async function Habits() {
             habit={{
               id: habit.id,
               title: habit.title,
+              emoji: habit.emoji,
             }}
           >
             <Habit key={habit.id} id={habit.id} />
