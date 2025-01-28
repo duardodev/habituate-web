@@ -1,3 +1,4 @@
+import { CalendarDays } from 'lucide-react';
 import { MonthYearDisplaySkeleton } from './month-year-display-skeleton';
 import { WeekDaysSkeleton } from './week-days-skeleton';
 import { WeekNavigation } from './week-navigation';
@@ -17,7 +18,10 @@ export function Calendar() {
   return (
     <div className="overflow-visible flex items-center justify-between gap-x-10">
       <div className="flex items-center gap-x-3">
-        <MonthYearDisplay />
+        <div className="flex items-center gap-x-2">
+          <CalendarDays className="text-foreground/95 h-5 w-5" />
+          <MonthYearDisplay />
+        </div>
         <WeekNavigation />
       </div>
 
