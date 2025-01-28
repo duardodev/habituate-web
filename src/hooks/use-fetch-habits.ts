@@ -2,7 +2,7 @@ export interface HabitsResponse {
   habits: {
     id: string;
     title: string;
-    emoji: string | null;
+    emoji: string;
   }[];
 }
 

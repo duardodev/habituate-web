@@ -18,7 +18,7 @@ const Emoji = dynamic(() => import('emoji-picker-react').then(mod => mod.Emoji),
 export function EmojiPickerButton() {
   const { id, emoji } = useHabitContext();
   const { resolvedTheme } = useTheme();
-  const [unifiedCode, setUnifiedCode] = useState<string>(emoji === null ? '1fab4' : emoji);
+  const [unifiedCode, setUnifiedCode] = useState(emoji);
 
   function handleEmojiUpdate(emoji: string) {
     setUnifiedCode(emoji);
