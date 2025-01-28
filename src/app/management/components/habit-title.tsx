@@ -5,19 +5,24 @@ import { UserActionsMenu } from './user-actions-menu';
 import { DropdownMenu, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { useHabitContext } from '@/hooks/use-habit-context';
 import { useHabitTitle } from '@/hooks/use-habit-title';
+import { useTitleWidth } from '@/hooks/use-title-width';
 
 export function HabitTitle() {
   const { isTitleEditing, handleHabitTitleUpdate, handleRemoveHabit, startEditing } = useHabitTitle();
   const { title } = useHabitContext();
+  const { titleRef, titleWidth } = useTitleWidth({ isTitleEditing, title });
 
   return (
-    <div className="group flex items-center min-w-32">
+    <div className="group flex items-center">
       {isTitleEditing ? (
-        <TitleEditor title={title} onTitleSave={handleHabitTitleUpdate} isHabitTitle={true} />
+        <TitleEditor title={title} titleWidth={titleWidth} onTitleSave={handleHabitTitleUpdate} isHabitTitle={true} />
       ) : (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <h2 className="max-w-96 text-start truncate hover:text-foreground/85 cursor-pointer transition-colors">
+            <h2
+              ref={titleRef}
+              className="max-w-96 text-start truncate hover:text-foreground/85 cursor-pointer transition-colors"
+            >
               {title}
             </h2>
           </DropdownMenuTrigger>
