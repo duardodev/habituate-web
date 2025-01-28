@@ -1,19 +1,12 @@
 'use client';
 
-import dynamic from 'next/dynamic';
-import EmojiPicker, { Theme } from 'emoji-picker-react';
+import EmojiPicker, { Emoji, Theme } from 'emoji-picker-react';
 import { useState } from 'react';
+import { useTheme } from 'next-themes';
 import { Button } from '@/components/ui/button';
-import { Skeleton } from '@/components/ui/skeleton';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { updateHabitEmoji } from '@/app/actions';
 import { useHabitContext } from '@/hooks/use-habit-context';
-import { useTheme } from 'next-themes';
-
-const Emoji = dynamic(() => import('emoji-picker-react').then(mod => mod.Emoji), {
-  ssr: false,
-  loading: () => <Skeleton className="h-[26px] w-[26px]" />,
-});
 
 export function EmojiPickerButton() {
   const { id, emoji } = useHabitContext();
