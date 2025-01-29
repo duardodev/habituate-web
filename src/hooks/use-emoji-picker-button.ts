@@ -15,6 +15,8 @@ export function useEmojiPickerButton() {
     updateHabitEmoji(id, emoji);
   }
 
+  console.log(unifiedCode, emoji);
+
   return {
     unifiedCode,
     handleEmojiUpdate,
