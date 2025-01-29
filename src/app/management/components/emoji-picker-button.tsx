@@ -1,10 +1,17 @@
 'use client';
 
-import EmojiPicker, { Emoji, Theme } from 'emoji-picker-react';
+import dynamic from 'next/dynamic';
+import EmojiPicker, { Theme } from 'emoji-picker-react';
 import { useTheme } from 'next-themes';
 import { Button } from '@/components/ui/button';
+import { Skeleton } from '@/components/ui/skeleton';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { useEmojiPickerButton } from '@/hooks/use-emoji-picker-button';
+
+const Emoji = dynamic(() => import('emoji-picker-react').then(mod => mod.Emoji), {
+  loading: () => <Skeleton className="h-[26px] w-[26px]" />,
+  ssr: false,
+});
 
 export function EmojiPickerButton() {
   const { handleEmojiUpdate, unifiedCode } = useEmojiPickerButton();
