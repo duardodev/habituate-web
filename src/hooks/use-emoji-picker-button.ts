@@ -8,7 +8,7 @@ export function useEmojiPickerButton() {
 
   useEffect(() => {
     setUnifiedCode(emoji);
-  }, []);
+  }, [emoji]);
 
   function handleEmojiUpdate(emoji: string) {
     setUnifiedCode(emoji);
