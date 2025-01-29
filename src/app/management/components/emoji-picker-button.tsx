@@ -1,22 +1,14 @@
 'use client';
 
 import EmojiPicker, { Emoji, Theme } from 'emoji-picker-react';
-import { useState } from 'react';
 import { useTheme } from 'next-themes';
 import { Button } from '@/components/ui/button';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-import { updateHabitEmoji } from '@/app/actions';
-import { useHabitContext } from '@/hooks/use-habit-context';
+import { useEmojiPickerButton } from '@/hooks/use-emoji-picker-button';
 
 export function EmojiPickerButton() {
-  const { id, emoji } = useHabitContext();
+  const { handleEmojiUpdate, unifiedCode } = useEmojiPickerButton();
   const { resolvedTheme } = useTheme();
-  const [unifiedCode, setUnifiedCode] = useState(emoji);
-
-  function handleEmojiUpdate(emoji: string) {
-    setUnifiedCode(emoji);
-    updateHabitEmoji(id, emoji);
-  }
 
   return (
     <Popover>
