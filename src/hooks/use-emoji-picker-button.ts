@@ -1,24 +1,18 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { updateHabitEmoji } from '@/app/actions';
 import { useHabitContext } from './use-habit-context';
 
 export function useEmojiPickerButton() {
   const { id, emoji } = useHabitContext();
-  const [unifiedCode, setUnifiedCode] = useState(emoji);
+  const [emojiUrl, setEmojiUrl] = useState(emoji);
 
-  useEffect(() => {
-    setUnifiedCode(emoji);
-  }, [emoji]);
-
-  function handleEmojiUpdate(emoji: string) {
-    setUnifiedCode(emoji);
-    updateHabitEmoji(id, emoji);
+  function handleEmojiUpdate(newEmoji: string) {
+    setEmojiUrl(newEmoji);
+    updateHabitEmoji(id, newEmoji);
   }
 
-  console.log(unifiedCode, emoji);
-
   return {
-    unifiedCode,
+    emojiUrl,
     handleEmojiUpdate,
   };
 }
