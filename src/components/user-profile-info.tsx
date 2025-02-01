@@ -16,8 +16,11 @@ export async function UserProfileInfo() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button className="order-last relative h-8 w-8 select-none rounded-full bg-muted" aria-label="Foto de perfil">
-          <Avatar>
+        <Button
+          className="order-last relative h-9 w-9 select-none rounded-full bg-transparent"
+          aria-label="Foto de perfil"
+        >
+          <Avatar className="h-9 w-9">
             <AvatarImage src={user?.imageUrl} alt="Foto de perfil" />
             <AvatarFallback>H</AvatarFallback>
           </Avatar>

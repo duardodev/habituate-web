@@ -15,13 +15,15 @@ export function HabitTitle() {
   return (
     <div className="group flex items-center">
       {isTitleEditing ? (
-        <TitleEditor title={title} titleWidth={titleWidth} onTitleSave={handleHabitTitleUpdate} isHabitTitle={true} />
+        <TitleEditor title={title} titleWidth={titleWidth} onTitleSave={handleHabitTitleUpdate} />
       ) : (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <h2
+              role="button"
+              tabIndex={0}
               ref={titleRef}
-              className="max-w-96 text-start truncate hover:text-foreground/85 cursor-pointer transition-colors"
+              className="max-w-96 text-start truncate hover:text-foreground/85 cursor-pointer transition-color focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ring-offset-background rounded"
             >
               {title}
             </h2>

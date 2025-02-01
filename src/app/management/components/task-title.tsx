@@ -23,7 +23,7 @@ export function TaskTitle() {
               <h2
                 ref={titleRef}
                 className={cn(
-                  'max-w-40 truncate text-sm',
+                  'max-w-40 truncate',
                   completed ? 'text-zinc-400 dark:text-zinc-500 line-through' : 'text-zinc-900 dark:text-zinc-100'
                 )}
               >

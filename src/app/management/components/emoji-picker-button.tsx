@@ -14,7 +14,7 @@ export function EmojiPickerButton() {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button variant="ghost" size="icon" className="h-[26px] w-[26px]">
+        <Button variant="ghost" size="icon" className="h-[26px] w-[26px]" aria-label="Selecionar emoji">
           <Image
             src={emojiUrl}
             quality={100}
@@ -28,6 +28,7 @@ export function EmojiPickerButton() {
       </PopoverTrigger>
       <PopoverContent className="w-0 h-0 p-0">
         <EmojiPicker
+          aria-label="Seletor de emojis"
           theme={resolvedTheme as Theme}
           lazyLoadEmojis={true}
           autoFocusSearch={false}
