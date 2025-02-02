@@ -31,7 +31,7 @@ describe('TaskTitle component', () => {
 
   it('should render title when not editing', () => {
     render(<TaskTitle />);
-    expect(screen.getByRole('paragraph')).toHaveTextContent('Task 1');
+    expect(screen.getByText('Task 1')).toBeInTheDocument();
   });
 
   it('should render TitleEditor when is editing', () => {
@@ -62,15 +62,16 @@ describe('TaskTitle component', () => {
 
   it('should have correct CSS classes for uncompleted task', () => {
     render(<TaskTitle />);
-    expect(screen.getByRole('paragraph')).toHaveClass('text-zinc-900 dark:text-zinc-100');
+    expect(screen.getByText('Task 1')).toHaveClass('text-zinc-900 dark:text-zinc-100');
   });
 
   it('should have correct CSS classes for completed task', () => {
     (useTaskContext as jest.Mock).mockReturnValue({
+      title: 'Task 1',
       completed: true,
     });
 
     render(<TaskTitle />);
-    expect(screen.getByRole('paragraph')).toHaveClass('text-zinc-400 dark:text-zinc-500 line-through');
+    expect(screen.getByText('Task 1')).toHaveClass('text-zinc-400 dark:text-zinc-500 line-through');
   });
 });

@@ -1,9 +1,14 @@
+import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import { Habit } from '@/app/management/components/habit';
 import { useHabit } from '@/hooks/use-habit';
 
 jest.mock('../src/hooks/use-habit', () => ({
   useHabit: jest.fn(),
+}));
+
+jest.mock('../src/app/management/components/emoji-picker-button', () => ({
+  EmojiPickerButton: () => <div data-testid="emoji-picker">Emoji Picker</div>,
 }));
 
 jest.mock('../src/app/management/components/habit-title', () => ({
@@ -27,6 +32,7 @@ describe('Habit Component', () => {
   it('should render correctly', async () => {
     render(await Habit({ id: mockHabitId }));
 
+    await waitFor(() => expect(screen.queryByTestId('emoji-picker')).toBeInTheDocument());
     expect(screen.getByTestId('habit-title')).toBeInTheDocument();
     expect(screen.getByTestId('checkboxes')).toBeInTheDocument();
   });

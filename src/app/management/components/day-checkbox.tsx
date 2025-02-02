@@ -15,7 +15,7 @@ export function DayCheckbox({ currentWeekDay, ...rest }: DayCheckboxProps) {
   const { handleHabitToggle, isChecked, isDisabled } = useDayCheckbox({ currentWeekDay });
   const { title } = useHabitContext();
   const label = `Hábito "${title}" marcado como ${
-    isChecked ? 'incompleto' : 'completo'
+    isChecked ? 'completo' : 'incompleto'
   } em ${currentWeekDay.date()} de ${monthsNames[currentWeekDay.month()]} de ${currentWeekDay.year()}`;
 
   return (

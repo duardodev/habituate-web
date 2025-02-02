@@ -38,10 +38,10 @@ describe('useTaskTitle hook', () => {
     expect(typeof result.current.handleTaskTitleUpdate).toBe('function');
   });
 
-  it('should update isTitleEditing when activeEditingTaskId matches', () => {
+  it('should update isTitleEditing when activeTaskEditingId matches', () => {
     (useActiveTaskEditingContext as jest.Mock).mockReturnValue({
       handleToggleEditingTask: mockHandleToggleTaskEditing,
-      activeEditingTaskId: mockTaskId,
+      activeTaskEditingId: mockTaskId,
     });
 
     const { result } = renderHook(() => useTaskTitle());

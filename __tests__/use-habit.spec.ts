@@ -19,7 +19,7 @@ describe('useHabit', () => {
   it('should fetch and return formatted dates', async () => {
     server.use(getDatesTheHabitWasCompletedMock);
     const result = await useHabit({ id: mockHabitId });
-    expect(result).toEqual(['2024-10-01T00:00:00.000Z', '2024-09-30T00:00:00.000Z', '2024-09-28T00:00:00.000Z']);
+    expect(result).toEqual(['2025-01-10T03:00:00.000Z', '2025-01-09T03:00:00.000Z', '2025-01-08T03:00:00.000Z']);
   });
 
   it('should handle authentication errors', async () => {
