@@ -5,10 +5,10 @@ import { useFetchHabits } from '@/hooks/use-fetch-habits';
 import { auth } from '@clerk/nextjs/server';
 
 export async function Habits() {
-  const { getToken } = auth();
-  const token = await getToken();
-
   try {
+    const { getToken } = auth();
+    const token = await getToken();
+
     const { habits } = await useFetchHabits(token);
 
     if (habits.length === 0) {
