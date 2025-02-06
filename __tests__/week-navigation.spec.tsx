@@ -24,8 +24,8 @@ describe('WeekNavigation component', () => {
   it('should render navigation buttons', () => {
     render(<WeekNavigation />);
 
-    expect(screen.getByRole('button', { name: /Ir para semana anterior/i })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /Ir para próxima semana/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Go to previous week/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Go to next week/i })).toBeInTheDocument();
   });
 
   it('shoud disable the next week button when current date is today', () => {
@@ -37,13 +37,13 @@ describe('WeekNavigation component', () => {
 
     render(<WeekNavigation />);
 
-    expect(screen.getByRole('button', { name: /Ir para próxima semana/i })).toBeDisabled();
+    expect(screen.getByRole('button', { name: /Go to next week/i })).toBeDisabled();
   });
 
   it('should call handleGoToPreviuosWeek on clicking the previous week button', async () => {
     render(<WeekNavigation />);
 
-    await userEvent.click(screen.getByRole('button', { name: /Ir para semana anterior/i }));
+    await userEvent.click(screen.getByRole('button', { name: /Go to previous week/i }));
 
     expect(mockHandleGoToPreviousWeek).toHaveBeenCalled();
   });
@@ -51,7 +51,7 @@ describe('WeekNavigation component', () => {
   it('should call handleGoToNextWeek on clicking the next week button', async () => {
     render(<WeekNavigation />);
 
-    await userEvent.click(screen.getByRole('button', { name: /Ir para próxima semana/i }));
+    await userEvent.click(screen.getByRole('button', { name: /Go to next week/i }));
 
     expect(mockHandleGoToNextWeek).toHaveBeenCalled();
   });

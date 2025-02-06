@@ -46,6 +46,6 @@ describe('Habits components', () => {
 
     render(await Habits());
 
-    expect(await screen.findByText(/Nenhum hábito encontrado/)).toBeInTheDocument();
+    expect(await screen.findByText(/No habits found/)).toBeInTheDocument();
   });
 });

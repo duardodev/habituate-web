@@ -11,8 +11,8 @@ export function DailyProgress() {
         </div>
 
         <div>
-          <h3 className="font-semibold text-zinc-900 dark:text-zinc-100">Progresso diário</h3>
-          <p className="text-sm text-zinc-500 dark:text-zinc-400">Sua atividade</p>
+          <h3 className="font-semibold text-zinc-900 dark:text-zinc-100">Daily progress</h3>
+          <p className="text-sm text-zinc-500 dark:text-zinc-400">Your activity</p>
         </div>
       </div>
 

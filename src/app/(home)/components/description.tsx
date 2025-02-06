@@ -2,8 +2,8 @@
 
 import { TextGenerateEffect } from '@/components/ui/text-generate-effect';
 
-const words = `Habituate ajuda você construir, gerenciar, e manter hábitos positivos.
-Comece sua jornada para um você melhor hoje.`;
+const words = `Habituate helps you build, manage, and maintain positive habits.
+Start your journey to a better you today!`;
 
 export function Description() {
   return (
@@ -11,7 +11,7 @@ export function Description() {
       duration={1.5}
       filter={false}
       words={words}
-      className="max-w-[740px] text-secondary-foreground/95 text-center text-lg md:text-xl"
+      className="max-w-[650px] text-secondary-foreground/95 text-center text-lg md:text-xl"
     />
   );
 }

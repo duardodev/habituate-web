@@ -16,7 +16,7 @@ export function TaskPriority() {
         completed && 'opacity-50'
       )}
     >
-      {(priority === 'p1' && 'Alta') || (priority === 'p2' && 'Média') || (priority === 'p3' && 'Baixa')}
+      {(priority === 'p1' && 'High') || (priority === 'p2' && 'Medium') || (priority === 'p3' && 'Low')}
     </span>
   );
 }

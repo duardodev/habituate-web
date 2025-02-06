@@ -11,22 +11,22 @@ describe('ConfirmButton component', () => {
     jest.clearAllMocks();
   });
 
-  it('should render "Confirmar" when not pending', () => {
+  it('should render "Confirm" when not pending', () => {
     render(<ConfirmButton />);
 
-    expect(screen.getByRole('button', { name: 'Confirmar' })).toBeInTheDocument();
-    expect(screen.queryByText('Confirmando')).not.toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Confirm' })).toBeInTheDocument();
+    expect(screen.queryByText('Confirming')).not.toBeInTheDocument();
     expect(screen.queryByTestId('loader')).not.toBeInTheDocument();
   });
 
-  it('should render "Confirmando" with loader when pending', () => {
+  it('should render "Confirming" with loader when pending', () => {
     const useFormStatusMock = jest.requireMock('react-dom').useFormStatus;
     useFormStatusMock.mockReturnValue({ pending: true });
 
     render(<ConfirmButton />);
 
-    expect(screen.getByRole('button', { name: 'Confirmando' })).toBeInTheDocument();
-    expect(screen.queryByText('Confirmar')).not.toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Confirming' })).toBeInTheDocument();
+    expect(screen.queryByText('Confirm')).not.toBeInTheDocument();
     expect(screen.getByTestId('loader')).toBeInTheDocument();
   });
 

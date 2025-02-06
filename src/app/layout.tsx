@@ -10,14 +10,13 @@ import './globals.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://habituate-duardodev.vercel.app'),
-  title: 'Habituate | Domine seus hábitos, transforme sua vida.',
+  title: 'Habituate | Master your habits, transform your life.',
   description:
-    'Habituate ajuda você construir, gerenciar, e manter hábitos positivos. Comece sua jornada para um melhor hoje.',
-  keywords:
-    'habituate, hábitos, monitoramento de hábitos, gerenciamento, produtividade, bons hábitos, desenvolvimento pessoal',
+    'Habituate helps you build, manage, and maintain positive habits. Start your journey to a better you today!',
+  keywords: 'habituate, habits, habit monitoring, management, productivity, good habits, personal development, tasks',
   authors: [
     {
-      name: 'duardodev',
+      name: 'Deivit Eduardo',
       url: 'https://github.com/duardodev',
     },
   ],

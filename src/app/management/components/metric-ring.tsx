@@ -2,11 +2,10 @@ interface MetricRingProps {
   label: string;
   value: number;
   color?: string;
-  sublabel: string;
   percentage?: number;
 }
 
-export function MetricRing({ label, value, color, sublabel, percentage = 0 }: MetricRingProps) {
+export function MetricRing({ label, value, color, percentage = 0 }: MetricRingProps) {
   return (
     <div className="relative flex flex-col items-center">
       <div className="relative w-24 h-24">
@@ -24,7 +23,7 @@ export function MetricRing({ label, value, color, sublabel, percentage = 0 }: Me
           <span data-testid="metric-value" className="text-xl font-bold  text-zinc-900 dark:text-zinc-100">
             {value}
           </span>
-          <span className="text-xs lowercase text-zinc-500 dark:text-zinc-400">{sublabel}</span>
+          <span className="text-xs lowercase text-zinc-500 dark:text-zinc-400">done</span>
         </div>
       </div>
 

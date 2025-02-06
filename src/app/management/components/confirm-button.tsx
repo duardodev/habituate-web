@@ -10,7 +10,7 @@ export function ConfirmButton() {
   return (
     <Button type="submit" disabled={pending} className="bg-primary/80">
       {pending && <Loader2 data-testid="loader" className="mr-2 h-[18px] w-[18px] animate-spin" />}
-      {pending ? <span>Confirmando</span> : <span>Confirmar</span>}
+      {pending ? <span>Confirming</span> : <span>Confirm</span>}
     </Button>
   );
 }

@@ -44,9 +44,9 @@ describe('DayCheckbox component', () => {
     const { getByRole } = render(<DayCheckbox currentWeekDay={currentWeekDay} />);
 
     const checkbox = getByRole('checkbox');
-    const expectedLabel = `Hábito "Test Habit" marcado como incompleto em ${currentWeekDay.date()} de ${
+    const expectedLabel = `Habit "Test Habit" marked as incomplete on ${
       monthsNames[currentWeekDay.month()]
-    } de ${currentWeekDay.year()}`;
+    } ${currentWeekDay.date()}, ${currentWeekDay.year()}`;
 
     expect(checkbox).toHaveAttribute('aria-label', expectedLabel);
   });

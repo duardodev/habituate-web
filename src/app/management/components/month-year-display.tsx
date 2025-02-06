@@ -10,7 +10,7 @@ export function MonthYearDisplay() {
 
   return (
     <p className="text-foreground/95 font-medium text-nowrap">
-      {currentMonth} de {currentYear}
+      {currentMonth} {currentYear}
     </p>
   );
 }

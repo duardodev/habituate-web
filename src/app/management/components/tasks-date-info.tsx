@@ -11,7 +11,7 @@ export function TasksDateInfo() {
 
   return (
     <p className="text-sm text-zinc-500 dark:text-zinc-400">
-      {currentDay} de {currentMonth.toLowerCase()} de {currentYear}
+      {currentMonth} {currentDay}, {currentYear}
     </p>
   );
 }

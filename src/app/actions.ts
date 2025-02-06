@@ -20,7 +20,7 @@ export async function addHabit(formData: FormData) {
     });
   } catch (error) {
     return {
-      error: 'Error ao adicionar um novo hábito!',
+      error: 'Error adding a new habit!',
     };
   }
 

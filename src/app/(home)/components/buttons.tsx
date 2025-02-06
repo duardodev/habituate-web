@@ -21,7 +21,7 @@ export function Buttons({ userId }: ButtonsProps) {
       className="mt-2 flex flex-wrap justify-center items-center gap-4"
     >
       <Button className="h-9 border-none font-semibold" asChild>
-        <Link href={userId ? '/management' : '/auth/sign-in'}>Começar</Link>
+        <Link href={userId ? '/management' : '/auth/sign-in'}>Get Started</Link>
       </Button>
 
       <Button

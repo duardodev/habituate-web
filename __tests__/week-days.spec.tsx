@@ -38,13 +38,13 @@ describe('WeekDays', () => {
   it('should render all week days', () => {
     render(<WeekDays />);
 
-    expect(screen.getByText('Dom')).toBeInTheDocument();
-    expect(screen.getByText('Seg')).toBeInTheDocument();
-    expect(screen.getByText('Ter')).toBeInTheDocument();
-    expect(screen.getByText('Qua')).toBeInTheDocument();
-    expect(screen.getByText('Qui')).toBeInTheDocument();
-    expect(screen.getByText('Sex')).toBeInTheDocument();
-    expect(screen.getByText('Sáb')).toBeInTheDocument();
+    expect(screen.getByText('Sun')).toBeInTheDocument();
+    expect(screen.getByText('Mon')).toBeInTheDocument();
+    expect(screen.getByText('Tue')).toBeInTheDocument();
+    expect(screen.getByText('Wed')).toBeInTheDocument();
+    expect(screen.getByText('Thu')).toBeInTheDocument();
+    expect(screen.getByText('Fri')).toBeInTheDocument();
+    expect(screen.getByText('Sat')).toBeInTheDocument();
   });
 
   it('should render correct dates for each day', () => {

@@ -58,7 +58,7 @@ describe('useAddTaskDialog', () => {
       })
     );
 
-    expect(toast.success).toHaveBeenCalledWith('Tarefa adicionada com sucesso!');
+    expect(toast.success).toHaveBeenCalledWith('Task added successfully!');
   });
 
   it('should show error toast when title is empty', () => {
@@ -75,7 +75,7 @@ describe('useAddTaskDialog', () => {
     });
 
     expect(mockAddTask).not.toHaveBeenCalled();
-    expect(toast.error).toHaveBeenCalledWith('Informe a nova tarefa!');
+    expect(toast.error).toHaveBeenCalledWith('Enter the new task!');
   });
 
   it('should clear input after successful submission', () => {

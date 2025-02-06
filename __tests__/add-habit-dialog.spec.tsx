@@ -34,7 +34,7 @@ describe('AddHabitDialog component', () => {
 
   it('should render the dialog trigger button', () => {
     render(<AddHabitDialog />);
-    expect(screen.getByRole('button', { name: 'Adicionar hábito' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Add new habit' })).toBeInTheDocument();
   });
 
   it('should disable the dialog trigger button when isLoading or isError is true', () => {
@@ -44,40 +44,40 @@ describe('AddHabitDialog component', () => {
     });
 
     render(<AddHabitDialog />);
-    expect(screen.getByRole('button', { name: 'Adicionar hábito' })).toBeDisabled();
+    expect(screen.getByRole('button', { name: 'Add new habit' })).toBeDisabled();
 
     (useHabitsQuery as jest.Mock).mockReturnValue({
       isLoading: false,
       isError: true,
     });
 
-    expect(screen.getByRole('button', { name: 'Adicionar hábito' })).toBeDisabled();
+    expect(screen.getByRole('button', { name: 'Add new habit' })).toBeDisabled();
   });
 
   it('should open the dialog when the trigger button is clicked', () => {
     render(<AddHabitDialog />);
-    fireEvent.click(screen.getByRole('button', { name: 'Adicionar hábito' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Add new habit' }));
     expect(screen.getByRole('dialog')).toBeInTheDocument();
   });
 
   it('should render and allow input for habit title', () => {
     render(<AddHabitDialog />);
-    fireEvent.click(screen.getByRole('button', { name: 'Adicionar hábito' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Add new habit' }));
     expect(screen.getByRole('dialog')).toBeInTheDocument();
 
-    const input = screen.getByPlaceholderText('Meditar, exercitar-se, estudar inglês...');
+    const input = screen.getByPlaceholderText('Meditate, exercise, read a book...');
     expect(input).toBeInTheDocument();
 
-    fireEvent.change(input, { target: { value: 'Novo hábito' } });
-    expect(input).toHaveValue('Novo hábito');
+    fireEvent.change(input, { target: { value: 'New habit' } });
+    expect(input).toHaveValue('New habit');
   });
 
   it('should close the dialog when cancel button is clicked', () => {
     render(<AddHabitDialog />);
-    fireEvent.click(screen.getByRole('button', { name: 'Adicionar hábito' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Add new habit' }));
     expect(screen.getByRole('dialog')).toBeInTheDocument();
 
-    fireEvent.click(screen.getByRole('button', { name: 'Cancelar' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Cancel' }));
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
   });
 });

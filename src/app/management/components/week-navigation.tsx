@@ -14,12 +14,12 @@ export function WeekNavigation() {
       <TooltipProvider>
         <Tooltip>
           <TooltipTrigger asChild>
-            <Button variant="ghost" size="icon" aria-label="Ir para semana anterior" onClick={handleGoToPreviousWeek}>
+            <Button variant="ghost" size="icon" aria-label="Go to previous week" onClick={handleGoToPreviousWeek}>
               <ChevronLeft className="text-foreground/95 h-5 w-5" />
             </Button>
           </TooltipTrigger>
           <TooltipContent>
-            <p>Ir para semana anterior</p>
+            <p>Go to previous week</p>
           </TooltipContent>
         </Tooltip>
       </TooltipProvider>
@@ -30,7 +30,7 @@ export function WeekNavigation() {
             <Button
               variant="ghost"
               size="icon"
-              aria-label="Ir para próxima semana"
+              aria-label="Go to next week"
               disabled={currentDate.isToday()}
               onClick={handleGoToNextWeek}
             >
@@ -39,7 +39,7 @@ export function WeekNavigation() {
           </TooltipTrigger>
 
           <TooltipContent>
-            <p>Ir para próxima semana</p>
+            <p>Go to next week</p>
           </TooltipContent>
         </Tooltip>
       </TooltipProvider>

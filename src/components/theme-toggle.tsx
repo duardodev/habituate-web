@@ -5,7 +5,12 @@ import { Moon, Sun } from 'lucide-react';
 import { useTheme } from 'next-themes';
 
 import { Button } from '@/components/ui/button';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 import { cn } from '@/lib/utils';
 
 interface ModeToggleProps {
@@ -35,13 +40,13 @@ export function ThemeToggle({ floating }: ModeToggleProps) {
               floating && 'h-[1.2rem] w-[1.2rem]'
             )}
           />
-          <span className="sr-only">Alternar tema</span>
+          <span className="sr-only">Switch theme</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => setTheme('light')}>Claro</DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme('dark')}>Escuro</DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme('system')}>Sistema</DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setTheme('light')}>Light</DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setTheme('dark')}>Dark</DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setTheme('system')}>System</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );

@@ -51,14 +51,14 @@ describe('HabitTitle component', () => {
 
     await userEvent.click(screen.getByText('Test habit'));
 
-    const renameOption = screen.getByText('Renomear');
+    const renameOption = screen.getByText('Rename');
     expect(renameOption).toBeInTheDocument();
     await userEvent.click(renameOption);
     expect(startEditing).toHaveBeenCalledTimes(1);
 
     await userEvent.click(screen.getByText('Test habit'));
 
-    const removeOption = screen.getByText('Remover');
+    const removeOption = screen.getByText('Remove');
     expect(removeOption).toBeInTheDocument();
     await userEvent.click(removeOption);
     expect(handleRemoveHabit).toHaveBeenCalledTimes(1);

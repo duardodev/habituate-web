@@ -17,11 +17,11 @@ export function SignOutButton() {
           signOut({ redirectUrl: '/' });
         }
       }}
-      aria-label="Sair. Use Ctrl ou ⌘ + Q para sair rapidamente."
+      aria-label="Sign Out. Use Ctrl or ⌘ + Q to quickly exit."
     >
       <LogOut className="mr-2 w-4 h-4" />
       Sair
-      <DropdownMenuShortcut className="ml-auto">Ctrl ou ⌘ + Q</DropdownMenuShortcut>
+      <DropdownMenuShortcut className="ml-auto">Ctrl or ⌘ + Q</DropdownMenuShortcut>
     </DropdownMenuItem>
   );
 }

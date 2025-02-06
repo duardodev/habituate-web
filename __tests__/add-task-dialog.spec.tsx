@@ -32,41 +32,41 @@ describe('AddTaskDialog component', () => {
 
   it('should render the dialog trigger button', () => {
     render(<AddTaskDialog />);
-    expect(screen.getByRole('button', { name: 'Adicionar nova tarefa' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Add new task' })).toBeInTheDocument();
   });
 
   it('should open the dialog when trigger button is clicked', async () => {
     render(<AddTaskDialog />);
-    await user.click(screen.getByRole('button', { name: 'Adicionar nova tarefa' }));
+    await user.click(screen.getByRole('button', { name: 'Add new task' }));
     expect(screen.getByRole('dialog')).toBeInTheDocument();
   });
 
   it('should close the dialog when cancel button is clicked', async () => {
     render(<AddTaskDialog />);
-    await user.click(screen.getByRole('button', { name: 'Adicionar nova tarefa' }));
+    await user.click(screen.getByRole('button', { name: 'Add new task' }));
     expect(screen.getByRole('dialog')).toBeInTheDocument();
 
-    await user.click(screen.getByRole('button', { name: 'Cancelar' }));
+    await user.click(screen.getByRole('button', { name: 'Cancel' }));
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
   });
 
   it('should render the form with correct input fields', async () => {
     render(<AddTaskDialog />);
-    await user.click(screen.getByRole('button', { name: 'Adicionar nova tarefa' }));
+    await user.click(screen.getByRole('button', { name: 'Add new task' }));
 
-    expect(screen.getByPlaceholderText('Pagar conta de luz, etc...')).toBeInTheDocument();
-    expect(screen.getByLabelText('Selecionar prioridade')).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'Confirmar' })).toBeInTheDocument();
+    expect(screen.getByPlaceholderText('Pay electricity bill, etc...')).toBeInTheDocument();
+    expect(screen.getByLabelText('Select priority')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Confirm' })).toBeInTheDocument();
   });
 
   it('should call handleSubmit when form is submitted', async () => {
     render(<AddTaskDialog />);
-    await user.click(screen.getByRole('button', { name: 'Adicionar nova tarefa' }));
+    await user.click(screen.getByRole('button', { name: 'Add new task' }));
 
-    const titleInput = screen.getByPlaceholderText('Pagar conta de luz, etc...');
+    const titleInput = screen.getByPlaceholderText('Pay electricity bill, etc...');
     await user.type(titleInput, 'New task');
 
-    const submitButton = screen.getByRole('button', { name: 'Confirmar' });
+    const submitButton = screen.getByRole('button', { name: 'Confirm' });
     await user.click(submitButton);
 
     expect(mockHandleSubmit).toHaveBeenCalledTimes(1);

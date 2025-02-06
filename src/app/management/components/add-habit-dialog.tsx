@@ -26,16 +26,14 @@ export function AddHabitDialog() {
       <DialogTrigger asChild>
         <Button variant="outline" disabled={isLoading || isError}>
           <Plus className="h-5 w-5 mr-2" />
-          Adicionar hábito
+          Add new habit
         </Button>
       </DialogTrigger>
 
       <DialogContent className="w-[460px]">
         <DialogHeader>
-          <DialogTitle>Adcionar novo hábito</DialogTitle>
-          <DialogDescription className="text-base leading-tight">
-            Adicione um hábito que você constuma praticar.
-          </DialogDescription>
+          <DialogTitle>Add new habit</DialogTitle>
+          <DialogDescription className="text-base leading-tight">Add a habit that you usually do.</DialogDescription>
         </DialogHeader>
 
         <form
@@ -48,7 +46,7 @@ export function AddHabitDialog() {
         >
           <Input
             name="title"
-            placeholder="Meditar, exercitar-se, estudar inglês..."
+            placeholder="Meditate, exercise, read a book..."
             className="placeholder:text-foreground/70"
             autoComplete="off"
           />
@@ -56,7 +54,7 @@ export function AddHabitDialog() {
           <DialogFooter className="flex items-center gap-2">
             <DialogClose asChild>
               <Button type="button" variant="outline" className="h-[42px]">
-                Cancelar
+                Cancel
               </Button>
             </DialogClose>
 

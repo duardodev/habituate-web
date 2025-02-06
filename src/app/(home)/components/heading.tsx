@@ -13,7 +13,7 @@ export function Heading() {
       }}
       className="text-foreground/95 text-4xl md:text-[40px] md:leading-[46px] font-bold text-center"
     >
-      Domine Seus Hábitos, <br /> Transforme Sua Vida
+      Master Your Habits, <br /> Transform Your Life
     </motion.h1>
   );
 }

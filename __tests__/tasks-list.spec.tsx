@@ -58,7 +58,7 @@ describe('TasksList component', () => {
 
   it('should render message when there are no tasks', () => {
     render(<TaskList />);
-    expect(screen.getByText(/Nenhuma tarefa para hoje/i)).toBeInTheDocument();
+    expect(screen.getByText(/No tasks for today/i)).toBeInTheDocument();
   });
 
   it('should render when there are tasks', () => {

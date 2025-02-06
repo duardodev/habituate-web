@@ -27,21 +27,21 @@ describe('Habit Management', () => {
 
   describe('Creating New Habit', () => {
     it('should successfully create a new habit', () => {
-      cy.get('button').contains('Adicionar hábito').click();
-      cy.get('input[placeholder="Meditar, exercitar-se, estudar inglês..."]').type('Correr 1KM');
-      cy.get('button').contains('Confirmar').click();
-      cy.get('button').contains('Cancelar').click();
+      cy.get('button').contains('Add new habit').click();
+      cy.get('input[placeholder="Meditate, exercise, read a book..."]').type('Correr 1KM');
+      cy.get('button').contains('Confirm').click();
+      cy.get('button').contains('Cancel').click();
 
-      cy.contains('Hábito adicionado com sucesso!').should('be.visible');
+      cy.contains('Habit added successfully!').should('be.visible');
       cy.contains('Correr 1KM').should('be.visible');
     });
 
     it('should display an error when trying to add a habit with an empty title', () => {
-      cy.get('button').contains('Adicionar hábito').click();
-      cy.get('button').contains('Confirmar').click();
-      cy.get('button').contains('Cancelar').click();
+      cy.get('button').contains('Add new habit').click();
+      cy.get('button').contains('Confirm').click();
+      cy.get('button').contains('Cancel').click();
 
-      cy.contains('Informe o novo hábito!').should('be.visible');
+      cy.contains('Enter the new habit!').should('be.visible');
     });
   });
 
@@ -86,7 +86,7 @@ describe('Habit Management', () => {
       cy.wait(500);
 
       cy.get('[role="menu"]').should('be.visible');
-      cy.get('[role="menu"]').find('[role="menuitem"]').contains('Renomear').should('be.visible').click();
+      cy.get('[role="menu"]').find('[role="menuitem"]').contains('Rename').should('be.visible').click();
 
       cy.get('input[type="text"]').should('be.visible').clear().type('Correr 5KM').type('{enter}');
       cy.wait(500);
@@ -98,7 +98,7 @@ describe('Habit Management', () => {
       cy.wait(500);
 
       cy.get('[role="menu"]').should('be.visible');
-      cy.get('[role="menu"]').find('[role="menuitem"]').contains('Remover').should('be.visible').click();
+      cy.get('[role="menu"]').find('[role="menuitem"]').contains('Remove').should('be.visible').click();
       cy.contains('Correr 5KM').should('not.exist');
     });
   });

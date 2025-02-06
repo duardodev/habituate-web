@@ -10,8 +10,8 @@ export function TasksMetric() {
   const { isLoading } = useLoading();
 
   if (isLoading) {
-    return <MetricRingSkeleton label="Tarefas" sublabel="feita(s)" />;
+    return <MetricRingSkeleton label="Tasks" />;
   }
 
-  return <MetricRing label="Tarefas" sublabel="feita(s)" value={completedTasksCount} color="#007AFF" percentage={percentage} />;
+  return <MetricRing label="Tasks" value={completedTasksCount} color="#007AFF" percentage={percentage} />;
 }

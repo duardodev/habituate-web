@@ -16,7 +16,7 @@ export function TaskActionsMenu() {
 
   if (isTitleEditing) {
     return (
-      <button role="button" type="button" aria-label="Desabilitar edição" onClick={() => handleToggleTaskEditing(id)}>
+      <button role="button" type="button" aria-label="Disable editing" onClick={() => handleToggleTaskEditing(id)}>
         <X className="w-5 h-5 text-zinc-400" />
       </button>
     );
@@ -25,7 +25,7 @@ export function TaskActionsMenu() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <button type="button" aria-label="Abrir menu de ações">
+        <button type="button" aria-label="Open actions menu">
           <MoreHorizontal className="w-5 h-5 text-zinc-400" />
         </button>
       </DropdownMenuTrigger>

@@ -9,7 +9,7 @@ export function useAddHabitDialog() {
     const title = form.get('title') as string;
 
     if (!title || title.trim() === '') {
-      toast.error('Informe o novo hábito!');
+      toast.error('Enter the new habit!');
       return;
     }
 
@@ -21,7 +21,7 @@ export function useAddHabitDialog() {
     }
 
     queryClient.invalidateQueries({ queryKey: ['get-habits'] });
-    toast.success('Hábito adicionado com sucesso!');
+    toast.success('Habit added successfully!');
   }
 
   return {

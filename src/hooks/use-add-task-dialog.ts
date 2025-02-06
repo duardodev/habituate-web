@@ -18,7 +18,7 @@ export function useAddTaskDialog() {
     const randomId = `_${Math.random().toString(30).substring(2, 17) + Math.random().toString(30).substring(2, 17)}`;
 
     if (!title || title.trim() === '') {
-      toast.error('Informe a nova tarefa!');
+      toast.error('Enter the new task!');
       return;
     }
 
@@ -31,7 +31,7 @@ export function useAddTaskDialog() {
 
     addTask(newTask);
 
-    toast.success('Tarefa adicionada com sucesso!');
+    toast.success('Task added successfully!');
   }
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {

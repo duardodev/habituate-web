@@ -14,9 +14,9 @@ interface DayCheckboxProps extends CheckboxProps {
 export function DayCheckbox({ currentWeekDay, ...rest }: DayCheckboxProps) {
   const { handleHabitToggle, isChecked, isDisabled } = useDayCheckbox({ currentWeekDay });
   const { title } = useHabitContext();
-  const label = `Hábito "${title}" marcado como ${
-    isChecked ? 'completo' : 'incompleto'
-  } em ${currentWeekDay.date()} de ${monthsNames[currentWeekDay.month()]} de ${currentWeekDay.year()}`;
+  const label = `Habit "${title}" marked as ${isChecked ? 'complete' : 'incomplete'} on ${
+    monthsNames[currentWeekDay.month()]
+  } ${currentWeekDay.date()}, ${currentWeekDay.year()}`;
 
   return (
     <Checkbox

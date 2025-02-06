@@ -6,7 +6,7 @@ import { getDatesTheHabitWasCompletedMock } from '@/app/api/mocks/get-dates-the-
 jest.mock('@clerk/nextjs/server');
 
 describe('useHabit', () => {
-  const mockHabitId = 'habit123';
+  const mockHabitId = 'habit-1';
   const mockToken = 'mock-token';
 
   beforeEach(() => {

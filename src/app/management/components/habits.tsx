@@ -15,8 +15,8 @@ export async function Habits() {
       return (
         <div className="mt-4 flex items-center justify-center">
           <p className="text-sm text-center">
-            Nenhum hábito encontrado. <br className="sm:hidden" />
-            Que tal adicionar um novo hábito para começar?
+            No habits found. <br className="sm:hidden" />
+            How about adding a new habit to start?
           </p>
         </div>
       );
@@ -44,7 +44,7 @@ export async function Habits() {
     console.error(error);
 
     return (
-      <ErrorFallback message="Falha ao carregar os dados dos hábitos. Espere um instante e tente novamente recarregando a página." />
+      <ErrorFallback message="Failed to load habits data. Please wait a moment and try again by reloading the page." />
     );
   }
 }

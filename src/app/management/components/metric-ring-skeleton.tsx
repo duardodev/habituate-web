@@ -2,10 +2,9 @@ import { Skeleton } from '@/components/ui/skeleton';
 
 interface MetricRingSkeletonProps {
   label: string;
-  sublabel: string;
 }
 
-export function MetricRingSkeleton({ label, sublabel }: MetricRingSkeletonProps) {
+export function MetricRingSkeleton({ label }: MetricRingSkeletonProps) {
   return (
     <div className="relative flex flex-col items-center">
       <div className="relative w-24 h-24">
@@ -20,7 +19,7 @@ export function MetricRingSkeleton({ label, sublabel }: MetricRingSkeletonProps)
 
         <div className="absolute inset-0 flex flex-col items-center justify-center">
           <Skeleton className="h-5 w-5 rounded-lg mb-1" />
-          <span className="text-xs lowercase text-zinc-500 dark:text-zinc-400">{sublabel}</span>
+          <span className="text-xs lowercase text-zinc-500 dark:text-zinc-400">done</span>
         </div>
       </div>
 

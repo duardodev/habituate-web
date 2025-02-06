@@ -27,7 +27,7 @@ describe('TasksMetric component', () => {
 
   it('should render metric with correct values', () => {
     render(<TasksMetric />);
-    expect(screen.getByText('Tarefas')).toBeInTheDocument();
+    expect(screen.getByText('Tasks')).toBeInTheDocument();
     expect(screen.getByText('5')).toBeInTheDocument();
     expect(screen.getByText('50%')).toBeInTheDocument();
   });
@@ -38,7 +38,7 @@ describe('TasksMetric component', () => {
     });
 
     render(<TasksMetric />);
-    expect(screen.getByText('Tarefas')).toBeInTheDocument();
+    expect(screen.getByText('Tasks')).toBeInTheDocument();
     expect(screen.queryByText('5')).not.toBeInTheDocument();
     expect(screen.queryByText('50%')).not.toBeInTheDocument();
   });

@@ -17,7 +17,7 @@ describe('TaskPriority component', () => {
   it('should render high priority correctly', () => {
     render(<TaskPriority />);
 
-    const priorityElement = screen.getByText('Alta');
+    const priorityElement = screen.getByText('High');
     expect(priorityElement).toBeInTheDocument();
     expect(priorityElement).toHaveClass('bg-rose-100 dark:bg-rose-500/20 text-rose-600 dark:text-rose-400');
   });
@@ -29,7 +29,7 @@ describe('TaskPriority component', () => {
 
     render(<TaskPriority />);
 
-    const priorityElement = screen.getByText('Média');
+    const priorityElement = screen.getByText('Medium');
     expect(priorityElement).toBeInTheDocument();
     expect(priorityElement).toHaveClass('bg-yellow-100 dark:bg-yellow-500/20 text-yellow-600 dark:text-yellow-400');
   });
@@ -41,7 +41,7 @@ describe('TaskPriority component', () => {
 
     render(<TaskPriority />);
 
-    const priorityElement = screen.getByText('Baixa');
+    const priorityElement = screen.getByText('Low');
     expect(priorityElement).toBeInTheDocument();
     expect(priorityElement).toHaveClass('bg-blue-100 dark:bg-blue-500/20 text-blue-600 dark:text-blue-400');
   });
@@ -54,6 +54,6 @@ describe('TaskPriority component', () => {
 
     render(<TaskPriority />);
 
-    expect(screen.getByText('Alta')).toHaveClass('opacity-50');
+    expect(screen.getByText('High')).toHaveClass('opacity-50');
   });
 });

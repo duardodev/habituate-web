@@ -20,6 +20,6 @@ describe('TasksDateInfo component', () => {
 
   it('should render component with correct date information', () => {
     render(<TasksDateInfo />);
-    expect(screen.getByText('5 de janeiro de 2025'));
+    expect(screen.getByText('January 5, 2025'));
   });
 });

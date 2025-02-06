@@ -10,22 +10,16 @@ export function HabitsMetric() {
   const { isLoading, isError } = useHabitsQuery();
 
   if (isLoading) {
-    return <MetricRingSkeleton label="Hábitos" sublabel="feito(s)" />;
+    return <MetricRingSkeleton label="Habits" />;
   }
 
   if (isError) {
-    return <MetricRing label="Hábitos" sublabel="feito(s)" value={0} percentage={0} />;
+    return <MetricRing label="Habits" value={0} percentage={0} />;
   }
 
   return (
     <div data-testid="habits-metric">
-      <MetricRing
-        label="Hábitos"
-        sublabel="feito(s)"
-        value={completedHabitsCount}
-        color="#2CD758"
-        percentage={percentage}
-      />
+      <MetricRing label="Habits" value={completedHabitsCount} color="#2CD758" percentage={percentage} />
     </div>
   );
 }

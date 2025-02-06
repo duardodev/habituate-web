@@ -28,7 +28,7 @@ describe('HabitsMetric component', () => {
 
   it('should render metric with correct values when data is loaded successfully', () => {
     render(<HabitsMetric />);
-    expect(screen.getByText('Hábitos')).toBeInTheDocument();
+    expect(screen.getByText('Habits')).toBeInTheDocument();
     expect(screen.getByText('10')).toBeInTheDocument();
     expect(screen.getByText('50%')).toBeInTheDocument();
   });
@@ -39,7 +39,7 @@ describe('HabitsMetric component', () => {
     });
 
     render(<HabitsMetric />);
-    expect(screen.getByText('Hábitos')).toBeInTheDocument();
+    expect(screen.getByText('Habits')).toBeInTheDocument();
     expect(screen.queryByText('10')).not.toBeInTheDocument();
     expect(screen.queryByText('50%')).not.toBeInTheDocument();
   });
@@ -50,7 +50,7 @@ describe('HabitsMetric component', () => {
     });
 
     render(<HabitsMetric />);
-    expect(screen.getByText('Hábitos')).toBeInTheDocument();
+    expect(screen.getByText('Habits')).toBeInTheDocument();
     expect(screen.queryByText('0')).toBeInTheDocument();
     expect(screen.queryByText('0%')).toBeInTheDocument();
   });

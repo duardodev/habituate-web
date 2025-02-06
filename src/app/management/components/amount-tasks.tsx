@@ -15,7 +15,7 @@ export function AmountTasks() {
 
   return (
     <span className="text-xs font-medium px-2 py-1 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400">
-      {amountCompletedTasks}/{amountTasks} feitas
+      {amountCompletedTasks}/{amountTasks} done
     </span>
   );
 }

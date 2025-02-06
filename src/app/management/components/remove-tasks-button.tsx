@@ -28,7 +28,7 @@ export function RemoveTasksButton() {
         </TooltipTrigger>
 
         <TooltipContent>
-          <p>Deletar todas as tarefas</p>
+          <p>Remove all tasks</p>
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>

@@ -6,7 +6,7 @@ import { useTitleEditor } from '@/hooks/use-title-editor';
 interface TitleEditorProps {
   title: string;
   onTitleSave: (newTitle: string) => void;
-  titleWidth: number;
+  titleWidth?: number;
 }
 
 export function TitleEditor({ title, onTitleSave, titleWidth }: TitleEditorProps) {

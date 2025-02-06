@@ -18,7 +18,7 @@ export function TaskList() {
     <>
       {tasks && tasks.length === 0 ? (
         <p className="py-4 opacity-90 text-sm text-center">
-          Nenhuma tarefa para hoje. <br /> Que tal adicionar uma para começar?
+          No tasks for today. <br /> How about adding one to start?
         </p>
       ) : (
         tasks.map(task => {

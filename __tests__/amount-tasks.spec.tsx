@@ -30,7 +30,7 @@ describe('AmountTasks component', () => {
 
   it('should render the component with correct data information', () => {
     render(<AmountTasks />);
-    expect(screen.getByText('10/15 feitas')).toBeInTheDocument();
+    expect(screen.getByText('10/15 done')).toBeInTheDocument();
   });
 
   it('should render Skeleton when isLoading is true', () => {
