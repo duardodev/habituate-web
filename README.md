@@ -1,8 +1,8 @@
 # Habituate (WEB)
 
-Front-end da aplicação de monitoramento de hábitos desenvolvido com React, Next.js, React Query, Zustand, Clerk, e TailwindCSS.
+Front-End da aplicação de gerenciamento de hábitos desenvolvido com React, Next.js, React Query, Zustand, Clerk, e TailwindCSS.
 
-![Screenshot](https://imgur.com/OsOoNkD.png)
+![Screenshot](https://imgur.com/gFCVC34.png)
 
 ---
 
