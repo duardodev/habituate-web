@@ -2,7 +2,7 @@
 
 Front-End da aplicação de gerenciamento de hábitos desenvolvido com React, Next.js, React Query, Zustand, Clerk, e TailwindCSS.
 
-![Screenshot](https://imgur.com/gFCVC34.png)
+![Screenshot](https://imgur.com/ePM466e.png)
 
 ---
 
