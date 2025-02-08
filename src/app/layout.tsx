@@ -20,6 +20,14 @@ export const metadata: Metadata = {
       url: 'https://github.com/duardodev',
     },
   ],
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
+  },
   verification: {
     google: '6yibl8UOF5YJw9N5OtjVH5JWoqkkzkpKD9HDlU4lHOY',
   },
