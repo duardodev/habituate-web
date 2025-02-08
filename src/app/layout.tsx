@@ -20,6 +20,9 @@ export const metadata: Metadata = {
       url: 'https://github.com/duardodev',
     },
   ],
+  verification: {
+    google: '6yibl8UOF5YJw9N5OtjVH5JWoqkkzkpKD9HDlU4lHOY',
+  },
 };
 
 export default function RootLayout({
