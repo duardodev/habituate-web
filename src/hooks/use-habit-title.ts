@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { removeHabit, updateHabit } from '@/app/actions';
+import { deleteHabit, updateHabitTitle } from '@/app/actions';
 import { useQueryClient } from '@tanstack/react-query';
 import { useHabitContext } from './use-habit-context';
 
@@ -9,12 +9,12 @@ export function useHabitTitle() {
   const queryClient = useQueryClient();
 
   function handleHabitTitleUpdate(newTitle: string) {
-    updateHabit(id, newTitle);
+    updateHabitTitle(id, newTitle);
     setIsTitleEditing(false);
   }
 
   async function handleRemoveHabit() {
-    await removeHabit(id);
+    await deleteHabit(id);
     queryClient.invalidateQueries({ queryKey: ['get-habits'] });
   }
 

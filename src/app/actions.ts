@@ -5,7 +5,7 @@ import { api } from '@/functions/api';
 import { auth } from '@clerk/nextjs/server';
 
 export async function addHabit(formData: FormData) {
-  const { getToken } = auth();
+  const { getToken, userId } = auth();
   const title = formData.get('title') as string;
   const token = await getToken();
 
@@ -24,7 +24,7 @@ export async function addHabit(formData: FormData) {
     };
   }
 
-  revalidateTag('get-habits');
+  revalidateTag(`add-habit/${userId}`);
 }
 
 export async function toggleHabit(id: string, date: string) {
@@ -41,8 +41,8 @@ export async function toggleHabit(id: string, date: string) {
   });
 }
 
-export async function removeHabit(id: string) {
-  const { getToken } = auth();
+export async function deleteHabit(id: string) {
+  const { getToken, userId } = auth();
   const token = await getToken();
 
   await api(`/habits/${id}`, {
@@ -52,11 +52,11 @@ export async function removeHabit(id: string) {
     },
   });
 
-  revalidateTag('get-habits');
+  revalidateTag(`delete-habit/${userId}`);
 }
 
-export async function updateHabit(id: string, title: string) {
-  const { getToken } = auth();
+export async function updateHabitTitle(id: string, title: string) {
+  const { getToken, userId } = auth();
   const token = await getToken();
 
   await api(`/habits/${id}`, {
@@ -68,7 +68,7 @@ export async function updateHabit(id: string, title: string) {
     body: JSON.stringify({ title }),
   });
 
-  revalidateTag('get-habits');
+  revalidateTag(`update-habit-title/${userId}`);
 }
 
 export async function updateHabitEmoji(id: string, emoji: string) {

@@ -1,3 +1,5 @@
+import { auth } from '@clerk/nextjs/server';
+
 export interface HabitsResponse {
   habits: {
     id: string;
@@ -7,10 +9,15 @@ export interface HabitsResponse {
 }
 
 export async function useFetchHabits(token: string | null): Promise<HabitsResponse> {
+  function cacheTag(tag: string) {
+    const { userId } = auth();
+    return `${tag}-${userId}`;
+  }
+
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/habits`, {
     next: {
       revalidate: 3600,
-      tags: ['get-habits'],
+      tags: [cacheTag('add-habit'), cacheTag('delete-habit'), cacheTag('update-habit-title')],
     },
     headers: {
       Authorization: `Bearer ${token}`,
