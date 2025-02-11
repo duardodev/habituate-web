@@ -6,10 +6,10 @@ import { auth } from '@clerk/nextjs/server';
 
 export async function Habits() {
   try {
-    const { getToken } = auth();
+    const { getToken, userId } = auth();
     const token = await getToken();
 
-    const { habits } = await useFetchHabits(token);
+    const { habits } = await useFetchHabits(token, userId);
 
     if (habits.length === 0) {
       return (

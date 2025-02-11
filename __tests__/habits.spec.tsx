@@ -9,6 +9,7 @@ jest.mock('next/cache', () => ({
 jest.mock('@clerk/nextjs/server', () => ({
   auth: jest.fn(() => ({
     getToken: jest.fn(() => 'mock-token'),
+    userId: jest.fn(() => 'mock-user-id'),
   })),
 }));
 

@@ -1,5 +1,3 @@
-import { auth } from '@clerk/nextjs/server';
-
 export interface HabitsResponse {
   habits: {
     id: string;
@@ -8,9 +6,8 @@ export interface HabitsResponse {
   }[];
 }
 
-export async function useFetchHabits(token: string | null): Promise<HabitsResponse> {
+export async function useFetchHabits(token: string | null, userId?: string | null): Promise<HabitsResponse> {
   function cacheTag(tag: string) {
-    const { userId } = auth();
     return `${tag}-${userId}`;
   }
 
