@@ -8,7 +8,7 @@ export interface HabitsResponse {
 
 export async function useFetchHabits(token: string | null, userId?: string | null): Promise<HabitsResponse> {
   function cacheTag(tag: string) {
-    return `${tag}-${userId}`;
+    return `${tag}/${userId}`;
   }
 
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/habits`, {

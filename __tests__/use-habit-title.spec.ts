@@ -1,4 +1,4 @@
-import { deleteHabit, updateHabitTitle } from '@/app/actions';
+import { deleteHabit, updateHabitTitle } from '@/app/actions/habit-actions';
 import { useHabitTitle } from '@/hooks/use-habit-title';
 import { useQueryClient } from '@tanstack/react-query';
 import { renderHook } from '@testing-library/react';

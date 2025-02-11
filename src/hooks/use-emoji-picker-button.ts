@@ -1,14 +1,22 @@
 import { useState } from 'react';
-import { updateHabitEmoji } from '@/app/actions';
+import { updateHabitEmoji } from '@/app/actions/habit-actions';
 import { useHabitContext } from './use-habit-context';
+import { toast } from 'sonner';
 
 export function useEmojiPickerButton() {
   const { id, emoji } = useHabitContext();
   const [emojiUrl, setEmojiUrl] = useState(emoji);
 
-  function handleEmojiUpdate(newEmoji: string) {
+  async function handleEmojiUpdate(newEmoji: string) {
     setEmojiUrl(newEmoji);
-    updateHabitEmoji(id, newEmoji);
+
+    const response = await updateHabitEmoji(id, newEmoji);
+
+    if (!response.success) {
+      setEmojiUrl(emoji);
+      toast.error(response.error);
+      return;
+    }
   }
 
   return {

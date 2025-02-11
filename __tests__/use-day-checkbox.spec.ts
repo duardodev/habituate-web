@@ -1,4 +1,4 @@
-import { toggleHabit } from '@/app/actions';
+import { toggleHabit } from '@/app/actions/habit-actions';
 import { useDayCheckbox } from '@/hooks/use-day-checkbox';
 import { useHabitContext } from '@/hooks/use-habit-context';
 import { useCompletedDaysStore } from '@/store/completed-days-store';
@@ -9,7 +9,7 @@ import utc from 'dayjs/plugin/utc';
 
 dayjs.extend(utc);
 
-jest.mock('../src/app/actions', () => ({
+jest.mock('../src/app/actions/habit-actions', () => ({
   toggleHabit: jest.fn(),
 }));
 
