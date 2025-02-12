@@ -5,12 +5,16 @@ import { useHabitContext } from './use-habit-context';
 import { toast } from 'sonner';
 
 export function useHabitTitle() {
-  const { id } = useHabitContext();
+  const { id, title } = useHabitContext();
   const [isTitleEditing, setIsTitleEditing] = useState(false);
   const queryClient = useQueryClient();
 
   async function handleHabitTitleUpdate(newTitle: string) {
     setIsTitleEditing(false);
+
+    if (newTitle === title) {
+      return;
+    }
 
     const response = await updateHabitTitle(id, newTitle);
 
