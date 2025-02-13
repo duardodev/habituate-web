@@ -5,6 +5,8 @@ import { HabitSkeleton } from './components/habit-skeleton';
 import { Tasks } from './components/tasks';
 import { Separator } from '@/components/ui/separator';
 import { DailyProgress } from './components/daily-progress';
+import { ErrorBoundary } from 'react-error-boundary';
+import { ErrorFallback } from './components/error-fallback';
 
 export default function ManagementPage() {
   return (
@@ -17,9 +19,15 @@ export default function ManagementPage() {
 
               <Separator className="mt-4" />
 
-              <Suspense fallback={<HabitSkeleton />}>
-                <Habits />
-              </Suspense>
+              <ErrorBoundary
+                fallback={
+                  <ErrorFallback message="Failed to load habits data. Please wait a moment and try again by reloading the page." />
+                }
+              >
+                <Suspense fallback={<HabitSkeleton />}>
+                  <Habits />
+                </Suspense>
+              </ErrorBoundary>
             </div>
           </div>
         </div>
