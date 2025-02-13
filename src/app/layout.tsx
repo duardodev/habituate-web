@@ -10,16 +10,29 @@ import './globals.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://habituate-duardodev.vercel.app'),
-  title: 'Habituate | Master your habits, transform your life.',
+  title: 'Habituate - Master your habits, transform your life.',
+  category: 'productivity',
   description:
     'Habituate helps you build, manage, and maintain positive habits. Start your journey to a better you today!',
   keywords: 'habituate, habits, habit monitoring, management, productivity, good habits, personal development, tasks',
   authors: [
     {
       name: 'Deivit Eduardo',
-      url: 'https://github.com/duardodev',
+      url: 'https://duardodev.vercel.app',
     },
   ],
+  creator: 'Deivit Eduardo',
+  openGraph: {
+    title: 'Habituate - Master your habits, transform your life.',
+    description:
+      'Habituate helps you build, manage, and maintain positive habits. Start your journey to a better you today!',
+    type: 'website',
+    url: 'https://habituate-duardodev.vercel.app',
+    images: {
+      alt: 'Habituate Image',
+      url: 'https://opengraph.b-cdn.net/production/images/0d0befe0-3b8f-4c0f-be7f-449107e39174.png?token=bYWl8Lf3iUnOtBp5fnQiFsNiP9JmigUwZc5QrK9SvL0&height=725&width=1154&expires=33275464716',
+    },
+  },
   robots: {
     index: true,
     follow: true,
