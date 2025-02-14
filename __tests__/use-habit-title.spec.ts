@@ -4,7 +4,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import { renderHook } from '@testing-library/react';
 import { act } from 'react';
 
-jest.mock('@/app/actions', () => ({
+jest.mock('@/app/actions/habit-actions', () => ({
   deleteHabit: jest.fn(),
   updateHabitTitle: jest.fn(),
 }));
@@ -16,6 +16,7 @@ jest.mock('@tanstack/react-query', () => ({
 jest.mock('@/hooks/use-habit-context', () => ({
   useHabitContext: jest.fn(() => ({
     id: 'habit-1',
+    title: 'Old title',
   })),
 }));
 
@@ -23,7 +24,8 @@ describe('useHabitTitle hook', () => {
   let queryClient: { invalidateQueries: jest.Mock };
 
   beforeEach(() => {
-    jest.clearAllMocks(), (queryClient = { invalidateQueries: jest.fn() });
+    jest.clearAllMocks();
+    queryClient = { invalidateQueries: jest.fn() };
     (useQueryClient as jest.Mock).mockReturnValue(queryClient);
   });
 
@@ -44,6 +46,8 @@ describe('useHabitTitle hook', () => {
   ('');
 
   it('should call updateHabitTitle and set isTitleEditing to false when handleHabitTitleUpdate is called', () => {
+    (updateHabitTitle as jest.Mock).mockResolvedValue({ success: true });
+
     const { result } = renderHook(() => useHabitTitle());
 
     act(() => {
@@ -54,7 +58,19 @@ describe('useHabitTitle hook', () => {
     expect(result.current.isTitleEditing).toBe(false);
   });
 
+  it('should not call updateHabitTitle if new title is the same as the current title', async () => {
+    const { result } = renderHook(() => useHabitTitle());
+
+    act(() => {
+      result.current.handleHabitTitleUpdate('Old title');
+    });
+
+    expect(updateHabitTitle).not.toHaveBeenCalled();
+  });
+
   it('should call deleteHabit and invalidate queries when handleRemoveHabit is called', async () => {
+    (deleteHabit as jest.Mock).mockResolvedValue({ success: true });
+
     const { result } = renderHook(() => useHabitTitle());
 
     await act(async () => {
