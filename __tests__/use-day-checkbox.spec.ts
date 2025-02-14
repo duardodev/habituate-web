@@ -72,6 +72,8 @@ describe('useDayCheckbox hook', () => {
   });
 
   it('should handle habit toggle correctly', async () => {
+    (toggleHabit as jest.Mock).mockResolvedValue({ success: true });
+
     const dateString = today.startOf('day').utc().toISOString();
     const { result } = renderHook(() => useDayCheckbox({ currentWeekDay: today }));
 
@@ -84,7 +86,7 @@ describe('useDayCheckbox hook', () => {
   });
 
   it('should revert completed day on toggle error', async () => {
-    (toggleHabit as jest.Mock).mockRejectedValueOnce(new Error('Failed to toggle'));
+    (toggleHabit as jest.Mock).mockResolvedValue({ success: false });
 
     const dateString = today.startOf('day').utc().toISOString();
     const { result } = renderHook(() => useDayCheckbox({ currentWeekDay: today }));
