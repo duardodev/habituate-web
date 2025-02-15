@@ -14,13 +14,13 @@ export function EmojiPickerButton() {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button variant="ghost" size="icon" className="h-[26px] w-[26px]" aria-label="Select emoji">
+        <Button variant="ghost" size="icon" className="h-[26px] w-[26px]" aria-label="Open emoji picker">
           <Image src={emojiUrl} quality={100} height={20} width={20} alt="Habit emoji" className="h-5 w-5" priority />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-0 h-0 p-0">
         <EmojiPicker
-          aria-label="Emoji Picker"
+          aria-label="Emoji picker"
           theme={resolvedTheme as Theme}
           lazyLoadEmojis={true}
           autoFocusSearch={false}
