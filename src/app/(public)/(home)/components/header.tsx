@@ -4,7 +4,7 @@ import { ThemeToggle } from '@/components/theme-toggle';
 import { UserProfileInfo } from '@/components/user-profile-info';
 import { currentUser } from '@clerk/nextjs/server';
 
-const Logo = dynamic(() => import('../../../components/logo').then(mod => mod.Logo), {
+const Logo = dynamic(() => import('../../../../components/logo').then(mod => mod.Logo), {
   ssr: false,
 });
 

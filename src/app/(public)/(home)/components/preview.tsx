@@ -1,8 +1,8 @@
 'use client';
 
 import Image from 'next/image';
-import previewDark from '../../../../public/preview-dark.png';
-import previewLight from '../../../../public/preview-light.png';
+import previewDark from '../../../../../public/preview-dark.png';
+import previewLight from '../../../../../public/preview-light.png';
 import { useTheme } from 'next-themes';
 
 export function Preview() {

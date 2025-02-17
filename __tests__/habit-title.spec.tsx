@@ -1,4 +1,4 @@
-import { HabitTitle } from '@/app/management/components/habit-title';
+import { HabitTitle } from '@/app/(private)/management/components/habit-title';
 import { useHabitContext } from '@/hooks/use-habit-context';
 import { useHabitTitle } from '@/hooks/use-habit-title';
 import { useTitleWidth } from '@/hooks/use-title-width';

@@ -1,21 +1,21 @@
 import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
-import { Habit } from '@/app/management/components/habit';
+import { Habit } from '@/app/(private)/management/components/habit';
 import { useHabit } from '@/hooks/use-habit';
 
 jest.mock('../src/hooks/use-habit', () => ({
   useHabit: jest.fn(),
 }));
 
-jest.mock('../src/app/management/components/emoji-picker-button', () => ({
+jest.mock('../src/app/(private)/management/components/emoji-picker-button', () => ({
   EmojiPickerButton: () => <div data-testid="emoji-picker">Emoji Picker</div>,
 }));
 
-jest.mock('../src/app/management/components/habit-title', () => ({
+jest.mock('../src/app/(private)/management/components/habit-title', () => ({
   HabitTitle: () => <div data-testid="habit-title">Habit Title</div>,
 }));
 
-jest.mock('../src/app/management/components/checkboxes', () => ({
+jest.mock('../src/app/(private)/management/components/checkboxes', () => ({
   Checkboxes: ({ datesTheHabitWasCompleted }: { datesTheHabitWasCompleted: string[] }) => (
     <div data-testid="checkboxes">Checkboxes for dates: {JSON.stringify(datesTheHabitWasCompleted)}</div>
   ),

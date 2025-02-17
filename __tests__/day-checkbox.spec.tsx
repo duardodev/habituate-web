@@ -1,6 +1,6 @@
 import userEvent from '@testing-library/user-event';
 import { fireEvent, render } from '@testing-library/react';
-import { DayCheckbox } from '@/app/management/components/day-checkbox';
+import { DayCheckbox } from '@/app/(private)/management/components/day-checkbox';
 import { useDayCheckbox } from '@/hooks/use-day-checkbox';
 import { useHabitContext } from '@/hooks/use-habit-context';
 

@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic';
 import { AddHabitDialog } from './add-habit-dialog';
 import { UserProfileInfo } from '@/components/user-profile-info';
 
-const Logo = dynamic(() => import('../../../components/logo').then(mod => mod.Logo), {
+const Logo = dynamic(() => import('../../../../components/logo').then(mod => mod.Logo), {
   ssr: false,
 });
 

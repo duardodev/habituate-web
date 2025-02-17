@@ -1,7 +1,7 @@
 import userEvent from '@testing-library/user-event';
 import { render, screen } from '@testing-library/react';
 import { useWeekNavigation } from '@/hooks/use-week-navigation';
-import { WeekNavigation } from '../src/app/management/components/week-navigation';
+import { WeekNavigation } from '../src/app/(private)/management/components/week-navigation';
 
 jest.mock('../src/hooks/use-week-navigation', () => ({
   useWeekNavigation: jest.fn(),

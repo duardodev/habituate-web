@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { WeekDays } from '@/app/management/components/week-days';
+import { WeekDays } from '@/app/(private)/management/components/week-days';
 import { useCurrentWeekDays } from '@/hooks/use-current-week-days';
 import dayjs from 'dayjs';
 

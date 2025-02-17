@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { Header } from './components/header';
 
-export default function HabitsLayout({ children }: { children: ReactNode }) {
+export default function ManagementLayout({ children }: { children: ReactNode }) {
   return (
     <div className="min-h-screen">
       <Header />

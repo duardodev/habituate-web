@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { ConfirmButton } from '@/app/management/components/confirm-button';
+import { ConfirmButton } from '@/app/(private)/management/components/confirm-button';
 
 jest.mock('react-dom', () => ({
   ...jest.requireActual('react-dom'),

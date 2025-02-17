@@ -1,6 +1,6 @@
 import userEvent from '@testing-library/user-event';
 import { render, screen } from '@testing-library/react';
-import { TaskToggleButton } from '@/app/management/components/task-toggle-button';
+import { TaskToggleButton } from '@/app/(private)/management/components/task-toggle-button';
 import { useTaskContext } from '@/hooks/use-task-context';
 import { useTaskToggleButton } from '@/hooks/use-task-toggle-button';
 

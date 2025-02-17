@@ -1,4 +1,4 @@
-import { TaskPriority } from '@/app/management/components/task-priority';
+import { TaskPriority } from '@/app/(private)/management/components/task-priority';
 import { useTaskContext } from '@/hooks/use-task-context';
 import { render, screen } from '@testing-library/react';
 

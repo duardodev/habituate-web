@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { Habits } from '@/app/management/components/habits';
+import { Habits } from '@/app/(private)/management/components/habits';
 import { useFetchHabits } from '@/hooks/use-fetch-habits';
 
 jest.mock('next/cache', () => ({
@@ -13,7 +13,7 @@ jest.mock('@clerk/nextjs/server', () => ({
   })),
 }));
 
-jest.mock('../src/app/management/components/habit', () => ({
+jest.mock('../src/app/(private)/management/components/habit', () => ({
   Habit: ({ id }: { id: string }) => <div data-testid={`habit-${id}`}>Habit {id}</div>,
 }));
 

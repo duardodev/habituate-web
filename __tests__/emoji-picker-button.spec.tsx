@@ -1,6 +1,6 @@
 import userEvent from '@testing-library/user-event';
 import { render } from '@testing-library/react';
-import { EmojiPickerButton } from '@/app/management/components/emoji-picker-button';
+import { EmojiPickerButton } from '@/app/(private)/management/components/emoji-picker-button';
 import { useEmojiPickerButton } from '@/hooks/use-emoji-picker-button';
 import { screen, waitFor } from '@testing-library/dom';
 import { useTheme } from 'next-themes';

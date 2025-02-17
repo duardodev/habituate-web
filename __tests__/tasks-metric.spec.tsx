@@ -1,4 +1,4 @@
-import { TasksMetric } from '@/app/management/components/tasks-metric';
+import { TasksMetric } from '@/app/(private)/management/components/tasks-metric';
 import { useLoading } from '@/hooks/use-loading';
 import { useTasksMetric } from '@/hooks/use-tasks-metric';
 import { render, screen } from '@testing-library/react';

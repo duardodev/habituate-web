@@ -1,4 +1,4 @@
-import { RemoveTasksButton } from '@/app/management/components/remove-tasks-button';
+import { RemoveTasksButton } from '@/app/(private)/management/components/remove-tasks-button';
 import { useTasksStore } from '@/store/tasks-store';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';

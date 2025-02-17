@@ -1,4 +1,4 @@
-import { TasksDateInfo } from '@/app/management/components/tasks-date-info';
+import { TasksDateInfo } from '@/app/(private)/management/components/tasks-date-info';
 import { useDateStore } from '@/store/date-store';
 import { render, screen } from '@testing-library/react';
 import dayjs from 'dayjs';

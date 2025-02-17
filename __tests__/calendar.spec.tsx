@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { Calendar } from '@/app/management/components/calendar';
+import { Calendar } from '@/app/(private)/management/components/calendar';
 import userEvent from '@testing-library/user-event';
 import dayjs from 'dayjs';
 

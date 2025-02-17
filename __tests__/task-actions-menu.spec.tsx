@@ -1,4 +1,4 @@
-import { TaskActionsMenu } from '@/app/management/components/task-actions-menu';
+import { TaskActionsMenu } from '@/app/(private)/management/components/task-actions-menu';
 import { useActiveTaskEditingContext } from '@/hooks/use-active-task-editing-context';
 import { useTaskActionsMenu } from '@/hooks/use-task-actions-menu';
 import { useTasksStore } from '@/store/tasks-store';

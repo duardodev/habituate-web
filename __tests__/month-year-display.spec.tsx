@@ -1,4 +1,4 @@
-import { MonthYearDisplay } from '@/app/management/components/month-year-display';
+import { MonthYearDisplay } from '@/app/(private)/management/components/month-year-display';
 import { monthsNames } from '@/lib/data';
 import { useDateStore } from '@/store/date-store';
 import { render, screen } from '@testing-library/react';
