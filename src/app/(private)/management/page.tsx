@@ -10,7 +10,7 @@ import { ErrorFallback } from './components/error-fallback';
 
 export default function ManagementPage() {
   return (
-    <div className="flex flex-col overflow-visible min-h-screen">
+    <div className="flex flex-col overflow-visible">
       <div className="mt-9 w-full max-w-[828px] mx-auto">
         <div className="overflow-x-hidden rounded-2xl border border-border bg-white shadow-lg dark:bg-background">
           <div className="overflow-x-auto p-4">

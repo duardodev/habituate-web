@@ -4,10 +4,10 @@ import { Header } from './components/header';
 
 export default function ManagementLayout({ children }: { children: ReactNode }) {
   return (
-    <div className="min-h-screen">
+    <>
       <Header />
       <ThemeToggle floating={true} />
       <main className="h-full w-full px-4 overflow-x-hidden">{children}</main>
-    </div>
+    </>
   );
 }
