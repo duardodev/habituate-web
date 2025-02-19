@@ -1,8 +1,10 @@
 import dynamic from 'next/dynamic';
 import { Buttons } from './components/buttons';
+import { PreviewSkeleton } from './components/preview-skeleton';
 
 const Preview = dynamic(() => import('./components/preview').then(mod => mod.Preview), {
   ssr: false,
+  loading: () => <PreviewSkeleton />,
 });
 
 export default function HomePage() {

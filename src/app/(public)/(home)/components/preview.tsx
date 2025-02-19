@@ -23,6 +23,8 @@ export function Preview() {
       <Image
         src={previewDark}
         quality={100}
+        width={896}
+        height={558.16}
         alt="Dark theme preview"
         className={`border border-border shadow-2xl dark:shadow-none rounded-2xl transition-opacity duration-300 ${
           resolvedTheme === 'light' ? 'opacity-0 hidden' : 'opacity-100'
