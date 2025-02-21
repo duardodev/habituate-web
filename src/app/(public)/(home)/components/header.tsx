@@ -12,7 +12,7 @@ export async function Header() {
   const user = await currentUser();
 
   return (
-    <header className="max-w-[1024px] w-full px-4 pt-6 mx-auto">
+    <header className="max-w-[860px] w-full px-4 pt-6 mx-auto">
       <div className="flex items-center justify-between">
         <Link href="/">
           <Logo />
