@@ -54,7 +54,7 @@ describe('AddTaskDialog component', () => {
     render(<AddTaskDialog />);
     await user.click(screen.getByRole('button', { name: 'Add new task' }));
 
-    expect(screen.getByPlaceholderText('Pay electricity bill, etc...')).toBeInTheDocument();
+    expect(screen.getByPlaceholderText('Pay electricity bill, buy groceries...')).toBeInTheDocument();
     expect(screen.getByLabelText('Select priority')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Confirm' })).toBeInTheDocument();
   });
@@ -63,7 +63,7 @@ describe('AddTaskDialog component', () => {
     render(<AddTaskDialog />);
     await user.click(screen.getByRole('button', { name: 'Add new task' }));
 
-    const titleInput = screen.getByPlaceholderText('Pay electricity bill, etc...');
+    const titleInput = screen.getByPlaceholderText('Pay electricity bill, buy groceries...');
     await user.type(titleInput, 'New task');
 
     const submitButton = screen.getByRole('button', { name: 'Confirm' });

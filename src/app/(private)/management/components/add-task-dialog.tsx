@@ -43,7 +43,7 @@ export function AddTaskDialog() {
           <div className="flex flex-col sm:flex-row justify-between gap-4">
             <Input
               name="title"
-              placeholder="Pay electricity bill, etc..."
+              placeholder="Pay electricity bill, buy groceries..."
               className="placeholder:text-foreground/70 w-full sm:w-3/5"
               autoComplete="off"
             />
