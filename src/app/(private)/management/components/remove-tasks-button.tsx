@@ -17,6 +17,7 @@ export function RemoveTasksButton() {
             onClick={removeAllTasks}
             variant="ghost"
             type="submit"
+            aria-label="Remove all tasks"
             disabled={amountTasks === 0}
             className="flex justify-start items-center gap-2 px-3 py-2 text-sm text-zinc-500 dark:text-zinc-400 
             hover:text-zinc-600 dark:hover:text-zinc-300 

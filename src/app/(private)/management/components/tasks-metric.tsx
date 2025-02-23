@@ -13,5 +13,9 @@ export function TasksMetric() {
     return <MetricRingSkeleton label="Tasks" />;
   }
 
-  return <MetricRing label="Tasks" value={completedTasksCount} color="#007AFF" percentage={percentage} />;
+  return (
+    <div data-testid="tasks-metric">
+      <MetricRing label="Tasks" value={completedTasksCount} color="#007AFF" percentage={percentage} />;
+    </div>
+  );
 }

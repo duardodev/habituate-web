@@ -25,7 +25,7 @@ export function TaskActionsMenu() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <button type="button" aria-label="Open actions menu">
+        <button type="button" aria-label="Open the task actions menu">
           <MoreHorizontal className="w-5 h-5 text-zinc-400" />
         </button>
       </DropdownMenuTrigger>

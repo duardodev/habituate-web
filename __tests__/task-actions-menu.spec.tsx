@@ -50,21 +50,21 @@ describe('TaskActionsMenu component', () => {
 
   it('should render UserActionsMenu when click trigger button is clicked', async () => {
     render(<TaskActionsMenu />);
-    await userEvent.click(screen.getByRole('button', { name: 'Open actions menu' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Open the task actions menu' }));
     expect(screen.getByText('Rename')).toBeInTheDocument();
     expect(screen.getByText('Remove')).toBeInTheDocument();
   });
 
   it('should call toggleEditingTask when is rename option is clicked', async () => {
     render(<TaskActionsMenu />);
-    await userEvent.click(screen.getByRole('button', { name: 'Open actions menu' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Open the task actions menu' }));
     await userEvent.click(screen.getByText('Rename'));
     expect(mockHandleToggleTaskEditing).toHaveBeenCalledWith('task-1');
   });
 
   it('should call removeTask when is remove option is clicked', async () => {
     render(<TaskActionsMenu />);
-    await userEvent.click(screen.getByRole('button', { name: 'Open actions menu' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Open the task actions menu' }));
     await userEvent.click(screen.getByText('Remove'));
     expect(mockRemoveTask).toHaveBeenCalledWith('task-1');
   });
