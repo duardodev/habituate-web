@@ -5,7 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: [],
+      disallow: ['/management/', '/auth/sign-in/', '/auth/sign-up/'],
     },
     sitemap: 'https://habituate-duardodev.vercel.app/sitemap.xml',
   };
