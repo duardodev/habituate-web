@@ -1,4 +1,4 @@
-import { HabitsResponse } from '@/hooks/use-fetch-habits';
+import { HabitsResponse } from '../get-habits';
 import { http, HttpResponse } from 'msw';
 
 export const getHabitsMock = http.get<never, HabitsResponse>('http://localhost:3333/habits', async () => {
