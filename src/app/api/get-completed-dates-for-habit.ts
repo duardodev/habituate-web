@@ -1,9 +1,4 @@
 import { api } from '@/functions/api';
-import { auth } from '@clerk/nextjs/server';
-
-interface useHabitProps {
-  id: string;
-}
 
 interface Day {
   id: string;
@@ -14,10 +9,7 @@ interface DatesTheHabitWasCompletedData {
   datesTheHabitWasCompleted: Day[];
 }
 
-export async function useHabit({ id }: useHabitProps): Promise<string[]> {
-  const { getToken } = auth();
-  const token = await getToken();
-
+export async function getCompletedDatesForHabit(id: string, token: string | null) {
   const response = await api(`/completed-habits/${id}/days`, {
     next: {
       revalidate: 3600,

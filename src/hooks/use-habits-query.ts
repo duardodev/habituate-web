@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import { useFetchHabits } from './use-fetch-habits';
 import { useAuth } from '@clerk/nextjs';
+import { getHabits } from '@/app/api/get-habits';
 
 export function useHabitsQuery() {
   const { getToken } = useAuth();
@@ -9,7 +9,7 @@ export function useHabitsQuery() {
     queryKey: ['get-habits'],
     queryFn: async () => {
       const token = await getToken();
-      return await useFetchHabits(token);
+      return await getHabits(token);
     },
   });
 

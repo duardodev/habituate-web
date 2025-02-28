@@ -1,8 +1,11 @@
 import dynamic from 'next/dynamic';
 import { Checkboxes } from './checkboxes';
 import { HabitTitle } from './habit-title';
-import { useHabit } from '@/hooks/use-habit';
 import { Skeleton } from '@/components/ui/skeleton';
+import { dehydrate, HydrationBoundary } from '@tanstack/react-query';
+import { getCompletedDatesForHabit } from '@/app/api/get-completed-dates-for-habit';
+import { auth } from '@clerk/nextjs/server';
+import { useGetQueryClient } from '@/hooks/use-get-query-client';
 
 const EmojiPickerButton = dynamic(() => import('./emoji-picker-button').then(mod => mod.EmojiPickerButton), {
   loading: () => <Skeleton className="h-[26px] w-[26px]" />,
@@ -14,15 +17,24 @@ interface HabitProps {
 }
 
 export async function Habit({ id }: HabitProps) {
-  const datesTheHabitWasCompleted = await useHabit({ id });
+  const { getToken } = auth();
+  const queryClient = useGetQueryClient();
+  const token = await getToken();
+
+  await queryClient.prefetchQuery({
+    queryKey: ['completed-dates-for-habit', id],
+    queryFn: () => getCompletedDatesForHabit(id, token),
+  });
 
   return (
     <li className="flex items-center justify-between gap-10">
-      <div className="flex items-center gap-2">
-        <EmojiPickerButton />
-        <HabitTitle />
-      </div>
-      <Checkboxes datesTheHabitWasCompleted={datesTheHabitWasCompleted} />
+      <HydrationBoundary state={dehydrate(queryClient)}>
+        <div className="flex items-center gap-2">
+          <EmojiPickerButton />
+          <HabitTitle />
+        </div>
+        <Checkboxes />
+      </HydrationBoundary>
     </li>
   );
 }

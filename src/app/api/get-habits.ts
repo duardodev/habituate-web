@@ -6,7 +6,7 @@ export interface HabitsResponse {
   }[];
 }
 
-export async function useFetchHabits(token: string | null, userId?: string | null): Promise<HabitsResponse> {
+export async function getHabits(token: string | null, userId?: string | null): Promise<HabitsResponse> {
   function cacheTag(tag: string) {
     return `${tag}/${userId}`;
   }

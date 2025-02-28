@@ -1,13 +1,13 @@
+import { getHabits } from '@/app/api/get-habits';
 import { Habit } from './habit';
 import { HabitProvider } from '@/contexts/habit-context';
-import { useFetchHabits } from '@/hooks/use-fetch-habits';
 import { auth } from '@clerk/nextjs/server';
 
 export async function Habits() {
   const { getToken, userId } = auth();
   const token = await getToken();
 
-  const { habits } = await useFetchHabits(token, userId);
+  const { habits } = await getHabits(token, userId);
 
   if (habits.length === 0) {
     return (
