@@ -15,7 +15,7 @@ export function TasksMetric() {
 
   return (
     <div data-testid="tasks-metric">
-      <MetricRing label="Tasks" value={completedTasksCount} color="#007AFF" percentage={percentage} />;
+      <MetricRing label="Tasks" value={completedTasksCount} color="#007AFF" percentage={percentage} />
     </div>
   );
 }
