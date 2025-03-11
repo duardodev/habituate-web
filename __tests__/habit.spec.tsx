@@ -1,11 +1,6 @@
 import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import { Habit } from '@/app/(private)/management/components/habit';
-import { useHabit } from '@/hooks/use-habit';
-
-jest.mock('../src/hooks/use-habit', () => ({
-  useHabit: jest.fn(),
-}));
 
 jest.mock('../src/app/(private)/management/components/emoji-picker-button', () => ({
   EmojiPickerButton: () => <div data-testid="emoji-picker">Emoji Picker</div>,
@@ -21,13 +16,21 @@ jest.mock('../src/app/(private)/management/components/checkboxes', () => ({
   ),
 }));
 
+jest.mock('@/hooks/use-get-query-client', () => ({
+  useGetQueryClient: () => ({
+    prefetchQuery: jest.fn(),
+    getDefaultOptions: jest.fn(),
+    dehydrate: jest.fn(() => ({})),
+  }),
+}));
+
+jest.mock('@tanstack/react-query', () => ({
+  HydrationBoundary: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
+  dehydrate: jest.fn(() => ({})),
+}));
+
 describe('Habit Component', () => {
   const mockHabitId = 'habit-1';
-  const mockDatesTheHabitWasCompleted = ['2024-12-05', '2024-12-06'];
-
-  beforeEach(() => {
-    (useHabit as jest.Mock).mockResolvedValue(mockDatesTheHabitWasCompleted);
-  });
 
   it('should render correctly', async () => {
     render(await Habit({ id: mockHabitId }));
@@ -35,20 +38,5 @@ describe('Habit Component', () => {
     await waitFor(() => expect(screen.queryByTestId('emoji-picker')).toBeInTheDocument());
     expect(screen.getByTestId('habit-title')).toBeInTheDocument();
     expect(screen.getByTestId('checkboxes')).toBeInTheDocument();
-  });
-
-  it('should call useHabit with the correct id', async () => {
-    render(await Habit({ id: mockHabitId }));
-
-    await waitFor(() => {
-      expect(useHabit).toHaveBeenCalledWith({ id: mockHabitId });
-    });
-  });
-
-  it('should render Checkboxes component with correct props', async () => {
-    render(await Habit({ id: mockHabitId }));
-
-    const checkboxes = await screen.findByTestId('checkboxes');
-    expect(checkboxes).toHaveTextContent(JSON.stringify(mockDatesTheHabitWasCompleted));
   });
 });

@@ -4,8 +4,8 @@ import { HabitTitle } from './habit-title';
 import { Skeleton } from '@/components/ui/skeleton';
 import { dehydrate, HydrationBoundary } from '@tanstack/react-query';
 import { getCompletedDatesForHabit } from '@/app/api/get-completed-dates-for-habit';
-import { auth } from '@clerk/nextjs/server';
 import { useGetQueryClient } from '@/hooks/use-get-query-client';
+import { auth } from '@clerk/nextjs/server';
 
 const EmojiPickerButton = dynamic(() => import('./emoji-picker-button').then(mod => mod.EmojiPickerButton), {
   loading: () => <Skeleton className="h-[26px] w-[26px]" />,
