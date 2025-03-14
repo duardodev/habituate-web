@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { Habits } from '@/app/(private)/management/components/habits';
-import { useFetchHabits } from '@/hooks/use-fetch-habits';
+import { getHabits } from '@/app/api/get-habits';
 
 jest.mock('next/cache', () => ({
   unstable_cache: (fn: Function) => fn,
@@ -17,8 +17,8 @@ jest.mock('../src/app/(private)/management/components/habit', () => ({
   Habit: ({ id }: { id: string }) => <div data-testid={`habit-${id}`}>Habit {id}</div>,
 }));
 
-jest.mock('@/hooks/use-fetch-habits', () => ({
-  useFetchHabits: jest.fn(),
+jest.mock('@/app/api/get-habits', () => ({
+  getHabits: jest.fn(),
 }));
 
 describe('Habits components', () => {
@@ -34,7 +34,7 @@ describe('Habits components', () => {
       ],
     };
 
-    (useFetchHabits as jest.Mock).mockResolvedValue(mockHabits);
+    (getHabits as jest.Mock).mockResolvedValue(mockHabits);
 
     render(await Habits());
 
@@ -43,7 +43,7 @@ describe('Habits components', () => {
   });
 
   it('should render message when no habits are found', async () => {
-    (useFetchHabits as jest.Mock).mockResolvedValue({ habits: [] });
+    (getHabits as jest.Mock).mockResolvedValue({ habits: [] });
 
     render(await Habits());
 
