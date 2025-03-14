@@ -1,16 +1,12 @@
 import { useHabitsMetric } from '@/hooks/use-habits-metric';
 import { useHabitsQuery } from '@/hooks/use-habits-query';
-import { useCompletedDaysStore } from '@/store/completed-days-store';
 import { useDateStore } from '@/store/date-store';
+import { useQueries } from '@tanstack/react-query';
 import { renderHook, waitFor } from '@testing-library/react';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 
 dayjs.extend(utc);
-
-jest.mock('@/store/completed-days-store', () => ({
-  useCompletedDaysStore: jest.fn(),
-}));
 
 jest.mock('@/hooks/use-habits-query', () => ({
   useHabitsQuery: jest.fn(),
@@ -20,16 +16,16 @@ jest.mock('@/store/date-store', () => ({
   useDateStore: jest.fn(),
 }));
 
+jest.mock('@tanstack/react-query', () => ({
+  useQueries: jest.fn(() => []),
+}));
+
 describe('useHabitsMetric hook', () => {
   const mockTodayDate = '2025-01-05T00:00:00.000Z';
-  const mockToday = dayjs('2025-01-05').utc();
+  const mockToday = dayjs('2025-01-05').startOf('day').utc();
 
   beforeEach(() => {
     jest.clearAllMocks();
-
-    (useCompletedDaysStore as unknown as jest.Mock).mockReturnValue({
-      completedDays: {},
-    });
 
     (useHabitsQuery as jest.Mock).mockReturnValue({
       data: {
@@ -37,21 +33,19 @@ describe('useHabitsMetric hook', () => {
       },
     });
 
+    (useQueries as jest.Mock).mockReturnValue([]);
+
     (useDateStore as unknown as jest.Mock).mockReturnValue({
       today: mockToday,
     });
   });
 
   it('should calculate all completed habits', async () => {
-    const mockCompletedDays = {
-      'habit-1': [mockTodayDate],
-      'habit-2': [mockTodayDate],
-      'habit-3': [mockTodayDate],
-    };
-
-    (useCompletedDaysStore as unknown as jest.Mock).mockReturnValue({
-      completedDays: mockCompletedDays,
-    });
+    (useQueries as jest.Mock).mockReturnValue([
+      { data: [mockTodayDate] },
+      { data: [mockTodayDate] },
+      { data: [mockTodayDate] },
+    ]);
 
     const { result } = renderHook(() => useHabitsMetric());
 
@@ -64,15 +58,11 @@ describe('useHabitsMetric hook', () => {
   });
 
   it('should calculate correctly when all tasks completed', async () => {
-    const mockCompletedDays = {
-      'habit-1': [mockTodayDate],
-      'habit-2': [mockTodayDate],
-      'habit-3': ['2025-01-04T00:00:00.000Z'],
-    };
-
-    (useCompletedDaysStore as unknown as jest.Mock).mockReturnValue({
-      completedDays: mockCompletedDays,
-    });
+    (useQueries as jest.Mock).mockReturnValue([
+      { data: [mockTodayDate] },
+      { data: [mockTodayDate] },
+      { data: ['2025-01-04T00:00:00.000Z'] },
+    ]);
 
     const { result } = renderHook(() => useHabitsMetric());
 
