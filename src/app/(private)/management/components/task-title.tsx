@@ -15,7 +15,7 @@ export function TaskTitle() {
   return (
     <>
       {isTitleEditing ? (
-        <TitleEditor title={title} titleWidth={titleWidth} onTitleSave={handleTaskTitleUpdate} />
+        <TitleEditor title={title} titleWidth={titleWidth} onTitleSave={handleTaskTitleUpdate} isTaskTitle={true} />
       ) : (
         <TooltipProvider>
           <Tooltip>
@@ -23,7 +23,7 @@ export function TaskTitle() {
               <h2
                 ref={titleRef}
                 className={cn(
-                  'max-w-60 truncate',
+                  'text-sm max-w-60 truncate',
                   completed ? 'text-zinc-400 dark:text-zinc-500 line-through' : 'text-zinc-900 dark:text-zinc-100'
                 )}
               >
