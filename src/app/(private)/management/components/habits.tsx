@@ -1,4 +1,6 @@
+import { Suspense } from 'react';
 import { Habit } from './habit';
+import { HabitSkeleton } from './habit-skeleton';
 import { getHabits } from '@/app/api/get-habits';
 import { HabitProvider } from '@/contexts/habit-context';
 import { auth } from '@clerk/nextjs/server';
@@ -45,7 +47,9 @@ export async function Habits() {
               emoji: habit.emoji,
             }}
           >
+            <Suspense fallback={<HabitSkeleton />}>
               <Habit key={habit.id} id={habit.id} />
+            </Suspense>
           </HabitProvider>
         );
       })}
